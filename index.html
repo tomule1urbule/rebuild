@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Rebuild Postpartum Strength</title>
 <meta charset="utf-8">
+<title>Rebuild Postpartum Strength</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="A 16-week return-to-gym program after birth, with animated exercise demos.">
 <meta name="theme-color" content="#F5F4F7" media="(prefers-color-scheme: light)">
@@ -227,7 +227,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 /* tab bar */
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line);
   padding:6px max(12px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
-.tabs .in{max-width:540px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.tabs .in{max-width:540px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
 .tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 4px;border-radius:14px;font-size:11.5px;font-weight:550;color:var(--muted)}
 .tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .tabs button[aria-current="true"]{color:var(--accent)}
@@ -302,6 +302,30 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .sw-line{width:16px;border-top:2px dashed var(--good)}
 .ctl[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
 .ctl[aria-pressed="false"]{color:var(--muted)}
+.cal{padding:14px 12px 12px;display:flex;flex-direction:column;gap:8px}
+.calh .iconbtn{box-shadow:none;background:var(--surface-2)}
+.cgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.cgrid.cwk span{font-size:11px;color:var(--muted);text-align:center;font-weight:600;padding:2px 0}
+.cd{aspect-ratio:1/1.08;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:5px;gap:3px;min-width:0}
+.cd .dn{font-size:13px;font-weight:550;line-height:1}
+.cd.past .dn{color:var(--muted)}
+.cd.today .dn{color:var(--accent);font-weight:750}
+.cd.sel{background:var(--surface-2);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.cd:disabled{opacity:.35;cursor:not-allowed}
+.cps{display:flex;gap:2px;flex-wrap:wrap;justify-content:center}
+.cp{font-style:normal;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;line-height:1}
+.cp.plan{border:1.5px dashed var(--pc);color:var(--pc)}
+.cp.moved{border:1.5px solid var(--pc);color:var(--pc);background:color-mix(in srgb,var(--pc) 12%,var(--surface))}
+.cp.done{background:var(--pc);color:var(--surface)}
+.clegend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11.5px;color:var(--muted);padding-top:4px}
+.clegend span{display:inline-flex;align-items:center;gap:5px}
+.cdot{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--pc);border:1.5px solid var(--pc);flex:none}
+.cdot svg{width:12px;height:12px;stroke:var(--pc);stroke-width:3;fill:none}
+.pill{font-size:13px;font-weight:600;padding:7px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent);flex:none}
+.pill.ghost{background:var(--surface-2);padding:7px 9px;display:grid;place-items:center}
+.movebar{display:flex;align-items:center;gap:10px;margin-top:14px;background:var(--accent-soft);position:sticky;top:calc(64px + env(safe-area-inset-top,0px));z-index:4}
+.tabs button{font-size:10.5px}
+.facts .ul{font-size:14px;color:var(--accent);font-weight:600;text-decoration:none}
 </style>
 
 </head>
@@ -999,7 +1023,8 @@ let SET=Object.assign({},DEF,store.get('pp.set',{}));
 let LOG=store.get('pp.log',{});
 let FEEL=store.get('pp.feel',{});
 let GATE=store.get('pp.gate',{});
-const S={guides:true,tab:'today',stack:[],libCat:'All',q:'',exTab:'how',phTab:'over'};
+let SCHED=store.get('pp.sched',{});
+const S={calMonth:null,calSel:null,moveKey:null,guides:true,tab:'today',stack:[],libCat:'All',q:'',exTab:'how',phTab:'over'};
 const DAY=864e5;
 const pd=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
 const fmt=d=>d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
@@ -1020,9 +1045,26 @@ const phaseOf=w=>{for(let n=4;n>=1;n--)if(w>=phStart(n))return PH[n-1];return PH
 const wInPh=w=>w-phStart(phaseOf(w).n);
 const wip=w=>Math.min(3,wInPh(w));
 const weekNote=w=>wInPh(w)>3?'Extra C-section week. Repeat week 4 and make sure the scar feels comfortable in every exercise.':phaseOf(w).weeks[wInPh(w)];
-const weekStart=w=>addD(pd(SET.start),(w-1)*7);
+const weekStart=w=>sDate(w,phaseOf(w).S[0].id);
+const weekEnd=w=>{const P=phaseOf(w).S;return sDate(w,P[P.length-1].id)};
 const ppWeekAt=d=>Math.floor(diff(pd(SET.birth),d)/7);
-function curWeek(){const d=diff(pd(SET.start),todayD());if(d<0)return 0;return Math.min(TOTAL()+1,Math.floor(d/7)+1)}
+const GAP=2;
+function seqList(){const L=[];for(let w=1;w<=TOTAL();w++)phaseOf(w).S.forEach(s=>L.push({w,sid:s.id,k:key(w,s.id),ph:phaseOf(w),s}));return L}
+function schedule(){
+  const out={},today=todayD();let prev=null;
+  for(const it of seqList()){
+    let d,st;
+    if(LOG[it.k]){d=pd(LOG[it.k].date);st='done'}
+    else if(SCHED[it.k]){d=pd(SCHED[it.k]);if(d<today)d=today;st='moved'}
+    else{d=prev?addD(prev,GAP):pd(SET.start);if(d<today)d=today;st='plan'}
+    out[it.k]=Object.assign({date:d,st},it);prev=d;
+  }
+  return out;
+}
+function nextItem(){return seqList().find(it=>!LOG[it.k])||null}
+function curWeek(){const n=nextItem();if(!n)return TOTAL()+1;if(!Object.keys(LOG).length&&todayD()<pd(SET.start))return 0;return n.w}
+const sDate=(w,sid)=>schedule()[key(w,sid)].date;
+const relDay=d=>{const n=diff(todayD(),d);return n===0?'Today':n===1?'Tomorrow':n===-1?'Yesterday':d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})};
 const key=(w,sid)=>`${w}-${sid}`;
 const rxOf=(rx,w)=>Array.isArray(rx)?rx[wip(w)]:rx;
 const BIRTH={cs:'C-section',vag:'Vaginal birth',unknown:'Not set'};
@@ -1084,7 +1126,8 @@ back:'<svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>',
 gear:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
 check:'<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>',
 today:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-plan:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>',
+plan:'<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>',
+cal:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/><circle cx="8" cy="14" r=".6"/><circle cx="12" cy="14" r=".6"/><circle cx="16" cy="14" r=".6"/></svg>',
 lib:'<svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg>',
 learn:'<svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/></svg>',
 play:'<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>',
@@ -1107,7 +1150,7 @@ const feelToday=()=>FEEL[iso(todayD())]||null;
 const sec=(title,body,aside='')=>`<section class="sec"><h2 class="sh">${title}${aside?`<span>${aside}</span>`:''}</h2>${body}</section>`;
 const tailoredTag='<span class="tt">Tailored</span>';
 function segTabs(name,cur,opts){return `<div class="seg" role="tablist">${opts.map(([k,l])=>`<button role="tab" data-${name}="${k}" aria-pressed="${cur===k}">${l}</button>`).join('')}</div>`}
-function sessRow(p,s,w){const L=LOG[key(w,s.id)];return `<button class="li tap" data-nav="session|${p.n}|${s.id}|${w}"><span class="status ${L?'done':''}">${L?I.check:''}</span><span class="grow"><span class="t">${s.name}</span><span class="s">${L?`Done ${fmt(pd(L.date))} · effort ${L.rpe}/10`:`Session ${s.id} · ${s.dur} min`}</span></span>${I.chev}</button>`}
+function sessRow(p,s,w){const L=LOG[key(w,s.id)];const it=schedule()[key(w,s.id)];return `<button class="li tap" data-nav="session|${p.n}|${s.id}|${w}"><span class="status ${L?'done':''}">${L?I.check:''}</span><span class="grow"><span class="t">${s.name}</span><span class="s">${L?`Done ${fmt(pd(L.date))} · effort ${L.rpe}/10`:`${relDay(it.date)}${it.st==='moved'?' (moved)':''} · ${s.dur} min`}</span></span>${I.chev}</button>`}
 
 /* =========================================================
    TODAY — status, check-in, today's session, this week
@@ -1117,7 +1160,7 @@ function vToday(){
   const cw=curWeek(),total=TOTAL(),w=Math.max(1,Math.min(total,cw)),ph=phaseOf(w);
   const before=cw===0,after=cw>total;
   const totalS=total*3;const doneS=Object.keys(LOG).filter(k=>+k.split('-')[0]<=total).length;const pct=Math.min(100,Math.round(doneS/totalS*100));
-  const next=ph.S.find(s=>!LOG[key(w,s.id)]);
+  const sch=schedule();const nx=nextItem();const next=nx&&nx.w===w?nx.s:null;const nd=nx?sch[nx.k].date:null;const rest=nd&&diff(todayD(),nd)>0;
   const feel=feelToday();
   const flags=Object.values(LOG).filter(v=>v.sym&&v.sym.length&&diff(pd(v.date),todayD())<=14);
   const feelTxt={g:['good','Train as written.'],a:['warn','Same exercises, one set fewer each, and stop 1–2 reps earlier.'],r:['bad','Skip the gym. A 20-minute walk plus breathing and pelvic floor work counts as today\'s session.']};
@@ -1141,10 +1184,10 @@ function vToday(){
       <button data-feel="a" aria-pressed="${feel==='a'}" style="--c:var(--warn)"><span class="dot" style="background:var(--warn)"></span><b>Tired</b></button>
       <button data-feel="r" aria-pressed="${feel==='r'}" style="--c:var(--bad)"><span class="dot" style="background:var(--bad)"></span><b>Rough</b></button>
     </div>${feel?`<div class="note ${feelTxt[feel][0]}">${feelTxt[feel][1]}</div>`:''}`)}
-  ${sec(before?'First session':'Today\'s session',next?`<button class="next tap" style="${pc(ph.n)}" data-nav="session|${ph.n}|${next.id}|${w}">
-      <span class="lbl">Week ${w} · Session ${next.id}</span><h2>${next.name}</h2>
+  ${sec('Next session',next?`${rest&&!before?`<div class="note">Rest day today. Your next workout is suggested for <b>${relDay(nd).toLowerCase()==='tomorrow'?'tomorrow':relDay(nd)}</b>, ${GAP} days after the last one. You can still train today if you feel ready.</div>`:''}<button class="next tap" style="${pc(ph.n)}" data-nav="session|${ph.n}|${next.id}|${w}">
+      <span class="lbl">${relDay(nd)} · Week ${w} · Session ${next.id}</span><h2>${next.name}</h2>
       <span class="meta">${next.dur} min · ${blocksFor(ph,next).reduce((s,b)=>s+b.items.length,0)} exercises</span>
-      <span class="go">Start ${I.chev}</span></button>`:`<div class="note good"><b>Week ${w} is done.</b> Walk, rest, and come back next week.</div>`)}
+      <span class="go">Start ${I.chev}</span></button>`:`<div class="note good"><b>Program complete.</b> Repeat phase 4 with heavier weights, or move on to a general strength plan.</div>`)}
   ${sec('This week',`<div class="list">${ph.S.map(s=>sessRow(ph,s,w)).join('')}</div>`,`${ph.S.filter(s=>LOG[key(w,s.id)]).length} of ${ph.S.length} done`)}
   ${SET.delivery!=='unknown'?`<button class="linkrow tap" style="margin-top:22px" data-nav="article|${isCS()?'cs':'vag'}">${ico(isCS()?'scar':'circle')}<span class="grow">Tailored for recovery after ${isCS()?'a C-section':'a vaginal birth'}<small>What changes in your plan${isPro()?' · returning-lifter loads on':''}</small></span>${I.chev}</button>`:''}
   <p class="foot">General guidance, not medical advice. Check with a GP or pelvic health physio first.</p>
@@ -1164,7 +1207,7 @@ function vPlan(){
   ${PH.map(p=>{const ws=phWeeks(p.n);const open=p.n===curP;
     return sec(`<span class="dot" style="background:var(--p${p.n});width:9px;height:9px"></span> Phase ${p.n} · ${p.name}`,
     `<div class="list">
-      <button class="li tap" data-nav="phase|${p.n}"><span class="grow"><span class="t">${p.tag}</span><span class="s">${rpeOf(p)} · ${p.time} · ${fmt(weekStart(ws[0]))} – ${fmt(addD(weekStart(ws[ws.length-1]),6))}</span></span><span class="more">Details</span>${I.chev}</button>
+      <button class="li tap" data-nav="phase|${p.n}"><span class="grow"><span class="t">${p.tag}</span><span class="s">${rpeOf(p)} · ${p.time} · ${fmt(weekStart(ws[0]))} – ${fmt(weekEnd(ws[ws.length-1]))}</span></span><span class="more">Details</span>${I.chev}</button>
       ${open?ws.map(w=>{const done=p.S.filter(s=>LOG[key(w,s.id)]).length;return `<button class="li tap ${w===cw?'here':''}" style="${pc(p.n)}" data-nav="week|${w}"><span class="wn">W${w}</span><span class="grow"><span class="t">${weekNote(w)}</span><span class="s">${fmt(weekStart(w))}${w===cw?' · this week':''}</span></span><span class="pips">${p.S.map(s=>`<i class="pip ${LOG[key(w,s.id)]?'on':''}"></i>`).join('')}</span></button>`}).join(''):`<button class="li tap" data-nav="phase|${p.n}|weeks"><span class="grow"><span class="s">${ws.length} weeks · ${p.S.length} sessions a week</span></span>${I.chev}</button>`}
     </div>`)}).join('')}
   </div>`;
@@ -1187,7 +1230,7 @@ function phPanel(n){
     <div class="list">${g.map((x,i)=>`<label class="li chk"><input type="checkbox" data-gate="${n}-${i}" ${GATE[`${n}-${i}`]?'checked':''}><span class="grow">${x}</span></label>`).join('')}</div>
     <div class="note ${done===g.length?'good':''}">${done===g.length?`<b>All ${g.length} ticked.</b> Ready for ${n<4?'phase '+(n+1):'whatever comes next'}.`:`${done} of ${g.length} ticked.`}</div>
     ${n===3?`<button class="linkrow tap" data-nav="article|impact">${ico('jump')}<span class="grow">Return-to-impact test<small>11 checks, done in the last week</small></span>${I.chev}</button>`:''}`}
-  return `<div class="kv"><div><b>Effort</b><span>${rpeOf(p)}</span></div><div><b>Length</b><span>${p.time}</span></div><div><b>Frequency</b><span>${p.freq}</span></div><div><b>Dates</b><span>${fmt(weekStart(ws[0]))} – ${fmt(addD(weekStart(ws[ws.length-1]),6))}</span></div></div>
+  return `<div class="kv"><div><b>Effort</b><span>${rpeOf(p)}</span></div><div><b>Length</b><span>${p.time}</span></div><div><b>Frequency</b><span>${p.freq}</span></div><div><b>Dates</b><span>${fmt(weekStart(ws[0]))} – ${fmt(weekEnd(ws[ws.length-1]))}</span></div></div>
   ${n===1&&isCS()?`<div class="note">${tailoredTag} Phase 1 lasts 5 weeks after a C-section, with a gentler core progression.</div>`:''}
   <div class="sub"><h3>Focus</h3><ul class="clean">${p.focus.map(x=>`<li>${x}</li>`).join('')}</ul></div>
   <div class="sub"><h3>What's normal</h3><ul class="clean">${p.normal.map(x=>`<li>${x}</li>`).join('')}</ul></div>
@@ -1200,7 +1243,7 @@ function vWeek(w){
   <div class="view stack" style="${pc(p.n)}">
   <section class="band"><span class="lbl">Phase ${p.n} · ${p.name}</span><h1>Week ${w}</h1><p>${weekNote(w)}</p></section>
   ${segTabs('wk',String(w),ws.map(x=>[String(x),'W'+x]))}
-  <div class="kv"><div><b>Dates</b><span>${fmt(weekStart(w))} – ${fmt(addD(weekStart(w),6))}</span></div><div><b>Postpartum</b><span>Week ${ppWeekAt(weekStart(w))}</span></div></div>
+  <div class="kv"><div><b>Dates</b><span>${fmt(weekStart(w))} – ${fmt(weekEnd(w))}</span></div><div><b>Postpartum</b><span>Week ${ppWeekAt(weekStart(w))}</span></div></div>
   <div class="sub"><h3>Sessions</h3><div class="list">${p.S.map(s=>{const L=LOG[key(w,s.id)];const main=blocksFor(p,s).find(b=>b.n==='Main').items;
     return `<button class="li tap" data-nav="session|${p.n}|${s.id}|${w}"><span class="status ${L?'done':''}">${L?I.check:''}</span><span class="grow"><span class="t">${s.name}</span><span class="s">${main.map(i=>`${EX[i.id].n} ${rxOf(i.rx,w)}`).join(' · ')}</span></span>${I.chev}</button>`}).join('')}</div></div>
   </div>`;
@@ -1217,7 +1260,7 @@ function vSession(n,sid,w){
   return `${hdr(`Week ${w} · Session ${sid}`,true)}
   <div class="view stack" style="${pc(n)}">
   <section class="band"><span class="lbl">Phase ${n} · ${p.name}</span><h1>${s.name}</h1>
-    <div class="facts"><span><b>${s.dur}</b> min</span><span><b>${blocks.reduce((a,b)=>a+b.items.length,0)}</b> exercises</span><span>${rpeOf(p)}</span></div></section>
+    <div class="facts">${L?`<span>Done ${fmt(pd(L.date))}</span>`:`<button class="ul" data-calgo="${key(w,sid)}">${relDay(sDate(w,sid))}</button>`}<span><b>${s.dur}</b> min</span><span><b>${blocks.reduce((a,b)=>a+b.items.length,0)}</b> exercises</span><span>${rpeOf(p)}</span></div></section>
   ${segTabs('swk',String(w),phWeeks(n).map(x=>[String(x),'W'+x]))}
   ${amb?`<div class="note warn"><b>Tired day:</b> main sets are already reduced by one. Stop 1–2 reps earlier.</div>`:''}
   ${red?`<div class="note bad"><b>Rough day:</b> skip this. Do a 20-min walk, 360° breathing and pelvic floor lifts instead.</div>`:''}
@@ -1280,6 +1323,39 @@ function exPanel(id){
   return `<ol class="steps">${e.cues.map(x=>`<li>${x}</li>`).join('')}</ol><div class="adj"><span class="lbl">Breathing</span><p>${e.br}</p></div>`;
 }
 
+
+/* =========================================================
+   CALENDAR — suggested dates, move workouts
+   ========================================================= */
+function vCal(){
+  const sch=schedule();const today=todayD();
+  if(!S.calMonth){const n=nextItem();const d=n?sch[n.k].date:today;S.calMonth=new Date(d.getFullYear(),d.getMonth(),1);S.calSel=iso(d)}
+  const m=S.calMonth;const byDay={};Object.values(sch).forEach(it=>{const k=iso(it.date);(byDay[k]=byDay[k]||[]).push(it)});
+  const first=new Date(m.getFullYear(),m.getMonth(),1);const lead=(first.getDay()+6)%7;const days=new Date(m.getFullYear(),m.getMonth()+1,0).getDate();
+  let cells='';for(let i=0;i<lead;i++)cells+='<span></span>';
+  for(let d=1;d<=days;d++){const dt=new Date(m.getFullYear(),m.getMonth(),d);const k=iso(dt);const its=byDay[k]||[];const past=dt<today;
+    const dis=S.moveKey&&past;
+    cells+=`<button class="cd ${k===iso(today)?'today':''} ${k===S.calSel?'sel':''} ${past?'past':''}" data-calday="${k}" ${dis?'disabled':''} aria-label="${dt.toDateString()}${its.length?`, ${its.length} workout`:''}"><span class="dn">${d}</span><span class="cps">${its.map(it=>`<i class="cp ${it.st}" style="${pc(it.ph.n)}">${it.st==='done'?'✓':it.sid}</i>`).join('')}</span></button>`}
+  const selItems=byDay[S.calSel]||[];const selD=S.calSel?pd(S.calSel):today;
+  const mv=S.moveKey?sch[S.moveKey]:null;
+  const upcoming=Object.values(sch).filter(it=>it.st!=='done').slice(0,6);
+  const row=it=>`<div class="li"><span class="cdot" style="${pc(it.ph.n)}">${it.st==='done'?I.check:it.sid}</span><span class="grow"><span class="t">${it.s.name}</span><span class="s">Week ${it.w} · ${relDay(it.date)}${it.st==='moved'?' · moved by you':''}${it.st==='done'?` · effort ${LOG[it.k].rpe}/10`:''}</span></span>
+    ${it.st!=='done'?`<button class="pill" data-move="${it.k}">Move</button>`:''}<button class="pill ghost" data-nav="session|${it.ph.n}|${it.sid}|${it.w}" aria-label="Open">${I.chev}</button></div>`;
+  return `${hdr()}
+  <div class="view">
+  <section class="pagehead"><span class="lbl">Suggested every ${GAP} days</span><h1>Calendar</h1><p class="muted">Each next workout is suggested ${GAP} days after your last one. Move any workout to a day that suits you; the ones after it shift along.</p></section>
+  ${mv?`<div class="note movebar"><span class="grow">Choose a new day for <b>${mv.s.name}</b> (week ${mv.w})</span><button class="pill" data-act="cancelmove">Cancel</button></div>`:''}
+  <section class="card cal">
+    <div class="row calh"><button class="iconbtn" data-calm="-1" aria-label="Previous month">${I.back}</button><h2 class="grow" style="text-align:center;font-size:17px">${m.toLocaleDateString('en-GB',{month:'long',year:'numeric'})}</h2><button class="iconbtn" data-calm="1" aria-label="Next month" style="transform:scaleX(-1)">${I.back}</button></div>
+    <div class="cgrid cwk">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<span>${x}</span>`).join('')}</div>
+    <div class="cgrid">${cells}</div>
+    <div class="clegend"><span><i class="cp plan" style="--pc:var(--p1)">A</i> Suggested</span><span><i class="cp moved" style="--pc:var(--p1)">A</i> Moved</span><span><i class="cp done" style="--pc:var(--p1)">✓</i> Done</span></div>
+  </section>
+  ${sec(relDay(selD),selItems.length?`<div class="list">${selItems.map(row).join('')}</div>`:`<div class="note">Rest day. Walking, breathing and pelvic floor work are all fine.</div>`)}
+  ${sec('Coming up',`<div class="list">${upcoming.map(row).join('')}</div>`)}
+  ${Object.keys(SCHED).length?`<button class="btn ghost" style="margin-top:16px" data-act="resetsched">Reset all to suggested dates</button>`:''}
+  </div>`;
+}
 /* =========================================================
    LIBRARY / LEARN / SETTINGS
    ========================================================= */
@@ -1341,7 +1417,7 @@ const cur=()=>S.stack.length?S.stack[S.stack.length-1]:[S.tab];
 function render(scrollTop){
   stopAnim();
   const v=cur();const t=v[0];let h='';
-  if(t==='today')h=vToday();else if(t==='plan')h=vPlan();else if(t==='lib')h=vLib();else if(t==='learn')h=vLearn();
+  if(t==='today')h=vToday();else if(t==='plan')h=vPlan();else if(t==='lib')h=vLib();else if(t==='learn')h=vLearn();else if(t==='cal')h=vCal();
   else if(t==='phase')h=vPhase(+v[1],v[2]);else if(t==='week')h=vWeek(+v[1]);else if(t==='session')h=vSession(+v[1],v[2],v[3]);
   else if(t==='ex')h=vEx(v[1],v[2]?+v[2]:0,v[3],v[4],v[5],v[6]);else if(t==='article')h=vArticle(v[1]);else if(t==='settings')h=vSettings();
   app.innerHTML=h;renderTabs();drawThumbs();
@@ -1350,7 +1426,7 @@ function render(scrollTop){
   onScroll();
 }
 function renderTabs(){
-  const tabs=[['today','Today',I.today],['plan','Program',I.plan],['lib','Exercises',I.lib],['learn','Learn',I.learn]];
+  const tabs=[['today','Today',I.today],['plan','Program',I.plan],['cal','Calendar',I.cal],['lib','Exercises',I.lib],['learn','Learn',I.learn]];
   document.getElementById('tabs').innerHTML=tabs.map(([k,l,ic])=>`<button data-tab="${k}" aria-current="${S.tab===k}">${ic}<span>${l}</span></button>`).join('');
 }
 function drawThumbs(){document.querySelectorAll('canvas[data-thumb]').forEach(cv=>{const e=EX[cv.dataset.thumb];if(!e)return;try{drawScene(cv,e,e.f[0].d*0.85)}catch(err){}})}
@@ -1375,10 +1451,14 @@ function nav(str){
 }
 function pressSeg(attr,val){document.querySelectorAll(`[data-${attr}]`).forEach(b=>b.setAttribute('aria-pressed',b.dataset[attr]===val))}
 document.addEventListener('click',ev=>{
-  const el=ev.target.closest('[data-nav],[data-tab],[data-act],[data-feel],[data-cat],[data-deliv],[data-setdeliv],[data-setlevel],[data-level],[data-extab],[data-phtab],[data-wk],[data-swk]');if(!el)return;
+  const el=ev.target.closest('[data-calday],[data-calm],[data-move],[data-calgo],[data-nav],[data-tab],[data-act],[data-feel],[data-cat],[data-deliv],[data-setdeliv],[data-setlevel],[data-level],[data-extab],[data-phtab],[data-wk],[data-swk]');if(!el)return;
   const d=el.dataset;
+  if(d.calday){if(S.moveKey){SCHED[S.moveKey]=d.calday;store.set('pp.sched',SCHED);S.moveKey=null}S.calSel=d.calday;render(false);return}
+  if(d.calm){const m=S.calMonth;S.calMonth=new Date(m.getFullYear(),m.getMonth()+(+d.calm),1);render(false);return}
+  if(d.move){S.moveKey=d.move;render(false);window.scrollTo({top:0,behavior:'smooth'});return}
+  if(d.calgo){const it=schedule()[d.calgo];S.tab='cal';S.stack=[];S.calMonth=new Date(it.date.getFullYear(),it.date.getMonth(),1);S.calSel=iso(it.date);render(true);return}
   if(d.nav){ev.preventDefault();nav(d.nav);return}
-  if(d.tab){S.tab=d.tab;S.stack=[];render(true);return}
+  if(d.tab){S.tab=d.tab;S.stack=[];if(d.tab==='cal'){S.calMonth=null;S.moveKey=null}render(true);return}
   if(d.feel){const k=iso(todayD());FEEL[k]=FEEL[k]===d.feel?null:d.feel;store.set('pp.feel',FEEL);render(false);return}
   if(d.cat){S.libCat=d.cat;render(false);return}
   if(d.setdeliv){if(d.setdeliv!=='skip')SET.delivery=d.setdeliv;SET.asked=true;store.set('pp.set',SET);render(false);return}
@@ -1390,6 +1470,8 @@ document.addEventListener('click',ev=>{
   if(d.wk){nav('replace|week|'+d.wk);return}
   if(d.swk){const v=cur();nav(`replace|session|${v[1]}|${v[2]}|${d.swk}`);return}
   const act=d.act;
+  if(act==='cancelmove'){S.moveKey=null;render(false);return}
+  if(act==='resetsched'){SCHED={};store.set('pp.sched',SCHED);render(false);return}
   if(act==='back'){S.stack.pop();render(true)}
   else if(act==='pp'){paused=!paused;el.innerHTML=paused?I.play:I.pause;el.setAttribute('aria-label',paused?'Play':'Pause')}
   else if(act==='guides'){S.guides=!S.guides;el.setAttribute('aria-pressed',S.guides);const lg=document.getElementById('glegend');if(lg)lg.hidden=!S.guides}
@@ -1402,7 +1484,7 @@ document.addEventListener('change',ev=>{const g=ev.target.dataset&&ev.target.dat
 document.addEventListener('submit',ev=>{
   ev.preventDefault();
   if(ev.target.id==='logform'){const v=cur();const sym=[...document.querySelectorAll('input[name=sym]:checked')].map(x=>x.value);
-    LOG[key(v[3],v[2])]={date:iso(todayD()),rpe:+document.getElementById('rpe').value,sym};store.set('pp.log',LOG);render(false)}
+    delete SCHED[key(v[3],v[2])];store.set('pp.sched',SCHED);LOG[key(v[3],v[2])]={date:iso(todayD()),rpe:+document.getElementById('rpe').value,sym};store.set('pp.log',LOG);render(false)}
   if(ev.target.id==='setform'){const b=document.getElementById('s-birth').value,s=document.getElementById('s-start').value;if(b)SET.birth=b;if(s)SET.start=s;store.set('pp.set',SET);S.stack.pop();render(true)}
 });
 document.addEventListener('input',ev=>{if(ev.target.id==='q'){S.q=ev.target.value;const pos=ev.target.selectionStart;render(false);const q=document.getElementById('q');q.focus();try{q.setSelectionRange(pos,pos)}catch(e){}}});
