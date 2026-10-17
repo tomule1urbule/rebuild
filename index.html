@@ -1,0 +1,1417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Rebuild Postpartum Strength</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="A 16-week return-to-gym program after birth, with animated exercise demos.">
+<meta name="theme-color" content="#F5F4F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131118" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Rebuild">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}body{margin:0;font-family:system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..800&family=Instrument+Sans:wght@400..700&display=swap">
+<style>
+/* Layout: calm mobile app shell — soft surfaces on a tinted ground, one accent, phase colour used only as small markers. */
+:root{
+  --bg:#F5F4F7; --surface:#FFFFFF; --surface-2:#F1EFF4; --ink:#1C1A22; --muted:#6F6B7A; --line:#ECE9F0;
+  --accent:#5E45A6; --accent-ink:#FFFFFF; --accent-soft:#EEEAF7;
+  --p1:#4A8A6C; --p2:#3F6EAD; --p3:#A6456F; --p4:#B07224;
+  --good:#2F8455; --warn:#A8701A; --bad:#B9433C;
+  --skin:#E2B497; --skin-far:#C49479; --hair:#3D2B22; --top:#40395A; --top-far:#5F5878; --leg:#2A2732; --leg-far:#4B4757; --shoe:#8D879A;
+  --sole:#F6F4F8; --prop:#9A94A6; --prop-d:#5F596B; --pad:#4A4458; --box:#D9CDBB; --floor:#E8E5EC; --stage:#FBFAFC; --stage-2:#F1EFF5; --shadow:rgb(30 22 45 / .12);
+  --card-shadow:0 1px 2px rgb(30 22 45 / .04),0 6px 20px rgb(30 22 45 / .05);
+  --f-display:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Instrument Sans",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#131118; --surface:#1C1A22; --surface-2:#25222D; --ink:#EDEAF3; --muted:#A39FAE; --line:#2B2833;
+  --accent:#B4A1EE; --accent-ink:#17131F; --accent-soft:#2A2440;
+  --p1:#7BC09F; --p2:#86AAE3; --p3:#E28AB2; --p4:#E4AD5F;
+  --good:#6FC793; --warn:#E2B261; --bad:#EE837B;
+  --skin:#D6A687; --skin-far:#9E7B66; --hair:#6B4C3C; --top:#7569A8; --top-far:#4E4672; --leg:#5A5568; --leg-far:#3B3846; --shoe:#B9B3C4;
+  --sole:#D9D4E0; --prop:#8B8597; --prop-d:#B3ADBE; --pad:#4E4860; --box:#5A4F42; --floor:#2A2632; --stage:#211E28; --stage-2:#1A1820; --shadow:rgb(0 0 0 / .35);
+  --card-shadow:none; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#131118; --surface:#1C1A22; --surface-2:#25222D; --ink:#EDEAF3; --muted:#A39FAE; --line:#2B2833;
+  --accent:#B4A1EE; --accent-ink:#17131F; --accent-soft:#2A2440;
+  --p1:#7BC09F; --p2:#86AAE3; --p3:#E28AB2; --p4:#E4AD5F;
+  --good:#6FC793; --warn:#E2B261; --bad:#EE837B;
+  --skin:#D6A687; --skin-far:#9E7B66; --hair:#6B4C3C; --top:#7569A8; --top-far:#4E4672; --leg:#5A5568; --leg-far:#3B3846; --shoe:#B9B3C4;
+  --sole:#D9D4E0; --prop:#8B8597; --prop-d:#B3ADBE; --pad:#4E4860; --box:#5A4F42; --floor:#2A2632; --stage:#211E28; --stage-2:#1A1820; --shadow:rgb(0 0 0 / .35);
+  --card-shadow:none; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;
+  padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));padding-block:0 calc(96px + env(safe-area-inset-bottom,0px))}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px}
+.wrap{max-width:540px;margin:0 auto}
+/* header */
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin:0 calc(-1*max(18px,env(safe-area-inset-left,0px)));padding:12px max(18px,env(safe-area-inset-right,0px)) 12px max(18px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:10px;min-height:60px;border-bottom:1px solid transparent;transition:border-color .2s}
+.hdr.scrolled{border-bottom-color:var(--line)}
+.hdr .mark{font-family:var(--f-display);font-weight:700;font-size:19px;letter-spacing:-.01em}
+.hdr .mark i{font-style:normal;color:var(--accent)}
+.hdr .ctx{font-size:12.5px;color:var(--muted);margin-left:auto;text-align:right;line-height:1.3}
+.iconbtn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--surface);box-shadow:var(--card-shadow);flex:none}
+.iconbtn svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.crumb{font-size:14px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* type */
+.eyebrow{font-size:12.5px;font-weight:600;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h1{font-weight:700;font-size:clamp(28px,7.6vw,34px);line-height:1.08;letter-spacing:-.02em}
+h2{font-weight:700;font-size:20px;line-height:1.2;letter-spacing:-.01em}
+h3{font-weight:650;font-size:16.5px;line-height:1.25}
+p{margin:0}
+.muted{color:var(--muted)}
+.mono{font-variant-numeric:tabular-nums}
+.stack{display:flex;flex-direction:column;gap:12px}
+.sec{display:flex;flex-direction:column;gap:10px;margin-top:30px}
+.sec>.eyebrow{display:flex;justify-content:space-between;align-items:baseline;padding:0 2px}
+/* cards */
+.card{background:var(--surface);border-radius:20px;padding:18px;box-shadow:var(--card-shadow)}
+.tap{display:block;width:100%;transition:transform .12s ease}
+.tap:active{transform:scale(.985)}
+.chev{width:16px;height:16px;stroke:var(--muted);fill:none;stroke-width:2.2;flex:none;opacity:.7}
+.row{display:flex;align-items:center;gap:12px;min-width:0}
+.row>.grow{flex:1;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;font-weight:550;padding:4px 10px;border-radius:999px;background:var(--surface-2);color:var(--ink);white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+/* hero */
+.hero{margin-top:10px;display:flex;flex-direction:column;gap:16px}
+.ppnum{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.ppnum .big{font-family:var(--f-display);font-weight:700;font-size:clamp(48px,14vw,60px);line-height:.9;letter-spacing:-.04em}
+.ppnum .big small{font-size:.4em;font-weight:600;letter-spacing:0;margin:0 6px 0 2px;color:var(--muted)}
+.ppnum .side{padding-bottom:4px;font-size:14px;color:var(--muted);line-height:1.4}
+.timeline{display:grid;grid-template-columns:repeat(16,1fr);gap:3px}
+.timeline .w{height:6px;border-radius:3px;background:var(--line)}
+.timeline .w.fill{background:var(--pc)}
+.timeline .w.now{background:var(--pc);box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--pc)}
+.tl-labels{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:8px}
+.tl-labels span{font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.tl-labels span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pc);flex:none}
+/* traffic light */
+.tl3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tl3 button{background:var(--surface);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:3px;box-shadow:var(--card-shadow);border:1.5px solid transparent}
+.tl3 button b{font-size:14.5px;font-weight:650;display:flex;align-items:center;gap:7px}
+.tl3 button span{font-size:12px;color:var(--muted);line-height:1.3}
+.tl3 button[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb,var(--c) 7%,var(--surface))}
+.note{border-radius:16px;padding:13px 15px;background:var(--surface-2);font-size:14px;line-height:1.45}
+.note.warn{background:color-mix(in srgb,var(--warn) 11%,var(--surface))}
+.note.bad{background:color-mix(in srgb,var(--bad) 10%,var(--surface))}
+.note.good{background:color-mix(in srgb,var(--good) 10%,var(--surface))}
+.note b{font-weight:650}
+/* next session */
+.next{background:var(--surface);box-shadow:var(--card-shadow);border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.next::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--pc)}
+.next .eyebrow{color:var(--pc)}
+.next h2{font-size:24px}
+.next .meta{font-size:13px;color:var(--muted)}
+.next .go{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:var(--bg);font-weight:600;border-radius:999px;padding:9px 16px;align-self:flex-start;font-size:14px;margin-top:4px}
+.next .go .chev{stroke:var(--bg);opacity:1}
+.next svg.bgmark{display:none}
+/* list rows */
+.list{background:var(--surface);border-radius:20px;overflow:hidden;box-shadow:var(--card-shadow)}
+.list>*{position:relative}
+.list>*+*::before{content:"";position:absolute;top:0;left:16px;right:16px;height:1px;background:var(--line)}
+.li{display:flex;align-items:center;gap:13px;padding:13px 16px;width:100%;min-width:0}
+.li .grow{flex:1;min-width:0}
+.li .t{display:block;font-weight:600;line-height:1.3}
+.li .s{display:block;font-size:13px;color:var(--muted);line-height:1.35;margin-top:1px}
+.li .rx{font-size:13.5px;font-weight:650;white-space:nowrap;text-align:right}
+.thumb{width:58px;height:42px;border-radius:12px;background:var(--stage);flex:none;display:block}
+.status{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;flex:none}
+.status.done{background:var(--good);border-color:var(--good)}
+.status svg{width:13px;height:13px;stroke:var(--surface);stroke-width:3;fill:none}
+.block-h{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px 4px}
+.block-h .eyebrow{color:var(--ink);font-size:13px}
+.list>.block-h+*::before{display:none}
+.list>.block-h::before{left:0;right:0}
+/* phase cards */
+.phase{display:flex;flex-direction:column;gap:10px}
+.phase .num{font-size:12.5px;font-weight:600;color:var(--pc);display:flex;align-items:center;gap:6px}
+.phase .num::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pc)}
+.wkgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.wk{border-radius:16px;padding:11px;background:var(--surface);box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:5px;min-width:0;border:1.5px solid transparent}
+.wk.now{border-color:var(--pc)}
+.wk .n{font-family:var(--f-display);font-weight:700;font-size:17px;line-height:1}
+.wk .d{font-size:11px;color:var(--muted)}
+.pips{display:flex;gap:4px}
+.pip{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.pip.on{background:var(--pc)}
+/* page heading (was a colour band) */
+.band{padding:8px 2px 4px;display:flex;flex-direction:column;gap:8px}
+.band .eyebrow{color:var(--pc);display:flex;align-items:center;gap:6px}
+.band .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pc)}
+.band h1{font-size:clamp(30px,8.4vw,38px)}
+.band p{color:var(--muted);max-width:62ch}
+.kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--card-shadow)}
+.kv div{background:var(--surface);padding:12px 14px;min-width:0}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:500}
+.kv span{font-weight:600;font-size:14.5px}
+ul.clean{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+ul.clean li{display:flex;gap:11px;align-items:flex-start}
+ul.clean li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pc,var(--accent));margin-top:9px;flex:none}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:12px}
+ol.steps li{counter-increment:s;display:flex;gap:12px}
+ol.steps li::before{content:counter(s);font-weight:650;font-size:12px;width:22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none;margin-top:1px}
+/* segmented */
+.seg{display:flex;background:var(--surface-2);border-radius:14px;padding:3px;gap:2px;overflow-x:auto}
+.seg button{flex:1;padding:8px 10px;border-radius:11px;font-size:13px;font-weight:550;text-align:center;white-space:nowrap;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:650;box-shadow:0 1px 3px rgb(0 0 0 / .08)}
+/* stage */
+.stage{background:var(--stage);border-radius:24px;overflow:hidden;position:relative;box-shadow:var(--card-shadow)}
+.stage canvas{display:block;width:100%;height:auto;aspect-ratio:320/220;max-width:100%}
+.stagebar{display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--surface)}
+.cue{flex:1;min-width:0;font-size:14px;font-weight:600;line-height:1.3}
+.cue small{display:block;font-weight:450;font-size:12px;color:var(--muted);margin-top:1px}
+.ctl{height:36px;min-width:36px;padding:0 11px;border-radius:999px;background:var(--surface-2);display:grid;place-items:center;font-size:12.5px;font-weight:650}
+.ctl svg{width:14px;height:14px;fill:var(--ink)}
+.stage .tag{display:none}
+.stepdots{display:flex;gap:4px;position:absolute;top:14px;left:16px}
+.stepdots i{width:14px;height:3px;border-radius:2px;background:var(--line)}
+.stepdots i.on{background:var(--accent)}
+/* rx box */
+.rx-box{display:flex;flex-direction:column;gap:10px;border-radius:20px;padding:16px 18px;background:var(--surface);box-shadow:var(--card-shadow)}
+.rx-box .eyebrow{color:var(--pc,var(--accent))}
+.rx-big{font-family:var(--f-display);font-weight:700;font-size:28px;line-height:1;letter-spacing:-.02em}
+.prog{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.prog div{font-size:12px;font-weight:550;text-align:center;padding:7px 2px;border-radius:11px;background:var(--surface-2);min-width:0;overflow-wrap:anywhere}
+.prog div.on{background:var(--ink);color:var(--bg)}
+.prog div b{display:block;font-weight:500;opacity:.65;font-size:10.5px}
+/* drill (details) */
+details.drill{background:var(--surface);border-radius:18px;overflow:hidden;box-shadow:var(--card-shadow)}
+details.drill>summary{list-style:none;display:flex;align-items:center;gap:13px;padding:14px 16px;cursor:pointer}
+details.drill>summary::-webkit-details-marker{display:none}
+details.drill>summary .ic{width:34px;height:34px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;flex:none}
+details.drill>summary .ic svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+details.drill>summary .grow{flex:1;min-width:0;line-height:1.3}
+details.drill>summary b{font-weight:600}
+details.drill>summary .s{font-size:12.5px;color:var(--muted)}
+details.drill>summary .chev{transition:transform .2s}
+details.drill[open]>summary .chev{transform:rotate(90deg)}
+details.drill .body{padding:0 16px 18px 63px;display:flex;flex-direction:column;gap:12px}
+@media (max-width:380px){details.drill .body{padding-left:16px}}
+.linkrow{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--surface-2);border-radius:14px;width:100%}
+.linkrow .grow{flex:1;min-width:0;font-weight:600;font-size:14px}
+.linkrow small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+.sec .linkrow{background:var(--surface);box-shadow:var(--card-shadow)}
+/* article */
+.article{display:flex;flex-direction:column;gap:14px;max-width:65ch}
+.article h3{margin-top:12px}
+.article p,.article li{font-size:15.5px;line-height:1.6}
+.article ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.disclaimer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:8px}
+/* forms */
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:600}
+.field input[type=date],.field input[type=search],.field input[type=text]{font:inherit;padding:12px 14px;border-radius:14px;border:0;background:var(--surface);box-shadow:var(--card-shadow),inset 0 0 0 1px var(--line);color:var(--ink);width:100%}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.checks label{display:flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:var(--surface-2);font-size:14px;cursor:pointer}
+.checks input{accent-color:var(--accent);width:16px;height:16px}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.btn{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;text-align:center;padding:15px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:650;font-size:15px}
+.btn.ghost{background:var(--surface-2);color:var(--ink)}
+.btn.ph{background:var(--ink);color:var(--bg)}
+.filters{display:flex;gap:6px;overflow-x:auto;padding:2px 0;scrollbar-width:none}
+.filters button{white-space:nowrap;font-size:13px;font-weight:550;padding:8px 13px;border-radius:999px;background:var(--surface);box-shadow:var(--card-shadow)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+/* tab bar */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line);
+  padding:6px max(12px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.tabs .in{max-width:540px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 4px;border-radius:14px;font-size:11.5px;font-weight:550;color:var(--muted)}
+.tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tabs button[aria-current="true"]{color:var(--accent)}
+.foot{margin-top:30px;font-size:12px;color:var(--muted);text-align:center}
+.view{animation:in .22s ease both}
+@keyframes in{from{opacity:.5;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view{animation:none}.tap{transition:none}}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.two .card{padding:15px}
+@media (max-width:360px){.tl3 button span{display:none}.two{grid-template-columns:1fr}}
+
+.sh{font-family:var(--f-body);font-size:15px;font-weight:650;letter-spacing:0;display:flex;align-items:center;gap:8px;padding:0 2px}
+.sh>span:last-child:not(.dot){margin-left:auto;font-size:13px;font-weight:500;color:var(--muted)}
+.lbl{font-size:12.5px;font-weight:600;color:var(--muted)}
+.pagehead{display:flex;flex-direction:column;gap:6px;padding:10px 2px 0}
+.pagehead p{margin-top:4px;max-width:60ch}
+.statuscard{margin-top:10px;display:flex;flex-direction:column;gap:14px}
+.statuscard .big{font-family:var(--f-display);font-weight:700;font-size:40px;line-height:1;letter-spacing:-.03em;margin-top:4px}
+.statuscard .big small{font-size:15px;font-weight:550;color:var(--muted);letter-spacing:0;margin:0 10px 0 4px}
+.statuscard b{font-weight:650;display:block}
+.statuscard .s{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.rule{height:1px;background:var(--line)}
+.pct{font-weight:650;font-size:15px}
+.bar{height:6px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.setup{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.two3{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.linkbtn{font-size:13px;color:var(--muted);text-decoration:underline;align-self:center}
+.ul{text-decoration:underline;color:inherit}
+.tl3 button{flex-direction:row;align-items:center;justify-content:center;gap:8px;padding:13px 10px}
+.tl3 button b{font-size:14.5px}
+.stepper{display:grid;grid-template-columns:repeat(4,1fr)}
+.stepper .st{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;position:relative;padding:0 2px}
+.stepper .st::before{content:"";position:absolute;top:14px;right:50%;width:100%;height:2px;background:var(--line)}
+.stepper .st:first-child::before{display:none}
+.stepper .st.done::before,.stepper .st.cur::before{background:var(--accent)}
+.stepper .c{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:2px solid var(--line);font-weight:650;font-size:13px;position:relative;z-index:1;margin-bottom:4px}
+.stepper .c svg{width:14px;height:14px;stroke:var(--accent-ink);stroke-width:3;fill:none}
+.stepper .cur .c{border-color:var(--accent);color:var(--accent)}
+.stepper .done .c{background:var(--accent);border-color:var(--accent)}
+.stepper .nm{font-size:12.5px;font-weight:650}
+.stepper .rg{font-size:11px;color:var(--muted)}
+.more{font-size:13px;color:var(--muted);font-weight:550}
+.wn{font-weight:700;font-size:14px;width:34px;flex:none;color:var(--pc)}
+.li.here{background:color-mix(in srgb,var(--pc) 6%,var(--surface))}
+.sub{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.sub>h3{font-family:var(--f-body);font-size:15px;font-weight:650;padding:0 2px}
+.bh{display:flex;align-items:center;gap:9px}
+.bn{width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--bg);font-size:12px;display:grid;place-items:center;font-weight:650}
+.facts{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--muted)}
+.facts b{color:var(--ink);font-weight:650}
+.tt{display:inline-block;vertical-align:1px;font-family:var(--f-body);font-size:10.5px;font-weight:650;letter-spacing:.02em;color:var(--accent);background:var(--accent-soft);padding:2px 7px;border-radius:999px;margin-left:4px}
+.note .tt{margin:0 4px 0 0}
+.ico{width:36px;height:36px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;flex:none}
+.ico-t{display:grid;place-items:center}
+.li.chk{cursor:pointer;align-items:flex-start;font-size:14.5px}
+.li.chk input{width:20px;height:20px;accent-color:var(--accent);margin-top:1px;flex:none}
+#expanel{display:flex;flex-direction:column;gap:12px}
+#expanel h3{font-family:var(--f-body);font-size:14.5px;font-weight:650;margin-top:6px}
+#expanel h3:first-child{margin-top:0}
+.adj{display:flex;flex-direction:column;gap:3px;padding:12px 14px;background:var(--surface-2);border-radius:14px}
+.list.flat{box-shadow:none;background:var(--surface-2)}
+.search{font:inherit;padding:13px 16px;border-radius:999px;border:0;background:var(--surface);box-shadow:var(--card-shadow),inset 0 0 0 1px var(--line);color:var(--ink);width:100%}
+.band .facts{margin-top:2px}
+.band .lbl{color:var(--pc)}
+.next .lbl{color:var(--pc)}
+.next .go{background:var(--ink);color:var(--bg)}
+.glegend{display:flex;flex-wrap:wrap;gap:6px 14px;padding:10px 14px 0;background:var(--surface);font-size:12px;color:var(--muted)}
+.gk{display:inline-flex;align-items:center;gap:6px}
+.sw-ghost{width:11px;height:11px;border-radius:50%;background:var(--accent);opacity:.35}
+.sw-path{width:16px;border-top:2px dotted var(--accent)}
+.sw-line{width:16px;border-top:2px dashed var(--good)}
+.ctl[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
+.ctl[aria-pressed="false"]{color:var(--muted)}
+</style>
+
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<nav class="tabs" aria-label="Main"><div class="in" id="tabs"></div></nav>
+
+<script>
+/* =========================================================
+   STICK-FIGURE ANIMATION ENGINE (side view, faces right)
+   Angles: 0 = straight down, 90 = forward (right), 180 = up, -90 = back (left)
+   ========================================================= */
+const G=196, LT=48, LH=62, UA=30, FA=28, TH=40, SH=40;
+const rad=a=>a*Math.PI/180;
+const dir=a=>[Math.sin(rad(a)),Math.cos(rad(a))];
+function ik(P,Q,l1,l2,s){
+  const dx=Q[0]-P[0],dy=Q[1]-P[1];
+  let d=Math.hypot(dx,dy);d=Math.min(Math.max(d,Math.abs(l1-l2)+.01),l1+l2-.01);
+  const base=Math.atan2(dx,dy)*180/Math.PI;
+  const al=Math.acos(Math.min(1,Math.max(-1,(l1*l1+d*d-l2*l2)/(2*l1*d))))*180/Math.PI;
+  const a1=base+s*al;const [ux,uy]=dir(a1);const E=[P[0]+ux*l1,P[1]+uy*l1];
+  return [a1,Math.atan2(Q[0]-E[0],Q[1]-E[1])*180/Math.PI];
+}
+function lp(a,b,k){
+  if(typeof a==='number')return a+(b-a)*k;
+  if(Array.isArray(a))return a.map((v,i)=>v+(b[i]-v)*k);
+  if(a&&a.t)return {t:[a.t[0]+(b.t[0]-a.t[0])*k,a.t[1]+(b.t[1]-a.t[1])*k],s:a.s};
+  return a;
+}
+function lerpPose(A,B,k){const o={};for(const key in A)o[key]=(key in B)?lp(A[key],B[key],k):A[key];return o}
+function solve(p){
+  const [tx,ty]=dir(p.T);const pel=[p.x,p.y];const sh=[p.x+tx*LT,p.y+ty*LT];const hd=[p.x+tx*LH,p.y+ty*LH];
+  const limb=(spec,root,l1,l2,def)=>{
+    const a=Array.isArray(spec)?spec:ik(root,spec.t,l1,l2,spec.s??def);
+    const [u1,v1]=dir(a[0]);const m=[root[0]+u1*l1,root[1]+v1*l1];const [u2,v2]=dir(a[1]);
+    return {r:root,m,e:[m[0]+u2*l2,m[1]+v2*l2],a};
+  };
+  return {pel,sh,hd,T:p.T,a:limb(p.a,sh,UA,FA,-1),b:limb(p.b,sh,UA,FA,-1),l:limb(p.l,pel,TH,SH,1),r:limb(p.r,pel,TH,SH,1)};
+}
+const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+function cyc(ex){return ex.f.reduce((s,f)=>s+f.d,0)}
+function frameAt(ex,t){
+  const total=cyc(ex);let tt=((t%total)+total)%total;let i=0;
+  while(tt>ex.f[i].d){tt-=ex.f[i].d;i++}
+  const k=ease(Math.min(1,tt/ex.f[i].d));const B=ex.f[(i+1)%ex.f.length];
+  return {pose:lerpPose(ex.f[i].p,B.p,k),seg:i,k,lab:ex.f[i].lab};
+}
+function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()||'#888'}
+function capsule(ctx,a,b,r1,r2){
+  const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||.001;const ang=Math.atan2(dy,dx);
+  const s=Math.asin(Math.max(-1,Math.min(1,(r1-r2)/L)));const h=Math.PI/2+s;
+  ctx.beginPath();
+  ctx.arc(a[0],a[1],r1,ang+h,ang-h,false);
+  ctx.arc(b[0],b[1],r2,ang-h,ang+h,false);
+  ctx.closePath();ctx.fill();
+}
+const add=(p,v,k=1)=>[p[0]+v[0]*k,p[1]+v[1]*k];
+const mix=(a,b,k)=>[a[0]+(b[0]-a[0])*k,a[1]+(b[1]-a[1])*k];
+/* torso side profile: [fraction along pelvis→shoulder, front depth, back depth] */
+const TORSO_F=[[-.16,5,5],[-.08,10,10],[.04,11.5,11.5],[.25,9.6,9.6],[.5,8.4,8.4],[.75,10.6,10.6],[.93,12,12],[1.06,6,6]];
+const TORSO=[[-.16,2,5],[-.08,7.5,10.5],[.04,9,12],[.2,8.6,10],[.42,7.4,7.8],[.55,7.6,7.4],[.72,9.8,7.8],[.86,9.4,8.6],[.97,6.8,8.4],[1.06,3.5,5.5]];
+function torsoPath(ctx,pel,u,nf,f0,f1,PR){PR=PR||TORSO;
+  const pts=[],back=[];
+  const at=f=>{let i=0;while(i<PR.length-2&&PR[i+1][0]<f)i++;const A=PR[i],B=PR[i+1];const k=Math.max(0,Math.min(1,(f-A[0])/(B[0]-A[0])));return [A[1]+(B[1]-A[1])*k,A[2]+(B[2]-A[2])*k]};
+  const N=22;
+  for(let i=0;i<=N;i++){const f=f0+(f1-f0)*i/N;const [fr,bk]=at(f);const c=add(pel,u,LT*f);pts.push(add(c,nf,fr));back.push(add(c,nf,-bk))}
+  ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);
+  for(let i=1;i<pts.length;i++){const m=mix(pts[i-1],pts[i],.5);ctx.quadraticCurveTo(pts[i-1][0],pts[i-1][1],m[0],m[1])}
+  ctx.lineTo(pts[N][0],pts[N][1]);ctx.lineTo(back[N][0],back[N][1]);
+  for(let i=N-1;i>=0;i--){const m=mix(back[i+1],back[i],.5);ctx.quadraticCurveTo(back[i+1][0],back[i+1][1],m[0],m[1])}
+  ctx.lineTo(back[0][0],back[0][1]);ctx.closePath();
+}
+const LIMB={th:[[0,8.8,9.8],[.3,8.6,8.4],[.72,6.6,6.4],[1,5.4,5.6]],sh:[[0,5.2,5.4],[.28,4.6,6.6],[.72,3.4,4],[1,3,3.1]],ua:[[0,5,5.2],[.45,4.7,4.5],[1,3.4,3.5]],fa:[[0,3.6,3.7],[.22,3.8,3.9],[1,2.5,2.6]]};
+function profAt(P,t){let i=0;while(i<P.length-2&&P[i+1][0]<t)i++;const A=P[i],B=P[i+1];const k=Math.max(0,Math.min(1,(t-A[0])/(B[0]-A[0])));return [A[1]+(B[1]-A[1])*k,A[2]+(B[2]-A[2])*k]}
+function limbPath(ctx,A,B,P,sc=1){
+  const dx=B[0]-A[0],dy=B[1]-A[1],L=Math.hypot(dx,dy)||.001;const d=[dx/L,dy/L];const n=[d[1],-d[0]];
+  const N=10,fr=[],bk=[];
+  for(let i=0;i<=N;i++){const t=i/N;const [f,b]=profAt(P,t);const c=add(A,d,L*t);fr.push(add(c,n,f*sc));bk.push(add(c,n,-b*sc))}
+  const [f1,b1]=profAt(P,1),[f0,b0]=profAt(P,0);
+  ctx.beginPath();ctx.moveTo(fr[0][0],fr[0][1]);
+  for(let i=1;i<=N;i++){const m=i<N?mix(fr[i],fr[i+1],.5):fr[N];ctx.quadraticCurveTo(fr[i][0],fr[i][1],m[0],m[1])}
+  const ce=add(B,d,(f1+b1)/2*sc*1.05);ctx.quadraticCurveTo(ce[0],ce[1],bk[N][0],bk[N][1]);
+  for(let i=N-1;i>=0;i--){const m=i>0?mix(bk[i],bk[i-1],.5):bk[0];ctx.quadraticCurveTo(bk[i][0],bk[i][1],m[0],m[1])}
+  const cs=add(A,d,-(f0+b0)/2*sc*1.05);ctx.quadraticCurveTo(cs[0],cs[1],fr[0][0],fr[0][1]);ctx.closePath();
+  return {n,d};
+}
+const GKIND={spine:['dbrdl','brdl','kbdl','bdl','kbswing','sarow','sldl'],knee:['boxsquat','goblet','bsquat','ssq','rfess','rlunge','stepup'],line:['plank','pushup','inclinepush','sideplank','bridge','hipthrust'],vert:['hkpress','dbbench','bbench','latpd','pullup']};
+const GLABEL={spine:'Flat back',knee:'Knee follows toes',line:'Straight line',vert:'Straight up and down'};
+const GUIDE_KIND=ex=>Object.keys(GKIND).find(k=>GKIND[k].includes(ex.id))||null;
+const GUIDE_OK=ex=>!['walk','farmer','bike','pogo','breath','pflift','pallof'].includes(ex.id);
+function guideData(ex){
+  if(ex._gd)return ex._gd;
+  const sv=ex.f.map(f=>solve(f.p));const pts=s=>[s.pel,s.sh,s.hd,s.a.e,s.l.m,s.l.e,s.r.e];
+  const dist=(A,B)=>pts(A).reduce((t,p,i)=>t+Math.hypot(p[0]-pts(B)[i][0],p[1]-pts(B)[i][1]),0);
+  let bi=0,bd=0;sv.forEach((s,i)=>{const d=dist(s,sv[0]);if(d>bd){bd=d;bi=i}});
+  const kind=GUIDE_KIND(ex);const track=kind==='spine'||kind==='vert'?'hand':(kind==='knee'||kind==='line')?'hip':null;
+  let path=null;
+  if(track){const T=cyc(ex);path=[];for(let i=0;i<=64;i++){const S2=solve(frameAt(ex,T*i/64).pose);path.push(track==='hand'?S2.a.e:S2.pel)}}
+  return ex._gd={ghost:bd>25?sv[bi]:null,path,track,kind};
+}
+function guideLegend(ex){
+  if(!GUIDE_OK(ex))return '';const gd=guideData(ex);const k=[];
+  if(gd.ghost)k.push('<span class="gk"><i class="sw-ghost"></i>End position</span>');
+  if(gd.path)k.push(`<span class="gk"><i class="sw-path"></i>${gd.track==='hand'?'Hand / bar path':'Hip path'}</span>`);
+  if(gd.kind)k.push(`<span class="gk"><i class="sw-line"></i>${GLABEL[gd.kind]}</span>`);
+  return k.join('');
+}
+let GHOSTC=null;
+function drawScene(cv,ex,t,opt={}){
+  let ctx=cv.getContext('2d');const dpr=Math.max(2,window.devicePixelRatio||1);
+  const w=cv.clientWidth||cv.width/dpr;
+  if(cv.width!==Math.round(w*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(w*220/320*dpr)}
+  const sc=cv.width/320;ctx.setTransform(sc,0,0,sc,0,0);
+  const C={};['good','sole','skin','skin-far','hair','top','top-far','leg','leg-far','shoe','prop','prop-d','pad','box','floor','stage','stage-2','shadow','accent'].forEach(k=>C[k]=cssv('--'+k));
+  const {pose,seg,k}=frameAt(ex,t);const S=solve(pose);const pr=ex.props||{};
+  const [ux,uy]=dir(S.T);const u=[ux,uy];const nf=[-uy,ux];
+  // stage background + floor
+  const g=ctx.createLinearGradient(0,0,0,220);g.addColorStop(0,C.stage);g.addColorStop(1,C['stage-2']);ctx.fillStyle=g;ctx.fillRect(0,0,320,220);
+  ctx.fillStyle=C.floor;ctx.fillRect(0,G,320,30);
+  if(ex.fx==='walk'){ctx.fillStyle=C['stage-2'];const off=(t*0.06)%40;for(let x=-40;x<340;x+=40){ctx.fillRect(x-off,G+9,16,2)}}
+  const rr=(x,y,w,h,r)=>{ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,r);else ctx.rect(x,y,w,h)};
+  // contact shadow
+  const xs=[S.pel[0],S.sh[0],S.hd[0],S.l.e[0],S.r.e[0],S.a.e[0],S.l.m[0]];const mn=Math.min(...xs),mx=Math.max(...xs);
+  const lowY=Math.max(S.l.e[1],S.r.e[1],S.pel[1]);const sa=Math.max(0,1-(G-lowY)/40);
+  ctx.save();ctx.globalAlpha=.55+.45*sa;ctx.fillStyle=C.shadow;ctx.beginPath();ctx.ellipse((mn+mx)/2,G+2,(mx-mn)/2+10,3.6,0,0,7);ctx.fill();ctx.restore();
+  if(pr.mat){ctx.fillStyle=C.accent;ctx.globalAlpha=.16;rr(26,G-3,268,4,2);ctx.fill();ctx.globalAlpha=1}
+  // static equipment
+  if(pr.box){const b=pr.box;ctx.fillStyle=C.box;rr(b[0],b[1],b[2],b[3],4);ctx.fill();ctx.fillStyle=C.shadow;ctx.fillRect(b[0]+4,b[1]+4,b[2]-8,2)}
+  if(pr.seat){const b=pr.seat;ctx.fillStyle=C['prop'];ctx.fillRect(b[0]+b[2]/2-3,b[1]+8,6,b[3]-8);rr(b[0]+6,G-3,b[2]-12,3,1.5);ctx.fill();ctx.fillStyle=C.pad;rr(b[0],b[1],b[2],9,4.5);ctx.fill()}
+  if(pr.bench){const b=pr.bench;ctx.fillStyle=C.prop;ctx.fillRect(b[0]+10,b[1]+8,5,b[3]-8);ctx.fillRect(b[0]+b[2]-15,b[1]+8,5,b[3]-8);ctx.fillRect(b[0]+6,G-3,b[2]-12,3);ctx.fillStyle=C.pad;rr(b[0],b[1],b[2],9,4.5);ctx.fill()}
+  if(pr.pbar){ctx.fillStyle=C.prop;ctx.fillRect(pr.pbar[0]-4,pr.pbar[2]-2,5,G-pr.pbar[2]+2);ctx.fillRect(pr.pbar[1]-1,pr.pbar[2]-2,5,G-pr.pbar[2]+2);ctx.fillStyle=C['prop-d'];rr(pr.pbar[0]-6,pr.pbar[2]-2.5,pr.pbar[1]-pr.pbar[0]+12,5,2.5);ctx.fill()}
+  if(pr.bike){ctx.strokeStyle=C.prop;ctx.lineCap='round';ctx.lineWidth=5;
+    ctx.fillStyle=C['stage-2'];ctx.beginPath();ctx.arc(212,158,24,0,7);ctx.fill();ctx.lineWidth=4;ctx.beginPath();ctx.arc(212,158,24,0,7);ctx.stroke();
+    ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(104,G-2);ctx.lineTo(236,G-2);ctx.moveTo(126,G-2);ctx.lineTo(152,160);ctx.lineTo(212,158);ctx.lineTo(222,G-2);
+    ctx.moveTo(152,160);ctx.lineTo(141,118);ctx.moveTo(152,160);ctx.lineTo(198,96);ctx.lineTo(206,86);ctx.stroke();
+    ctx.fillStyle=C.pad;rr(124,112,30,6,3);ctx.fill();ctx.fillStyle=C['prop-d'];ctx.beginPath();ctx.arc(152,160,7,0,7);ctx.fill()}
+  if(pr.post){ctx.fillStyle=C.prop;rr(pr.post[0]-4,Math.min(pr.post[1]-14,G-120),8,G-Math.min(pr.post[1]-14,G-120),3);ctx.fill()}
+  // breath / pelvic floor cues
+  if(ex.fx==='breath'){const ph=seg%2===0?k:1-k;const c=add(S.pel,u,LT*.48);ctx.fillStyle=C.accent;ctx.globalAlpha=.08+ph*.14;ctx.beginPath();ctx.ellipse(c[0],c[1],24+ph*12,16+ph*10,Math.atan2(u[1],u[0]),0,7);ctx.fill();ctx.globalAlpha=1}
+  // cable / band
+  const line=(a,b,dash)=>{ctx.strokeStyle=C['prop-d'];ctx.lineWidth=1.6;ctx.setLineDash(dash?[4,4]:[]);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();ctx.setLineDash([])};
+  if(pr.cable){line(S.a.e,pr.cable);ctx.fillStyle=C['prop-d'];ctx.beginPath();ctx.arc(pr.cable[0],pr.cable[1],4.5,0,7);ctx.fill()}
+  if(pr.band){line(S.a.e,pr.band,true);ctx.fillStyle=C['prop-d'];ctx.beginPath();ctx.arc(pr.band[0],pr.band[1],3.5,0,7);ctx.fill()}
+  const hi=new Set(ex.hi||[]);
+  const LIGHT=[-.45,-.89];
+  const shade=(A,B,n,w,base,flat)=>{
+    ctx.fillStyle=base;ctx.fill();if(flat)return;
+    let nn=n;if(nn[0]*LIGHT[0]+nn[1]*LIGHT[1]<0)nn=[-nn[0],-nn[1]];
+    const m=mix(A,B,.5);ctx.save();ctx.clip();
+    const g=ctx.createLinearGradient(m[0]+nn[0]*w,m[1]+nn[1]*w,m[0]-nn[0]*w,m[1]-nn[1]*w);
+    g.addColorStop(0,'rgba(255,255,255,.20)');g.addColorStop(.42,'rgba(255,255,255,0)');g.addColorStop(.62,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.24)');
+    ctx.fillStyle=g;ctx.fill();ctx.restore();
+  };
+  const tint=(fn)=>{ctx.save();ctx.globalAlpha=.34;ctx.fillStyle=C.accent;fn();ctx.fill();ctx.restore()};
+  function drawBody(S,flat){
+    const [ux,uy]=dir(S.T);const u=[ux,uy];const nf=[-uy,ux];
+    const F=c=>flat||c;
+    const legDraw=(L,far)=>{
+      const base=F(far?C['leg-far']:C.leg);const sk=F(far?C['skin-far']:C.skin);
+      const hip=add(L.r,nf,-1);
+      let r=limbPath(ctx,hip,L.m,LIMB.th);shade(hip,L.m,r.n,9,base,flat);
+      if(!flat&&((!far&&hi.has('l'))||(far&&hi.has('r'))))tint(()=>limbPath(ctx,hip,L.m,LIMB.th,.92));
+      r=limbPath(ctx,L.m,L.e,LIMB.sh);shade(L.m,L.e,r.n,6,base,flat);
+      ctx.fillStyle=base;ctx.beginPath();ctx.arc(L.m[0],L.m[1],5.3,0,7);ctx.fill();
+      ctx.fillStyle=sk;capsule(ctx,mix(L.m,L.e,.88),L.e,3.3,3.1);
+      // trainer
+      let fd;if(L.e[1]>G-9)fd=[1,0];else fd=dir(L.a[1]+90);
+      const dn=[-fd[1],fd[0]];const sole=add(L.e,dn,3.6);
+      const H=add(sole,fd,-4.5),T=add(sole,fd,11.5);
+      ctx.beginPath();ctx.moveTo(...H);ctx.lineTo(...T);
+      ctx.quadraticCurveTo(...add(add(T,fd,1.5),dn,-3.5),...add(add(T,fd,-3),dn,-5.2));
+      ctx.lineTo(...add(add(L.e,fd,3.5),dn,-2.2));ctx.lineTo(...add(add(L.e,fd,-3),dn,-3));
+      ctx.quadraticCurveTo(...add(H,dn,-4),...H);ctx.closePath();
+      ctx.fillStyle=F(far?C.prop:C.shoe);ctx.fill();
+      if(!flat){ctx.strokeStyle=C.sole;ctx.lineWidth=2;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(...add(H,fd,.5));ctx.lineTo(...add(T,fd,-.5));ctx.stroke()}
+    };
+    const armDraw=(A,far,dbKey)=>{
+      const sk=F(far?C['skin-far']:C.skin);const tc=F(far?C['top-far']:C.top);
+      const sh=add(add(A.r,u,-3),nf,-1);
+      let r=limbPath(ctx,sh,A.m,LIMB.ua);shade(sh,A.m,r.n,5,sk,flat);
+      if(!flat&&((!far&&hi.has('a'))||(far&&hi.has('b'))))tint(()=>limbPath(ctx,sh,A.m,LIMB.ua,.9));
+      limbPath(ctx,add(sh,dir(A.a[0]),-2),mix(sh,A.m,.4),LIMB.ua,1.22);shade(sh,A.m,r.n,6,tc,flat);
+      r=limbPath(ctx,A.m,A.e,LIMB.fa);shade(A.m,A.e,r.n,4,sk,flat);
+      ctx.fillStyle=sk;ctx.beginPath();ctx.arc(A.m[0],A.m[1],3.5,0,7);ctx.fill();
+      if(!flat&&pr.db&&pr.db.includes(dbKey)){const p=A.e;ctx.fillStyle=far?C.prop:C['prop-d'];rr(p[0]-8.5,p[1]-6.5,5,13,2);ctx.fill();rr(p[0]+3.5,p[1]-6.5,5,13,2);ctx.fill();ctx.fillRect(p[0]-4,p[1]-1.3,8,2.6)}
+      const hd=add(A.e,dir(A.a[1]),2.4);ctx.fillStyle=sk;ctx.beginPath();ctx.ellipse(hd[0],hd[1],3.9,3.2,rad(90-A.a[1]),0,7);ctx.fill();
+    };
+    legDraw(S.r,true);armDraw(S.b,true,'b');
+    const PRF=ex.view==='front'?TORSO_F:TORSO;
+    torsoPath(ctx,S.pel,u,nf,-.16,.36,PRF);shade(add(S.pel,u,-6),add(S.pel,u,16),nf,12,F(C.leg),flat);
+    torsoPath(ctx,S.pel,u,nf,.3,1.06,PRF);shade(add(S.pel,u,15),add(S.pel,u,48),nf,12,F(C.top),flat);
+    if(!flat){
+      torsoPath(ctx,S.pel,u,nf,.3,.355,PRF);ctx.fillStyle='rgba(255,255,255,.14)';ctx.fill();
+      if(hi.has('torso'))tint(()=>torsoPath(ctx,S.pel,u,nf,.04,.6,PRF));
+    }
+    // neck + head
+    const skin=F(C.skin),hair=F(C.hair);
+    ctx.fillStyle=skin;capsule(ctx,add(S.sh,u,1),add(S.sh,u,11),3.7,3.3);
+    const hc=add(S.hd,u,1);const hang=Math.atan2(u[1],u[0]);
+    const E=(p,rx,ry,c)=>{ctx.fillStyle=c;ctx.beginPath();ctx.ellipse(p[0],p[1],rx,ry,hang,0,7);ctx.fill()};
+    if(ex.view==='front'){
+      E(add(hc,u,1),10.6,10.4,hair);E(add(hc,u,-1.8),8.2,7.6,skin);E(add(hc,u,5.4),8.8,3.4,hair);
+      if(!flat){E(add(add(hc,u,-.5),nf,8.4),1.8,2.6,C['skin-far']);E(add(add(hc,u,-.5),nf,-8.4),1.8,2.6,C['skin-far']);
+        ctx.fillStyle=C.hair;[3,-3].forEach(s=>{const p=add(add(hc,u,.2),nf,s);ctx.beginPath();ctx.arc(p[0],p[1],1,0,7);ctx.fill()})}
+    }else{
+      E(add(add(hc,nf,-1.8),u,1.4),10.4,9.8,hair);
+      // ponytail with tie
+      const p0=add(add(hc,nf,-8.5),u,3.5),pc1=add(add(hc,nf,-16),u,2),p1=add(add(hc,nf,-15),u,-8);
+      ctx.strokeStyle=hair;ctx.lineCap='round';ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(...p0);ctx.quadraticCurveTo(...pc1,...p1);ctx.stroke();
+      ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(...p0);ctx.quadraticCurveTo(...pc1,...add(p1,u,-3));ctx.stroke();
+      if(!flat){ctx.fillStyle=C.accent;const tie=add(add(hc,nf,-10.5),u,3.8);ctx.beginPath();ctx.arc(tie[0],tie[1],2,0,7);ctx.fill()}
+      E(add(add(hc,nf,2.4),u,-1.6),8.4,7.6,skin);
+      E(add(add(hc,nf,6.4),u,-6.4),4,2.6,skin); // jaw/chin
+      ctx.fillStyle=skin;ctx.beginPath();const ns=add(add(hc,nf,10.4),u,-.6);ctx.arc(ns[0],ns[1],1.8,0,7);ctx.fill();
+      E(add(add(hc,nf,.2),u,5.2),9,4.2,hair);
+      if(!flat){
+        E(add(add(hc,nf,-.4),u,-.6),2,2.8,C['skin-far']);           // ear
+        E(add(add(hc,nf,6.2),u,1.2),1.1,1.3,C.hair);                // eye
+        ctx.strokeStyle=C.hair;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(...add(add(hc,nf,4.6),u,3.6));ctx.lineTo(...add(add(hc,nf,8),u,3.4));ctx.stroke();
+      }
+    }
+    legDraw(S.l,false);
+    if(!flat){
+      if(pr.kb){const p=S.a.e;ctx.strokeStyle=C['prop-d'];ctx.lineWidth=2.6;ctx.beginPath();ctx.arc(p[0],p[1]+4,5,Math.PI*1.05,-Math.PI*.05);ctx.stroke();ctx.fillStyle=C['prop-d'];ctx.beginPath();ctx.ellipse(p[0],p[1]+12.5,9,8.5,0,0,7);ctx.fill();ctx.fillStyle=C.prop;ctx.beginPath();ctx.ellipse(p[0]-3,p[1]+10,2.5,2,0,0,7);ctx.fill()}
+      if(pr.bar){const p=S.a.e;ctx.fillStyle=C['prop-d'];ctx.beginPath();ctx.arc(p[0],p[1],17,0,7);ctx.fill();ctx.strokeStyle=C.prop;ctx.lineWidth=1.4;ctx.beginPath();ctx.arc(p[0],p[1],12,0,7);ctx.stroke();ctx.fillStyle=C.prop;ctx.beginPath();ctx.arc(p[0],p[1],4,0,7);ctx.fill()}
+      if(pr.handle){const p=S.a.e;ctx.fillStyle=C['prop-d'];rr(p[0]-10,p[1]-1.8,20,3.6,1.8);ctx.fill()}
+    }
+    armDraw(S.a,false,'a');
+  }
+  // ---- technique guides (behind / over the figure)
+  const gd=opt.guides&&GUIDE_OK(ex)?guideData(ex):null;
+  if(gd&&gd.ghost){
+    if(!GHOSTC)GHOSTC=document.createElement('canvas');
+    if(GHOSTC.width!==cv.width||GHOSTC.height!==cv.height){GHOSTC.width=cv.width;GHOSTC.height=cv.height}
+    const main=ctx;ctx=GHOSTC.getContext('2d');ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,GHOSTC.width,GHOSTC.height);ctx.setTransform(sc,0,0,sc,0,0);
+    drawBody(gd.ghost,C.accent);ctx=main;
+    ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=.2;ctx.drawImage(GHOSTC,0,0);ctx.restore();
+  }
+  if(gd&&gd.path){ctx.strokeStyle=C.accent;ctx.globalAlpha=.75;ctx.lineWidth=1.8;ctx.setLineDash([2.5,4]);ctx.lineCap='round';ctx.beginPath();gd.path.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1}
+  drawBody(S,null);
+  if(gd){
+    const gl=GUIDE_KIND(ex);ctx.strokeStyle=C.good;ctx.lineWidth=2.2;ctx.lineCap='round';ctx.globalAlpha=.9;ctx.setLineDash([6,4]);ctx.beginPath();
+    if(gl==='spine'){const [ux,uy]=dir(S.T);const uu=[ux,uy],nn=[-uy,ux];const a=add(add(S.pel,uu,-6),nn,-13),b=add(add(S.pel,uu,LT+2),nn,-11);ctx.moveTo(...a);ctx.lineTo(...b)}
+    else if(gl==='knee'){const fx=S.l.e[0]+11;ctx.moveTo(fx,G-2);ctx.lineTo(fx,G-74)}
+    else if(gl==='line'){const end=['bridge','hipthrust'].includes(ex.id)?S.l.m:S.l.e;ctx.moveTo(...S.sh);ctx.lineTo(...end)}
+    else if(gl==='vert'){const x=S.sh[0];ctx.moveTo(x,S.sh[1]+(ex.id==='latpd'||ex.id==='pullup'?20:-4));ctx.lineTo(x,Math.max(8,S.sh[1]-74))}
+    ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;
+  }
+  if(ex.fx==='pallof'){const pp=Math.max(0,Math.min(1,(S.a.e[0]-172)/32));const X=214,Y=12,W=96,H=78;
+    ctx.fillStyle=C.stage;ctx.strokeStyle=C.floor;ctx.lineWidth=1.5;rr(X,Y,W,H,10);ctx.fill();ctx.stroke();
+    ctx.fillStyle=C['prop-d'];ctx.font='600 8px system-ui,sans-serif';ctx.fillText('TOP VIEW',X+8,Y+13);
+    ctx.fillStyle=C.prop;rr(X+8,Y+40,10,14,2);ctx.fill();ctx.fillText('cable',X+5,Y+34);
+    const cx=X+58,cy=Y+56,hy=cy-12-pp*20;
+    ctx.strokeStyle=C['prop-d'];ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(X+18,Y+47);ctx.lineTo(cx,hy);ctx.stroke();
+    ctx.strokeStyle=C.skin;ctx.lineWidth=3.2;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(cx-9,cy);ctx.lineTo(cx-1.5,hy);ctx.moveTo(cx+9,cy);ctx.lineTo(cx+1.5,hy);ctx.stroke();
+    ctx.fillStyle=C.top;ctx.beginPath();ctx.ellipse(cx,cy,14,6,0,0,7);ctx.fill();ctx.fillStyle=C.hair;ctx.beginPath();ctx.arc(cx,cy,5,0,7);ctx.fill();
+    const ax=X+36,ay=Y+66;ctx.strokeStyle=C.accent;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ax-12,ay);ctx.moveTo(ax-8,ay-3);ctx.lineTo(ax-12,ay);ctx.lineTo(ax-8,ay+3);ctx.stroke();ctx.fillStyle=C.accent;ctx.fillText('pull',ax-26,ay+3);
+    ctx.fillStyle=C.accent;ctx.fillText('resist · stay square',X+8,Y+75)}
+  if(ex.fx==='pf'){const ph=seg%2===0?k:1-k;ctx.strokeStyle=C.accent;ctx.lineWidth=2;ctx.globalAlpha=.3+ph*.6;ctx.beginPath();ctx.arc(S.pel[0],S.pel[1]-2,7+ph*9,0,7);ctx.stroke();ctx.globalAlpha=1}
+  return {seg};
+}
+
+/* ---------- poses ---------- */
+const ST={x:150,y:117,T:180,a:[6,4],b:[-6,-4],l:{t:[156,196]},r:{t:[146,196]}};
+const P=o=>Object.assign({},ST,o);
+const SUP={x:118,y:183,T:-90,a:{t:[108,172],s:1},b:{t:[100,174],s:1},l:{t:[168,192]},r:{t:[173,192]}};
+const SUPA={x:118,y:183,T:-90,a:[95,92],b:[95,92],l:{t:[168,192]},r:{t:[173,192]}};
+const DB0={x:140,y:183,T:-90,a:[180,180],b:[180,180],l:[180,90],r:[180,90]};
+const BD0={x:110,y:152,T:107,a:[0,0],b:[0,0],l:[0,-88],r:[0,-88]};
+const WKa={x:150,y:119,T:180,a:[-10,-4],b:[10,4],l:[18,6],r:[-16,-22]};
+const WKb={x:150,y:119,T:180,a:[10,4],b:[-10,-4],l:[-16,-22],r:[18,6]};
+const WKfa=Object.assign({},WKa,{a:[1,0],b:[-1,0]}), WKfb=Object.assign({},WKb,{a:[-1,0],b:[1,0]});
+const HK={x:150,y:154,T:180,a:[20,175],b:[-10,-5],l:{t:[192,196]},r:[0,-90]};
+const RDLa=P({a:{t:[160,122]},b:{t:[157,122]}}), RDLb={x:130,y:124,T:102,a:{t:[180,166]},b:{t:[177,166]},l:{t:[156,196]},r:{t:[146,196]}};
+const BPa={x:140,y:140,T:-90,a:[180,180],b:[178,178],l:{t:[186,195]},r:{t:[180,195]}}, BPb=Object.assign({},BPa,{a:[75,175],b:[73,173]});
+const BSa=P({a:[-40,150],b:[-42,148]}), BSb={x:125,y:160,T:140,a:[-80,110],b:[-82,108],l:{t:[156,196]},r:{t:[146,196]}};
+const SWa={x:125,y:124,T:110,a:{t:[140,150]},b:{t:[137,150]},l:{t:[156,196]},r:{t:[146,196]}};
+const SWb=P({a:{t:[205,76]},b:{t:[203,78]}});
+const KDa=P({a:{t:[156,128]},b:{t:[153,128]}}), KDb={x:128,y:150,T:118,a:{t:[166,184]},b:{t:[163,184]},l:{t:[156,196]},r:{t:[146,196]}};
+
+/* =========================================================
+   EXERCISE LIBRARY
+   ========================================================= */
+const CATS=['Breath & core','Lower body','Upper body','Carries & cardio','Mobility','Impact'];
+const EX={
+breath:{n:'360° breathing',cat:'Breath & core',eq:'Mat',mus:['Diaphragm','Pelvic floor','Deep abdominals (TrA)'],
+ f:[{p:SUP,d:3200,lab:'Inhale · ribs widen, pelvic floor softens'},{p:SUP,d:3800,lab:'Exhale · gently lift pelvic floor, waist draws in'}],fx:'breath',props:{mat:1},
+ why:'Pregnancy stretches the abdominal wall and changes how the diaphragm and pelvic floor share pressure. This drill rebuilds that partnership. Every lift in the plan borrows this pattern.',
+ cues:['Lie on your back, knees bent, one hand on the side of your ribs, one on your lower belly.','Breathe in through the nose: feel the ribs widen sideways and into the floor. Let the belly rise gently and the pelvic floor relax down.','Breathe out slowly through pursed lips. As you do, lift the pelvic floor gently (as if stopping wind) and feel the lower belly draw in.','Let everything relax fully before the next breath.'],
+ mist:['Breathing only into the chest and shoulders.','Squeezing at 100%. Aim for about 30–40% effort.','Skipping the full relax on the inhale. Letting go matters as much as lifting.'],
+ reg:'Lie on your side, or recline on pillows if lying flat is uncomfortable.',prog:'Repeat sitting, then standing, then use the same exhale during every lift.',br:'Inhale 3–4 s, exhale 4–6 s.',learn:['breath','pf']},
+pflift:{n:'Pelvic floor lifts',cat:'Breath & core',eq:'Mat',mus:['Pelvic floor'],
+ f:[{p:SUP,d:1800,lab:'Exhale · lift and hold'},{p:SUP,d:2200,lab:'Inhale · let go completely'}],fx:'pf',props:{mat:1},
+ why:'The pelvic floor carries the load of pregnancy and birth. Regaining both strength and the ability to relax it is the base for lifting, jumping and running without leaking or heaviness.',
+ cues:['Same set-up as 360° breathing.','Long holds: lift and squeeze the back passage, vagina and front passage together. Hold up to 10 s while breathing normally.','Quick flicks: lift fast, let go fully. Repeat 10 times.','Rest 5 s between long holds.'],
+ mist:['Squeezing the buttocks or inner thighs instead.','Holding the breath.','Never fully relaxing between reps.'],
+ reg:'Start with 3–5 s holds.',prog:'Work up to 10 × 10 s holds and 10 quick flicks, three times a day. Then do them standing and with a cough.',br:'Breathe normally through holds.',learn:['pf']},
+heelslide:{n:'Heel slides',cat:'Breath & core',eq:'Mat',mus:['Deep abdominals','Hip flexors'],
+ f:[{p:SUP,d:1800,lab:'Exhale · slide heel away'},{p:Object.assign({},SUP,{l:{t:[196,192]}}),d:1800,lab:'Inhale · draw it back'}],props:{mat:1},hi:['l'],
+ why:'An early way to load the abdominal wall. The moving leg pulls on the pelvis and your deep core keeps it still.',
+ cues:['Lie on your back, knees bent, pelvis neutral.','Exhale, gently lift the pelvic floor, then slide one heel along the floor until the leg is nearly straight.','Keep the pelvis still: no rocking, no back arching.','Inhale and slide it back.'],
+ mist:['Arching the lower back as the leg straightens.','Rushing.','Doming along the midline of the tummy.'],
+ reg:'Shorten the slide.',prog:'Hover the heel 1 cm above the floor, then progress to dead bugs.',br:'Exhale on the slide out.',learn:['breath','dr']},
+bridge:{n:'Glute bridge',cat:'Lower body',eq:'Mat',mus:['Glutes','Hamstrings','Pelvic floor'],
+ f:[{p:SUPA,d:1400,lab:'Exhale · press feet down, lift hips'},{p:{x:118,y:152,T:-57,a:[100,94],b:[100,94],l:{t:[168,192]},r:{t:[173,192]}},d:900,lab:'Squeeze at the top'},{p:{x:118,y:152,T:-57,a:[100,94],b:[100,94],l:{t:[168,192]},r:{t:[173,192]}},d:1600,lab:'Inhale · lower with control'},{p:SUPA,d:500,lab:'Reset'}],props:{mat:1},hi:['torso'],
+ why:'Strong glutes support the pelvis and lower back, which take extra load while carrying and feeding a baby.',
+ cues:['On your back, feet hip-width, heels about a hand-length from your bum.','Exhale, lift the pelvic floor, then press through the heels to lift the hips.','Stop when shoulders, hips and knees form a line. Squeeze the glutes, do not arch.','Inhale and lower one vertebra at a time.'],
+ mist:['Pushing up with the lower back instead of the glutes.','Knees falling in or out.','Feet too far away, so the hamstrings cramp.'],
+ reg:'Smaller range, or hold at the top for breath work.',prog:'Add a band above the knees, a 2 s pause, single-leg bridges, then hip thrusts.',br:'Exhale as you lift.',learn:['breath']},
+deadbug:{n:'Dead bug',cat:'Breath & core',eq:'Mat',mus:['Deep abdominals','Obliques','Hip flexors'],
+ f:[{p:DB0,d:1500,lab:'Exhale · reach opposite arm and leg'},{p:Object.assign({},DB0,{a:[262,262],r:[100,98]}),d:1300,lab:'Inhale · return'},{p:DB0,d:1500,lab:'Exhale · switch sides'},{p:Object.assign({},DB0,{b:[262,262],l:[100,98]}),d:1300,lab:'Inhale · return'}],props:{mat:1},hi:['torso'],
+ why:'Trains the core to hold the trunk still while the arms and legs move, which is exactly what lifting a car seat or a toddler asks of it.',
+ cues:['On your back, arms to the ceiling, knees above hips at 90°.','Exhale and gently draw the ribs down toward the pelvis.','Lower the opposite arm and leg slowly. Stop before the back arches or the tummy domes.','Inhale back to the start and switch sides.'],
+ mist:['Lower back peeling off the mat.','Going lower than you can control.','A ridge or dome appearing along the midline.'],
+ reg:'Legs only: tap one heel to the floor with knees bent.',prog:'Straighter leg, slower lowering, hold a light weight in the hands.',br:'Exhale as limbs move away.',learn:['dr','breath']},
+birddog:{n:'Bird dog',cat:'Breath & core',eq:'Mat',mus:['Back extensors','Glutes','Deep abdominals','Shoulders'],
+ f:[{p:BD0,d:1500,lab:'Exhale · reach arm forward, leg back'},{p:Object.assign({},BD0,{a:[100,100],r:[-95,-95]}),d:1000,lab:'Hold · hips level'},{p:Object.assign({},BD0,{a:[100,100],r:[-95,-95]}),d:1300,lab:'Inhale · return'},{p:BD0,d:1500,lab:'Exhale · other side'},{p:Object.assign({},BD0,{b:[100,100],l:[-95,-95]}),d:1300,lab:'Inhale · return'}],props:{mat:1},hi:['torso'],
+ why:'Restores back and glute strength without loading the abdominal midline. It is a gentle way to build anti-rotation control.',
+ cues:['Hands under shoulders, knees under hips, spine long.','Exhale and slide one leg back, then lift it to hip height. Reach the opposite arm forward.','Keep the hips square, as if a glass of water sits on your lower back.','Return slowly and alternate.'],
+ mist:['Lifting the leg too high and arching.','Hips rotating open.','Sagging belly toward the floor.'],
+ reg:'Move only the leg, or only the arm.',prog:'Hold 3 s at the end. Draw elbow to knee under the body between reps.',br:'Exhale as you reach.',learn:['dr']},
+boxsquat:{n:'Goblet box squat',cat:'Lower body',eq:'Kettlebell or dumbbell · box/bench',mus:['Quads','Glutes','Adductors'],
+ f:[{p:P({a:{t:[166,84]},b:{t:[163,86]}}),d:1900,lab:'Inhale · sit back to the box'},{p:{x:128,y:152,T:150,a:{t:[168,124]},b:{t:[165,126]},l:{t:[156,196]},r:{t:[146,196]}},d:500,lab:'Light touch'},{p:{x:128,y:152,T:150,a:{t:[168,124]},b:{t:[165,126]},l:{t:[156,196]},r:{t:[146,196]}},d:1400,lab:'Exhale · stand up tall'}],props:{kb:1,box:[98,156,40,40]},hi:['l'],
+ why:'The box sets a safe depth and teaches the hip hinge back. It rebuilds leg strength for the hundreds of daily squats a baby asks for.',
+ cues:['Hold the weight at your chest, elbows down. Stand just in front of a box or bench.','Inhale and send the hips back and down until you lightly touch the box.','Keep the chest proud and knees tracking over the toes.','Exhale, lift the pelvic floor, and drive up through the whole foot.'],
+ mist:['Dropping onto the box and relaxing.','Knees caving in.','Holding the breath through the whole rep.'],
+ reg:'Higher box or no weight.',prog:'Lower box, heavier weight, then free goblet squats.',br:'Exhale on the way up.',learn:['breath','rpe']},
+goblet:{n:'Goblet squat',cat:'Lower body',eq:'Kettlebell or dumbbell',mus:['Quads','Glutes','Adductors','Upper back'],
+ f:[{p:P({a:{t:[166,84]},b:{t:[163,86]}}),d:2000,lab:'Inhale · sit between your heels'},{p:{x:130,y:160,T:148,a:{t:[171,132]},b:{t:[168,134]},l:{t:[156,196]},r:{t:[146,196]}},d:400,lab:'Bottom'},{p:{x:130,y:160,T:148,a:{t:[171,132]},b:{t:[168,134]},l:{t:[156,196]},r:{t:[146,196]}},d:1400,lab:'Exhale · drive up'}],props:{kb:1},hi:['l'],
+ why:'The weight in front helps keep the torso upright, so you get a full squat with less load through the lower back.',
+ cues:['Feet slightly wider than hips, toes a little out. Weight held at the breastbone.','Inhale and sit straight down between your heels, elbows inside the knees.','Go as deep as you can with a neutral spine.','Exhale and stand, pushing the floor away.'],
+ mist:['Heels lifting.','Rounding the lower back at the bottom.','Weight drifting away from the chest.'],
+ reg:'Squat to a box.',prog:'Add load, add a 2 s pause at the bottom, move to barbell squats.',br:'Exhale on the way up.',learn:['breath','load']},
+inclinepush:{n:'Incline push-up',cat:'Upper body',eq:'Bench, box or Smith bar',mus:['Chest','Triceps','Front shoulders','Core'],
+ f:[{p:{x:192,y:138,T:136.6,a:{t:[225,160]},b:{t:[222,160]},l:{t:[137,195]},r:{t:[133,195]}},d:1800,lab:'Inhale · lower chest to the bench'},{p:{x:205.6,y:155,T:121,a:{t:[225,160]},b:{t:[222,160]},l:{t:[137,195]},r:{t:[133,195]}},d:1300,lab:'Exhale · push away'}],props:{bench:[205,160,72,36]},hi:['a'],
+ why:'Push-ups are a plank in motion. Raising the hands reduces load on the abdominal wall while you rebuild pushing strength.',
+ cues:['Hands just wider than shoulders on a bench or bar. Walk the feet back to a straight line.','Inhale and lower the chest toward the edge, elbows at about 45°.','Exhale, lift the pelvic floor and push the bench away.','Keep ribs and hips moving together.'],
+ mist:['Hips sagging or piking.','Elbows flared straight out.','Doming of the tummy. If you see it, go higher.'],
+ reg:'Higher surface, or a wall.',prog:'Lower the surface step by step toward the floor.',br:'Exhale as you push.',learn:['dr']},
+dbrdl:{n:'Dumbbell Romanian deadlift',cat:'Lower body',eq:'Dumbbells',mus:['Hamstrings','Glutes','Back extensors'],
+ f:[{p:RDLa,d:2000,lab:'Inhale · hips back, soft knees'},{p:RDLb,d:400,lab:'Feel the hamstrings'},{p:RDLb,d:1500,lab:'Exhale · hips forward to stand'}],props:{db:'ab'},hi:['r','l'],
+ why:'Teaches the hip hinge, the safest way to pick things up from low surfaces: cots, car seats and laundry baskets.',
+ cues:['Stand tall, dumbbells in front of the thighs, knees softly bent.','Inhale and push the hips back, sliding the weights down the legs.','Stop when you feel a stretch in the hamstrings or your back starts to round.','Exhale and drive the hips forward to stand. Squeeze the glutes.'],
+ mist:['Turning it into a squat by bending the knees.','Rounding the back to reach lower.','Weights drifting away from the legs.'],
+ reg:'Lighter weights, shorter range, or hinge with a dowel along the spine.',prog:'Heavier, then a barbell. Try a single-leg version for balance.',br:'Exhale as you stand.',learn:['breath','load']},
+ssq:{n:'Split squat',cat:'Lower body',eq:'Dumbbells (optional)',mus:['Quads','Glutes','Adductors'],
+ f:[{p:{x:150,y:126,T:180,a:[4,2],b:[-4,-2],l:{t:[185,196]},r:{t:[112,192],s:1}},d:1800,lab:'Inhale · lower straight down'},{p:{x:150,y:150,T:180,a:[4,2],b:[-4,-2],l:{t:[185,196]},r:{t:[112,192],s:1}},d:1400,lab:'Exhale · drive through front foot'}],props:{db:'ab'},hi:['l'],
+ why:'Single-leg work evens out left–right differences that often build up from always carrying the baby on one hip.',
+ cues:['Long stride stance. Back heel up, feet hip-width apart like train tracks.','Inhale and drop the back knee straight down toward the floor.','Keep the torso tall and the front knee over the mid-foot.','Exhale and push through the front foot to rise.'],
+ mist:['Stance too narrow, so you wobble.','Pushing off the back foot.','Front knee collapsing inward.'],
+ reg:'Hold a rack for balance, shorten the range.',prog:'Add dumbbells, then elevate the back foot.',br:'Exhale on the way up.',learn:['load']},
+rfess:{n:'Rear-foot elevated split squat',cat:'Lower body',eq:'Bench · dumbbells',mus:['Quads','Glutes','Adductors'],
+ f:[{p:{x:150,y:126,T:178,a:[4,2],b:[-4,-2],l:{t:[190,196]},r:{t:[102,163],s:1}},d:1900,lab:'Inhale · drop back knee down'},{p:{x:150,y:154,T:172,a:[4,2],b:[-4,-2],l:{t:[190,196]},r:{t:[102,163],s:1}},d:1400,lab:'Exhale · drive up'}],props:{db:'ab',bench:[62,163,52,33]},hi:['l'],
+ why:'A demanding single-leg exercise that builds real strength and stability with modest loads.',
+ cues:['Back foot laces-down on a bench, front foot far enough forward that the shin stays fairly upright at the bottom.','Inhale and lower until the back knee nearly touches the floor.','A small forward lean of the torso is fine.','Exhale and drive through the front heel.'],
+ mist:['Front foot too close to the bench.','Bouncing out of the bottom.','Losing pelvic floor control. Keep reps slow.'],
+ reg:'Regular split squat.',prog:'Heavier dumbbells, 3 s lowering.',br:'Exhale on the way up.',learn:['load']},
+stepup:{n:'Step-up',cat:'Lower body',eq:'Box or bench',mus:['Quads','Glutes','Calves'],
+ f:[{p:{x:150,y:117,T:180,a:[6,4],b:[-6,-4],l:{t:[192,156]},r:[-3,-3]},d:1500,lab:'Exhale · drive through the top foot'},{p:{x:190,y:78,T:180,a:[6,4],b:[-6,-4],l:{t:[194,156]},r:[90,0]},d:500,lab:'Stand tall, knee up'},{p:{x:190,y:78,T:180,a:[6,4],b:[-6,-4],l:{t:[194,156]},r:[90,0]},d:1700,lab:'Inhale · step down slowly'}],props:{box:[172,156,60,40]},hi:['l'],
+ why:'Builds leg strength and balance in the same pattern as climbing stairs with a baby in your arms.',
+ cues:['Whole foot on the box.','Lean slightly forward and exhale as you push through the top foot. Do not push off the bottom foot.','Stand fully, optionally drive the other knee up.','Step down slowly with control.'],
+ mist:['Bouncing off the floor foot.','Knee collapsing inward on the box.','Box too high too soon.'],
+ reg:'Lower box (20–30 cm).',prog:'Higher box, then hold dumbbells.',br:'Exhale on the step up.',learn:['load']},
+hipthrust:{n:'Hip thrust',cat:'Lower body',eq:'Bench · barbell or dumbbell',mus:['Glutes','Hamstrings'],
+ f:[{p:{x:118,y:178,T:-148,a:{t:[124,170]},b:{t:[121,170]},l:{t:[180,195]},r:{t:[175,195]}},d:1300,lab:'Exhale · drive hips up'},{p:{x:140,y:140,T:-90,a:{t:[146,132]},b:{t:[143,132]},l:{t:[180,195]},r:{t:[175,195]}},d:900,lab:'Squeeze · ribs down'},{p:{x:140,y:140,T:-90,a:{t:[146,132]},b:{t:[143,132]},l:{t:[180,195]},r:{t:[175,195]}},d:1500,lab:'Inhale · lower'}],props:{bar:1,bench:[30,140,62,56]},hi:['torso'],
+ why:'The most direct way to load the glutes heavily without loading the spine or the pelvic floor through standing impact.',
+ cues:['Upper back on the bench edge, feet flat, weight over the hip crease (use a pad).','Exhale, lift the pelvic floor, drive through the heels.','At the top, shins vertical, chin tucked, ribs down. No arching.','Inhale and lower under control.'],
+ mist:['Over-arching the lower back at the top.','Feet too close or too far.','Pushing through the toes.'],
+ reg:'Glute bridge on the floor.',prog:'Heavier load, single-leg version.',br:'Exhale on the thrust.',learn:['breath']},
+pallof:{n:'Pallof press',cat:'Breath & core',eq:'Cable or band',mus:['Obliques','Deep abdominals','Glutes'],
+ f:[{p:{x:150,y:120,T:180,a:{t:[172,92]},b:{t:[170,94]},l:{t:[160,196]},r:{t:[142,196]}},d:1300,lab:'Exhale · press straight out'},{p:{x:150,y:120,T:180,a:{t:[204,90]},b:{t:[202,92]},l:{t:[160,196]},r:{t:[142,196]}},d:1500,lab:'Hold · the cable pulls sideways, don\'t rotate'},{p:{x:150,y:120,T:180,a:{t:[204,90]},b:{t:[202,92]},l:{t:[160,196]},r:{t:[142,196]}},d:1200,lab:'Inhale · bring hands back to chest'}],fx:'pallof',props:{handle:1},hi:['torso'],
+ why:'Anti-rotation core work that strengthens the obliques without crunching, so it is kind to a healing midline.',
+ cues:['Set a cable or band at chest height. Stand side-on to it, about an arm\'s length away (see the top view in the demo).','Hold the handle with both hands at the middle of your chest, feet hip-width, knees soft.','Exhale and press your hands straight out in front of your chest. The cable tries to twist you toward the machine.','Hold for 2 seconds without letting your chest or hips turn, then bring the hands back. Finish the reps, then turn around for the other side.'],
+ mist:['Letting the torso rotate toward the cable.','Pressing toward the machine instead of straight ahead.','Shrugging or holding the breath.'],
+ reg:'Lighter band, stand closer to the anchor, or do it half-kneeling.',prog:'Longer holds, step further away, or press overhead from the extended position.',br:'Exhale as you press.',learn:['dr']},
+cablerow:{n:'Cable row',cat:'Upper body',eq:'Cable or band',mus:['Upper back','Lats','Rear shoulders','Biceps'],
+ f:[{p:{x:150,y:120,T:180,a:{t:[205,100]},b:{t:[203,102]},l:{t:[162,196]},r:{t:[140,196]}},d:1300,lab:'Exhale · pull elbows back'},{p:{x:150,y:120,T:180,a:{t:[160,106]},b:{t:[158,108]},l:{t:[162,196]},r:{t:[140,196]}},d:600,lab:'Squeeze shoulder blades'},{p:{x:150,y:120,T:180,a:{t:[160,106]},b:{t:[158,108]},l:{t:[162,196]},r:{t:[140,196]}},d:1500,lab:'Inhale · reach forward'}],props:{cable:[300,100],post:[300,100],handle:1},hi:['a'],
+ why:'Feeding and holding pull the shoulders forward. Rowing strengthens the upper back to bring posture back.',
+ cues:['Stand tall in a split stance facing the cable.','Exhale and pull the handle to your lower ribs, elbows close to the body.','Squeeze the shoulder blades together and down.','Inhale and let the arms straighten slowly.'],
+ mist:['Leaning back to yank the weight.','Shrugging toward the ears.','Letting the weight snap the arms forward.'],
+ reg:'Lighter band.',prog:'Heavier, single-arm, or seated cable row.',br:'Exhale as you pull.',learn:['load']},
+latpd:{n:'Lat pulldown',cat:'Upper body',eq:'Cable machine',mus:['Lats','Upper back','Biceps'],
+ f:[{p:{x:150,y:153,T:190,a:{t:[154,52]},b:{t:[150,52]},l:[88,2],r:[86,2]},d:1300,lab:'Exhale · pull bar to upper chest'},{p:{x:150,y:153,T:195,a:{t:[160,98]},b:{t:[157,100]},l:[88,2],r:[86,2]},d:500,lab:'Elbows down and back'},{p:{x:150,y:153,T:195,a:{t:[160,98]},b:{t:[157,100]},l:[88,2],r:[86,2]},d:1700,lab:'Inhale · let it rise slowly'}],props:{cable:[156,6],seat:[118,158,62,38],handle:1},hi:['a'],
+ why:'Builds the back strength you need for lifting a growing baby overhead and toward a pull-up.',
+ cues:['Thighs under the pad, hands slightly wider than shoulders.','Lean back a little. Exhale and drive the elbows down to pull the bar to your upper chest.','Pause briefly, shoulder blades down.','Inhale and control the bar up until the arms are straight.'],
+ mist:['Swinging the body to move the weight.','Pulling behind the neck.','Letting the bar yank the shoulders up.'],
+ reg:'Lighter load, single-arm cable pulldown.',prog:'Heavier, then assisted pull-ups.',br:'Exhale as you pull.',learn:['load']},
+dbbench:{n:'Dumbbell bench press',cat:'Upper body',eq:'Bench · dumbbells',mus:['Chest','Triceps','Front shoulders'],
+ f:[{p:BPa,d:1900,lab:'Inhale · lower to chest'},{p:BPb,d:1300,lab:'Exhale · press up'}],props:{db:'ab',bench:[50,150,124,46]},hi:['a'],
+ why:'Pushing strength with the back supported. The abdominal wall stays relatively unloaded.',
+ cues:['Lie on the bench, feet flat, shoulder blades gently pinned back.','Start with the weights over the shoulders.','Inhale and lower to the sides of the chest, elbows at about 45°.','Exhale and press back up.'],
+ mist:['Bouncing the weights off the chest.','Feet lifting and back arching hard.','Elbows flared at 90°.'],
+ reg:'Lighter weights, or a floor press.',prog:'Heavier weights, then barbell bench press.',br:'Exhale as you press.',learn:['load']},
+bbench:{n:'Barbell bench press',cat:'Upper body',eq:'Barbell · bench · rack',mus:['Chest','Triceps','Front shoulders'],
+ f:[{p:BPa,d:1900,lab:'Inhale · bar to lower chest'},{p:BPb,d:1300,lab:'Exhale · press back over shoulders'}],props:{bar:1,bench:[50,150,124,46]},hi:['a'],
+ why:'Back to a staple lift. Use a spotter or safety arms in the rack.',
+ cues:['Eyes under the bar, grip just wider than shoulders.','Unrack with straight arms over the shoulders.','Inhale and lower to the lower chest.','Exhale and press back up and slightly back.'],
+ mist:['Lifting the hips off the bench.','Bar path straight up and down over the chest.','Holding the breath for many reps.'],
+ reg:'Dumbbell bench press.',prog:'Add 1–2.5 kg when every set hits the top of the rep range.',br:'Exhale on the press. Once confident, a brief controlled brace for heavier singles is fine.',learn:['load','breath']},
+hkpress:{n:'Half-kneeling press',cat:'Upper body',eq:'Dumbbell',mus:['Shoulders','Triceps','Core','Glutes'],
+ f:[{p:HK,d:1300,lab:'Exhale · press up'},{p:Object.assign({},HK,{a:[178,178]}),d:500,lab:'Bicep by the ear'},{p:Object.assign({},HK,{a:[178,178]}),d:1600,lab:'Inhale · lower to shoulder'}],props:{db:'a'},hi:['a'],
+ why:'Kneeling removes the lower back cheat, so the core and glutes have to keep the trunk upright while you press.',
+ cues:['Kneel on one knee, the other foot in front. Squeeze the glute of the down leg.','Dumbbell at the shoulder on the same side as the down knee.','Exhale and press up and slightly back until the arm is straight.','Inhale and lower with control.'],
+ mist:['Arching the lower back as you press.','Leaning away from the weight.','Shrugging.'],
+ reg:'Lighter, or seated with back support.',prog:'Heavier, then standing press.',br:'Exhale as you press.',learn:['dr']},
+sarow:{n:'Single-arm dumbbell row',cat:'Upper body',eq:'Bench · dumbbell',mus:['Lats','Upper back','Rear shoulders'],
+ f:[{p:{x:122,y:120,T:100,a:{t:[160,170]},b:{t:[195,150]},l:{t:[150,196]},r:{t:[100,196]}},d:1300,lab:'Exhale · pull elbow to hip'},{p:{x:122,y:120,T:100,a:{t:[160,118]},b:{t:[195,150]},l:{t:[150,196]},r:{t:[100,196]}},d:500,lab:'Squeeze'},{p:{x:122,y:120,T:100,a:{t:[160,118]},b:{t:[195,150]},l:{t:[150,196]},r:{t:[100,196]}},d:1600,lab:'Inhale · lower slowly'}],props:{db:'a',bench:[168,150,70,46]},hi:['a'],
+ why:'One side at a time strengthens the back and evens out the side you always carry on.',
+ cues:['One hand on a bench, feet staggered, back flat.','Exhale and pull the dumbbell toward your hip, elbow close to the body.','Keep the shoulders level. Do not twist open.','Inhale and lower to a full stretch.'],
+ mist:['Rotating the torso to lift.','Pulling toward the armpit with a shrug.','Rounding the back.'],
+ reg:'Lighter, or chest-supported on an incline bench.',prog:'Heavier, 2 s pause at the top.',br:'Exhale as you pull.',learn:['load']},
+pullup:{n:'Assisted pull-up',cat:'Upper body',eq:'Pull-up bar · band or machine',mus:['Lats','Upper back','Biceps','Core'],
+ f:[{p:{x:150,y:142,T:180,a:{t:[156,36],s:1},b:{t:[152,36],s:1},l:[-20,-80],r:[-14,-74]},d:1400,lab:'Exhale · pull chest to the bar'},{p:{x:150,y:108,T:180,a:{t:[156,36],s:1},b:{t:[152,36],s:1},l:[-20,-80],r:[-14,-74]},d:500,lab:'Chin over'},{p:{x:150,y:108,T:180,a:{t:[156,36],s:1},b:{t:[152,36],s:1},l:[-20,-80],r:[-14,-74]},d:1900,lab:'Inhale · lower all the way'}],props:{pbar:[100,210,34]},hi:['a'],
+ why:'A goal many women like to work toward. The band or machine lets you train the full pattern now.',
+ cues:['Hands just wider than shoulders, palms away. Use a band under the knees or an assisted machine.','Start from a dead hang with shoulders gently engaged.','Exhale, drive the elbows down, pull until the chin clears the bar.','Inhale and lower slowly to straight arms.'],
+ mist:['Kipping or swinging.','Half reps.','Ribs flaring and back arching. Keep a slight hollow.'],
+ reg:'More band assistance, lat pulldown.',prog:'Less assistance, slow 4 s negatives.',br:'Exhale as you pull.',learn:['load']},
+farmer:{n:'Farmer carry',cat:'Carries & cardio',eq:'Dumbbells or kettlebells',mus:['Grip','Traps','Core','Glutes'],
+ f:[{p:WKfa,d:520,lab:'Walk tall · short steps'},{p:WKfb,d:520,lab:'Breathe normally'}],fx:'walk',props:{db:'ab'},hi:['torso'],
+ why:'Carrying is life with a baby. Loaded carries train posture, grip and pelvic floor control while you walk.',
+ cues:['Pick the weights up with a hinge, not a rounded back.','Stand tall, shoulders down and back, ribs stacked over the pelvis.','Walk with short, smooth steps. Breathe throughout.','Set them down with the same hinge.'],
+ mist:['Leaning to one side.','Shrugging.','Holding the breath.'],
+ reg:'Lighter, shorter distance.',prog:'Heavier, longer, or one hand only (suitcase carry) for extra side-core work.',br:'Steady, relaxed breathing.',learn:['pf']},
+bike:{n:'Stationary bike',cat:'Carries & cardio',eq:'Bike, cross-trainer or incline walk',mus:['Heart & lungs','Quads','Glutes'],
+ f:[0,1,2,3,4,5,6,7].map(i=>{const th=i*Math.PI/4,R=15,cx=152,cy=160;return {p:{x:136,y:110,T:140,a:{t:[198,90]},b:{t:[196,92]},l:{t:[cx+R*Math.cos(th),cy+R*Math.sin(th)]},r:{t:[cx-R*Math.cos(th),cy-R*Math.sin(th)]}},d:130,lab:'Easy spin · you can still chat'}}),props:{bike:1},hi:['l'],
+ why:'A low-impact way to raise heart rate and warm the hips and knees with no jolting through the pelvic floor.',
+ cues:['Saddle at hip height when standing next to the bike, so the knee stays slightly bent at the bottom.','Start easy for 3–4 minutes, then build to a pace where you could talk in short sentences.','Sit tall with relaxed shoulders and breathe steadily.','Cross-trainer or incline walking work just as well.'],
+ mist:['Saddle too low, so the knees bend a lot.','Going hard enough to need a rest before lifting.','Hunching over the handlebars.'],
+ reg:'Lower resistance, shorter time.',prog:'Add 5 minutes of intervals on a 4th day once phase 2 starts.',br:'Steady, conversational.',learn:['days']},
+bdl:{n:'Barbell deadlift',cat:'Lower body',eq:'Barbell',mus:['Glutes','Hamstrings','Back','Grip'],
+ f:[{p:{x:128,y:146,T:118,a:{t:[166,179]},b:{t:[163,179]},l:{t:[156,196]},r:{t:[146,196]}},d:1400,lab:'Exhale · push the floor away'},{p:P({a:{t:[156,128]},b:{t:[153,128]}}),d:500,lab:'Stand tall, glutes squeezed'},{p:P({a:{t:[156,128]},b:{t:[153,128]}}),d:1800,lab:'Inhale · hinge the bar back down'}],props:{bar:1},hi:['l','r'],
+ why:'The heaviest lift in the plan. Builds whole-body strength for lifting a growing child for years to come.',
+ cues:['Bar over the middle of your feet, shins close, hands just outside the legs.','Hinge down with a flat back. Chest up, arms straight, take the slack out of the bar.','Exhale and push the floor away. The bar stays close to the legs.','Stand tall, then hinge back down under control.'],
+ mist:['Rounding the lower back.','Jerking the bar off the floor.','Leaning back at the top.'],
+ reg:'Kettlebell deadlift or raise the bar on plates.',prog:'Add 2.5–5 kg when all sets feel solid and symptom-free.',br:'Exhale through the lift. A short brace is fine once heavier sets are symptom-free.',learn:['load','breath']},
+pushup:{n:'Push-up',cat:'Upper body',eq:'Floor',mus:['Chest','Triceps','Shoulders','Core'],
+ f:[{p:{x:171.9,y:159,T:116,a:{t:[218,195]},b:{t:[215,195]},l:{t:[100,194]},r:{t:[96,194]}},d:1700,lab:'Inhale · lower in one straight line'},{p:{x:178.8,y:180.2,T:100,a:{t:[218,195]},b:{t:[215,195]},l:{t:[100,194]},r:{t:[96,194]}},d:1200,lab:'Exhale · push the floor away'}],props:{mat:1},hi:['a'],
+ why:'The full push-up puts the whole abdominal wall under load. A good marker that core recovery is well on track.',
+ cues:['Only use this if incline push-ups feel easy and there is no doming.','Hands under shoulders, body in a straight line.','Inhale and lower the chest toward the floor, elbows at 45°.','Exhale and push the floor away.'],
+ mist:['Hips sagging.','Doming of the tummy. Go back to the incline version.','Head dropping.'],
+ reg:'Incline push-up.',prog:'Slower lowering, pause at the bottom, add a weighted vest later.',br:'Exhale as you push.',learn:['dr']},
+sldl:{n:'Single-leg Romanian deadlift',cat:'Lower body',eq:'Dumbbell',mus:['Hamstrings','Glutes','Balance'],
+ f:[{p:{x:150,y:117,T:180,a:{t:[158,122]},b:[-6,-4],l:{t:[154,196]},r:[-10,-6]},d:2000,lab:'Inhale · hinge, back leg reaches back'},{p:{x:140,y:122,T:100,a:{t:[186,168]},b:[40,30],l:{t:[154,196]},r:[-82,-84]},d:400,lab:'Hips level'},{p:{x:140,y:122,T:100,a:{t:[186,168]},b:[40,30],l:{t:[154,196]},r:[-82,-84]},d:1600,lab:'Exhale · drive the hip forward to stand'}],props:{db:'a'},hi:['l'],
+ why:'Balance and hip strength on one leg, which protects knees and the back when carrying on one side.',
+ cues:['Stand on one leg, dumbbell in the opposite hand.','Hinge forward, letting the free leg float back in line with your body.','Keep the hips square to the floor.','Exhale and drive the standing hip forward to come up.'],
+ mist:['Hip of the free leg opening up toward the ceiling.','Rounding the back to reach lower.','Rushing and losing balance.'],
+ reg:'Kickstand version: back toe lightly on the floor.',prog:'Heavier dumbbell, or no support at all.',br:'Exhale as you stand.',learn:['load']},
+walk:{n:'Brisk or incline walk',cat:'Carries & cardio',eq:'Treadmill or outdoors',mus:['Heart & lungs','Legs'],
+ f:[{p:WKa,d:520,lab:'Brisk pace · can talk in sentences'},{p:WKb,d:520,lab:'Arms swing naturally'}],fx:'walk',hi:[],
+ why:'The best low-risk cardio while the pelvic floor and abdominal wall recover. It builds the base for running later.',
+ cues:['Brisk enough that you can talk but not sing.','Incline 3–8% on a treadmill makes it harder without impact.','Stand tall and let the arms swing.','Pram walks count.'],
+ mist:['Holding the treadmill rails.','Pushing so hard you feel heaviness. Ease off if so.'],
+ reg:'Flat, slower, shorter.',prog:'Longer, steeper, then walk–run intervals once you pass the impact test.',br:'Easy, conversational.',learn:['impact']},
+plank:{n:'Forearm plank',cat:'Breath & core',eq:'Mat',mus:['Deep abdominals','Obliques','Shoulders','Glutes'],
+ f:[{p:{x:142.8,y:175.8,T:103.1,a:[0,90],b:[2,92],l:{t:[65,194]},r:{t:[60,194]}},d:3000,lab:'Breathe in · stay long'},{p:{x:142.8,y:175.8,T:103.1,a:[0,90],b:[2,92],l:{t:[65,194]},r:{t:[60,194]}},d:3000,lab:'Breathe out · ribs to hips'}],fx:'breath',props:{mat:1},hi:['torso'],
+ why:'A classic test of whole-core control. Only progress to the full version when there is no doming.',
+ cues:['Elbows under shoulders, forearms on the mat.','Start on the knees. Lift into a straight line from head to heels (or knees).','Gently draw the ribs toward the pelvis and squeeze the glutes.','Breathe slowly throughout the hold.'],
+ mist:['Hips sagging or piking up.','Holding the breath.','Doming or bulging along the midline.'],
+ reg:'From the knees, or hands on a bench.',prog:'Longer holds, then shoulder taps or plank walk-outs.',br:'Slow, steady breaths.',learn:['dr']},
+sideplank:{n:'Side plank',cat:'Breath & core',eq:'Mat',mus:['Obliques','Glute med','Shoulders'],view:'front',
+ f:[{p:{x:146,y:186,T:114,a:[178,178],b:[0,90],l:[-85.5,-85.5],r:[-87,-87]},d:1400,lab:'Exhale · lift hips off the mat'},{p:{x:148,y:174.5,T:102.7,a:[178,178],b:[0,90],l:[-77,-77],r:[-78.5,-78.5]},d:1500,lab:'Hold · straight line, top arm to the ceiling'},{p:{x:148,y:174.5,T:102.7,a:[178,178],b:[0,90],l:[-77,-77],r:[-78.5,-78.5]},d:1300,lab:'Inhale · lower slowly'}],props:{mat:1},hi:['torso'],
+ why:'Strengthens the side of the trunk and the hips with very little pressure on the midline.',
+ cues:['Lie on your side, elbow under your shoulder, legs stacked. (Phase 1: bend the knees and lift from the knees instead.)','Exhale and lift the hips until you form a straight line from head to feet.','Reach the top arm to the ceiling or rest the hand on your hip.','Lower with control, then switch sides.'],
+ mist:['Hips sagging or rolling backwards.','Shoulder sinking toward the ear.','Holding the breath.'],
+ reg:'Bend the knees and lift from the knees, or do hip lifts for reps.',prog:'Longer holds, top leg lift, or reach the top arm under and back up.',br:'Breathe throughout the hold.',learn:['dr']},
+kbdl:{n:'Kettlebell deadlift',cat:'Lower body',eq:'Kettlebell',mus:['Glutes','Hamstrings','Back','Grip'],
+ f:[{p:KDb,d:1300,lab:'Exhale · push the floor away'},{p:KDa,d:500,lab:'Stand tall'},{p:KDa,d:1700,lab:'Inhale · hinge back down'}],props:{kb:1},hi:['l','r'],
+ why:'The cleanest way to practise lifting a weight from the floor, like a car seat or a toddler.',
+ cues:['Kettlebell between the feet, under your hips.','Hinge: hips back, flat back, grip the handle with straight arms.','Exhale, lift the pelvic floor, push the floor away and stand up.','Inhale and hinge it back down.'],
+ mist:['Squatting it up with a rounded back.','Yanking the bell off the floor.','Leaning back at the top.'],
+ reg:'Raise the bell on a step.',prog:'Heavier bell, then barbell deadlift or kettlebell swings.',br:'Exhale as you stand.',learn:['breath','load']},
+kbswing:{n:'Kettlebell swing',cat:'Impact',eq:'Kettlebell',mus:['Glutes','Hamstrings','Core','Heart & lungs'],
+ f:[{p:SWa,d:460,lab:'Exhale · snap hips forward'},{p:SWb,d:300,lab:'Float · arms relaxed'},{p:SWb,d:540,lab:'Hinge · let it fall back'}],props:{kb:1},hi:['torso'],
+ why:'A fast, powerful hip hinge. It builds power and conditioning and is a good bridge toward higher-impact training.',
+ cues:['Hike the bell back between the legs like a football.','Snap the hips forward and let the bell float to chest height. The arms just guide it.','Exhale sharply as the hips snap.','Let it fall, then hinge to catch it.'],
+ mist:['Squatting instead of hinging.','Lifting the bell with the arms.','Leaking or heaviness. If so, stop and go back to deadlifts.'],
+ reg:'Kettlebell deadlift, or slower "dead-stop" swings.',prog:'Heavier bell, more reps per set, timed intervals.',br:'Sharp exhale at the snap.',learn:['impact','pf']},
+bsquat:{n:'Barbell back squat',cat:'Lower body',eq:'Barbell · rack',mus:['Quads','Glutes','Adductors','Back'],
+ f:[{p:BSa,d:2000,lab:'Inhale · sit down between the hips'},{p:BSb,d:400,lab:'Depth with a neutral back'},{p:BSb,d:1500,lab:'Exhale · drive up'}],props:{bar:1},hi:['l'],
+ why:'Back to one of the main strength lifts. The goal is to come back to and then past your pre-pregnancy numbers.',
+ cues:['Bar on the upper back, hands just outside the shoulders, elbows down.','Feet shoulder-width, toes slightly out.','Inhale and sit down, knees following the toes.','Exhale and drive up. For heavier sets, a short controlled brace is fine once you have no symptoms.'],
+ mist:['Knees caving in on the way up.','Chest dropping, bar rolling forward.','Bouncing off the bottom.'],
+ reg:'Goblet squat.',prog:'Add 2.5 kg when every set reaches the top of the rep range.',br:'Exhale out of the hole.',learn:['load','breath']},
+brdl:{n:'Barbell Romanian deadlift',cat:'Lower body',eq:'Barbell',mus:['Hamstrings','Glutes','Back'],
+ f:[{p:RDLa,d:2000,lab:'Inhale · hips back, bar slides down'},{p:RDLb,d:400,lab:'Hamstring stretch'},{p:RDLb,d:1500,lab:'Exhale · hips through'}],props:{bar:1},hi:['r','l'],
+ why:'Builds the posterior chain, which protects the back during all the lifting and carrying ahead.',
+ cues:['Start standing with the bar at the hips, shoulder-width grip.','Soft knees, inhale, push the hips back with the bar touching the thighs.','Go to mid-shin or until the back wants to round.','Exhale and drive the hips forward to stand.'],
+ mist:['Bar drifting away from the legs.','Rounding.','Bending the knees too much.'],
+ reg:'Dumbbell RDL.',prog:'Add load slowly, pause at the bottom.',br:'Exhale as you stand.',learn:['load']},
+rlunge:{n:'Reverse lunge',cat:'Lower body',eq:'Dumbbells (optional)',mus:['Quads','Glutes','Adductors'],
+ f:[{p:P({l:{t:[160,196]},r:{t:[150,196],s:1}}),d:1500,lab:'Inhale · step back and lower'},{p:{x:132,y:150,T:180,a:[6,4],b:[-6,-4],l:{t:[160,196]},r:{t:[90,193],s:1}},d:400,lab:'Back knee just above floor'},{p:{x:132,y:150,T:180,a:[6,4],b:[-6,-4],l:{t:[160,196]},r:{t:[90,193],s:1}},d:1300,lab:'Exhale · drive back to standing'}],props:{db:'ab'},hi:['l'],
+ why:'Lunging backwards is easier on the knees and pelvic floor than forward lunges, and trains balance between the legs.',
+ cues:['Stand tall with feet hip-width.','Inhale and step one foot back, lowering the back knee toward the floor.','Most of the weight stays in the front foot.','Exhale and push through the front heel to return.'],
+ mist:['Stepping back in a straight line (tightrope).','Torso folding forward.','Slamming the back knee down.'],
+ reg:'Split squat (feet stay planted).',prog:'Heavier dumbbells, deficit lunge.',br:'Exhale as you stand.',learn:['load']},
+pogo:{n:'Pogo hops',cat:'Impact',eq:'None',mus:['Calves','Achilles','Pelvic floor'],
+ f:[{p:P({a:[10,6],b:[-10,-6]}),d:230,lab:'Quick, springy contacts'},{p:{x:150,y:103,T:180,a:[10,6],b:[-10,-6],l:{t:[156,183]},r:{t:[146,183]}},d:230,lab:'Stay tall, small hops'}],hi:['l','r'],
+ why:'Reintroduces impact in small, controlled doses so the pelvic floor and tendons adapt before running and jumping.',
+ cues:['Only after passing the return-to-impact test.','Stand tall, knees nearly straight, bounce on the balls of your feet.','Small, quick, quiet hops.','Stop the set at the first sign of leaking or heaviness.'],
+ mist:['Bending the knees a lot (it becomes a squat jump).','Landing heavily on the heels.','Pushing through symptoms.'],
+ reg:'Marching on the spot, calf raises, skipping without a rope.',prog:'Longer sets, single-leg hops, skipping.',br:'Breathe naturally.',learn:['impact','pf']},
+hipflex:{n:'Half-kneeling hip flexor stretch',cat:'Mobility',eq:'Mat',mus:['Hip flexors','Quads'],
+ f:[{p:{x:146,y:154,T:180,a:[6,2],b:[-6,-2],l:{t:[192,196]},r:[0,-90]},d:2200,lab:'Tuck tailbone, shift forward'},{p:{x:160,y:156,T:182,a:[172,176],b:[168,172],l:{t:[192,196]},r:[-14.7,-90]},d:2600,lab:'Reach up · breathe into the stretch'}],props:{mat:1},hi:['r'],
+ why:'Hip flexors tighten from pregnancy posture and long hours sitting to feed. Opening them helps the glutes work.',
+ cues:['Kneel on a pad, other foot in front.','Tuck the pelvis under (tailbone down) before moving.','Shift gently forward until you feel a stretch at the front of the back hip.','Reach the same-side arm up and breathe slowly.'],
+ mist:['Arching the lower back instead of tucking.','Lunging so far forward the pelvis tips.'],
+ reg:'Smaller shift.',prog:'Add a gentle side bend away from the back leg.',br:'Slow breaths, 30 s per side.',learn:['breath']}
+};
+
+Object.entries(EX).forEach(([k,v])=>v.id=k);
+/* =========================================================
+   PROGRAM
+   ========================================================= */
+const PH=[
+{n:1,name:'Reconnect',tag:'Breath, pelvic floor, form',rpe:'RPE 5–6',freq:'3 gym sessions + daily walks',time:'30–40 min',
+ goal:'Reconnect breath, pelvic floor and deep core, and relearn the basic patterns with light weights. You should leave every session feeling better than you arrived.',
+ focus:['360° breathing and pelvic floor lifts daily (5 minutes)','Exhale on every effort','Light loads: you could do 4+ more reps','Walks 20–40 min most days'],
+ normal:['Muscle soreness for 1–2 days','Feeling tired, especially after bad nights','Weights feeling "too easy". That is the point'],
+ gate:['No leaking, heaviness or pain during or within 24 h of sessions','10 slow dead bugs per side without doming','Glute bridge 3×12 and 30 min brisk walk feel easy'],
+ weeks:['Learn the moves. Stay light, focus on breathing.','Add a set to the main lifts.','Add a few reps. Same weights.','Consolidate. Check the move-on list.'],
+ S:[
+ {id:'A',name:'Lower & core',dur:35,blocks:[
+  {n:'Warm-up',items:[['breath','5 breaths × 2'],['heelslide','2×8 /side'],['hipflex','30 s /side']]},
+  {n:'Main',items:[['boxsquat',['2×8','3×8','3×10','3×10'],'Goblet, 4–8 kg'],['bridge',['2×10','3×10','3×12','3×12']],['dbrdl',['2×8','2×10','3×10','3×10'],'4–6 kg each hand']]},
+  {n:'Core',items:[['deadbug',['2×5 /side','3×5 /side','3×6 /side','3×8 /side'],'Heel taps only at first']]},
+  {n:'Finish',items:[['farmer',['2×20 m','3×20 m','3×30 m','3×30 m'],'Light, 6–8 kg each'],['walk','10 min easy']]}]},
+ {id:'B',name:'Upper & core',dur:35,blocks:[
+  {n:'Warm-up',items:[['breath','5 breaths × 2'],['birddog','2×5 /side']]},
+  {n:'Main',items:[['inclinepush',['2×8','3×8','3×10','3×10'],'High bench or Smith bar'],['cablerow',['2×10','3×10','3×12','3×12']],['latpd',['2×10','3×10','3×10','3×12']],['hkpress',['2×8 /side','2×10 /side','3×8 /side','3×10 /side'],'3–5 kg']]},
+  {n:'Core',items:[['pallof',['2×8 /side','3×8 /side','3×10 /side','3×10 /side']],['sideplank',['2×15 s /side','2×20 s /side','3×20 s /side','3×25 s /side'],'From the knees']]},
+  {n:'Finish',items:[['walk','10 min easy']]}]},
+ {id:'C',name:'Full body',dur:40,blocks:[
+  {n:'Warm-up',items:[['pflift','10 × 5 s holds'],['bridge','2×10']]},
+  {n:'Main',items:[['kbdl',['2×8','3×8','3×10','3×10'],'8–12 kg'],['stepup',['2×6 /side','2×8 /side','3×8 /side','3×8 /side'],'Low box, 20–30 cm'],['sarow',['2×10 /side','3×10 /side','3×10 /side','3×12 /side']]]},
+  {n:'Core',items:[['birddog','3×6 /side'],['plank',['2×15 s','3×15 s','3×20 s','3×20 s'],'From the knees']]},
+  {n:'Finish',items:[['walk','20 min incline']]}]}
+ ]},
+{n:2,name:'Rebuild',tag:'Moderate loads, single-leg work',rpe:'RPE 6–7',freq:'3 gym sessions + walks',time:'40–45 min',
+ goal:'Build real strength with moderate weights and introduce single-leg work. The core moves from "connect" to "control under load".',
+ focus:['Add weight when all sets hit the top of the rep range','Single-leg work for balance and symmetry','Full plank only if there is no doming','Keep walking: 2–3 longer walks a week'],
+ normal:['Some sessions feel heavy after bad nights. Use amber-day rules','DOMS after the first single-leg sessions'],
+ gate:['Still no symptoms during or after training','Goblet squat ~12–16 kg for 3×8 with good form','30 s forearm plank with no doming','Single-leg balance 10 s each side'],
+ weeks:['New exercises, moderate weights.','Add load where reps felt easy.','Add a set or reps to the main lifts.','Hold loads steady, finish the phase strong.'],
+ S:[
+ {id:'A',name:'Lower',dur:45,blocks:[
+  {n:'Warm-up',items:[['breath','5 breaths'],['hipflex','30 s /side'],['bridge','1×12']]},
+  {n:'Main',items:[['goblet',['3×10','3×10','4×8','4×8'],'8–14 kg'],['dbrdl',['3×10','3×10','3×12','3×12'],'6–10 kg each'],['ssq',['2×8 /side','3×8 /side','3×10 /side','3×10 /side']],['hipthrust',['3×12','3×12','3×10','3×10'],'Bodyweight, then add a bar or DB']]},
+  {n:'Core',items:[['deadbug','3×8 /side'],['sideplank','3×20 s /side','From the knees, or straight legs if easy']]}]},
+ {id:'B',name:'Upper',dur:40,blocks:[
+  {n:'Warm-up',items:[['breath','5 breaths'],['birddog','2×6 /side']]},
+  {n:'Main',items:[['dbbench',['3×10','3×10','3×10','4×8'],'Start where 3–4 reps are left'],['latpd',['3×10','3×10','3×12','3×12']],['hkpress',['3×8 /side','3×8 /side','3×10 /side','3×10 /side']],['cablerow',['3×12','3×12','4×10','4×10']]]},
+  {n:'Core',items:[['pallof','3×10 /side'],['farmer',['3×30 m','3×30 m','3×40 m','3×40 m'],'10–14 kg each']]}]},
+ {id:'C',name:'Full body',dur:45,blocks:[
+  {n:'Warm-up',items:[['pflift','10 × 10 s + 10 flicks'],['bridge','1×12']]},
+  {n:'Main',items:[['kbdl',['3×8','3×10','3×8','3×10'],'12–20 kg'],['stepup',['3×8 /side','3×8 /side','3×10 /side','3×10 /side'],'40 cm box'],['sarow',['3×10 /side','3×10 /side','3×12 /side','3×12 /side']]]},
+  {n:'Core',items:[['birddog','3×8 /side'],['plank',['3×20 s','3×25 s','3×30 s','3×30 s'],'Full plank only if no doming']]},
+  {n:'Finish',items:[['walk','20–25 min incline']]}]}
+ ]},
+{n:3,name:'Strengthen',tag:'Barbells back, heavier work',rpe:'RPE 7–8',freq:'3 gym sessions + walks',time:'45–55 min',
+ goal:'Return to barbell lifts, lower reps and heavier loads. In the final week you do the return-to-impact test, which opens the door to running and jumping.',
+ focus:['Barbell squat, RDL and bench with conservative loads','Rest 2 min between heavy sets','Kettlebell swings only if phase 2 was symptom-free','Do the impact test in the last week'],
+ normal:['Strength jumping up quickly as skill returns','Needing a deload after poor sleep weeks'],
+ gate:['Pass every item in the return-to-impact test','No symptoms with swings or heavier lifts','Back squat ≈ bodyweight × 0.6 for 6 (a guide, not a must)'],
+ weeks:['Learn the barbell lifts again. Start with the empty bar.','Add small jumps in load.','Heaviest week of the phase.','Lighter week + return-to-impact test.'],
+ S:[
+ {id:'A',name:'Lower',dur:50,blocks:[
+  {n:'Warm-up',items:[['breath','5 breaths'],['goblet','2×6 light'],['bridge','1×12']]},
+  {n:'Main',items:[['bsquat',['3×8','4×6','4×6','3×6'],'Empty bar → add 2.5–5 kg a week'],['brdl',['3×8','3×8','4×8','3×8']],['rlunge',['3×8 /side','3×8 /side','3×10 /side','2×8 /side']],['hipthrust',['3×10','3×10','4×8','3×10'],'Barbell']]},
+  {n:'Core',items:[['deadbug','3×10 /side']]}]},
+ {id:'B',name:'Upper',dur:50,blocks:[
+  {n:'Warm-up',items:[['breath','5 breaths'],['inclinepush','1×10']]},
+  {n:'Main',items:[['bbench',['3×8','4×6','4×6','3×6']],['pullup',['3×5','3×6','4×5','3×5'],'Band or machine assist'],['hkpress',['3×8 /side','3×8 /side','3×10 /side','2×8 /side']],['sarow',['3×10 /side','3×10 /side','4×8 /side','3×10 /side']]]},
+  {n:'Core',items:[['pallof','3×12 /side'],['sideplank','3×30 s /side']]}]},
+ {id:'C',name:'Power & carry',dur:45,blocks:[
+  {n:'Warm-up',items:[['pflift','10 quick flicks'],['kbdl','2×8 light']]},
+  {n:'Main',items:[['kbswing',['4×10','5×10','5×12','3×10'],'Only if no leaking in phase 2'],['goblet',['3×8','3×8','4×8','3×8'],'16 kg+'],['stepup',['3×8 /side','3×8 /side','3×10 /side','2×8 /side'],'Holding dumbbells']]},
+  {n:'Core',items:[['farmer',['3×40 m','4×40 m','4×40 m','2×40 m'],'Heavy'],['plank','3×30–40 s']]},
+  {n:'Test',items:[['@impact',['—','—','—','Do the test'],'Last week of the phase only']]}]}
+ ]},
+{n:4,name:'Return',tag:'Normal training, impact back in',rpe:'RPE 7–8',freq:'3–4 sessions + optional run',time:'50–60 min',
+ goal:'Back to normal training. Heavier main lifts, small doses of impact, and a plan for what comes next.',
+ focus:['Main lifts at 4×5','Pogo hops and swings only after passing the test','Optional walk–run intervals on a 4th day','Keep the 5-minute breath and pelvic floor routine 3×/week'],
+ normal:['Some leaking risk during your period or when very tired. Drop impact that day'],
+ gate:['Program complete. Repeat phase 4 with heavier loads or move to a general strength plan','Running: build gradually with walk–run intervals'],
+ weeks:['New rep scheme: 4×5 on the main lifts.','Push the loads a little.','Heaviest week of the program.','Deload and celebrate. Retest your lifts.'],
+ S:[
+ {id:'A',name:'Lower',dur:55,blocks:[
+  {n:'Warm-up',items:[['breath','5 breaths'],['hipflex','30 s /side'],['pogo',['2×10','2×10','2×15','2×10'],'Only if test passed']]},
+  {n:'Main',items:[['bsquat',['4×5','4×5','5×5','3×5'],'Week 15 = heaviest'],['brdl',['3×8','3×8','4×6','3×8']],['rfess',['3×8 /side','3×8 /side','3×10 /side','2×8 /side']]]},
+  {n:'Core',items:[['deadbug','3×10 /side'],['plank','3×40 s']]}]},
+ {id:'B',name:'Upper',dur:50,blocks:[
+  {n:'Warm-up',items:[['breath','5 breaths'],['inclinepush','1×10']]},
+  {n:'Main',items:[['bbench',['4×5','4×5','5×5','3×5']],['pullup',['4×5','4×5','4×6','3×5'],'Less assistance each week'],['hkpress',['3×8 /side','3×8 /side','3×10 /side','2×8 /side']],['cablerow',['3×12','3×12','4×10','3×10']]]},
+  {n:'Core',items:[['pallof','3×12 /side'],['farmer','3×40 m heavy']]}]},
+ {id:'C',name:'Power & conditioning',dur:50,blocks:[
+  {n:'Warm-up',items:[['pflift','10 quick flicks'],['kbdl','2×8 light']]},
+  {n:'Main',items:[['kbswing',['5×12','5×12','6×12','4×10'],'Heavier bell'],['kbdl',['4×6','4×6','4×5','3×6'],'Heavy'],['rlunge',['3×8 /side','3×10 /side','3×10 /side','2×8 /side']],['pogo',['3×15','3×20','4×20','3×15'],'Stop at any symptom']]},
+  {n:'Finish',items:[['sideplank','3×30 s /side'],['walk','Optional: 1 min jog / 1 min walk × 10']]}]}
+ ]}
+];
+
+PH.forEach(p=>p.S.forEach(s=>{s.dur+=10;s.blocks[0].items.unshift(['bike','10 min easy','Or cross-trainer / incline walk']);
+  s.blocks.forEach(b=>b.items.forEach(it=>{if(it[0]==='walk'&&b.n==='Finish'&&!/jog/.test(it[1]))it[2]='Optional cool-down'}))}));
+/* =========================================================
+   LEARN
+   ========================================================= */
+const LEARN={
+start:{t:'Before you start',s:'Check-ups, who this plan suits, when to adapt it',ic:'flag',html:`
+<p>This plan starts around <b>12 weeks after birth</b> and assumes a straightforward recovery. Make sure these boxes are ticked first.</p>
+<h3>Get the all-clear</h3>
+<ul><li>Your routine postnatal check (usually at 6–8 weeks) with a GP or midwife.</li><li>Ideally, an assessment with a <b>pelvic health (women's health) physiotherapist</b>. They can check pelvic floor strength, the tummy gap and any prolapse, and tailor this plan to you.</li></ul>
+<h3>Talk to a professional before following this plan if</h3>
+<ul><li>You had a 3rd or 4th degree tear, or a complicated C-section.</li><li>You have been told you have a prolapse, or you have leaking, heaviness or pelvic pain now.</li><li>You have a large tummy gap that domes with everyday movements.</li><li>You had high blood pressure, heavy blood loss or anaemia around the birth.</li></ul>
+<h3>How the plan works</h3>
+<p>Four phases of four weeks. Each phase has a short <b>move-on list</b>. If you do not tick everything, repeat the last week or two. Slower is fine. Your body made a whole person.</p>`},
+breath:{t:'Breathing & the core canister',s:'Why every exercise starts with the exhale',ic:'wind',html:`
+<p>Think of your core as a canister. The <b>diaphragm</b> is the lid, the <b>pelvic floor</b> is the base, and the deep abdominal and back muscles are the walls. They share pressure.</p>
+<p>Pregnancy stretches the walls and loads the base for months. Afterwards, pressure from lifting can push down and out instead of being shared, which can show up as leaking, heaviness or doming.</p>
+<h3>The rule: exhale on effort</h3>
+<ul><li>Start to breathe out <b>just before</b> the hard part of each rep: standing up, pushing, pulling.</li><li>As you exhale, gently lift the pelvic floor and let the lower belly draw in.</li><li>Inhale on the easier part (lowering).</li></ul>
+<h3>Later: bracing</h3>
+<p>For heavy barbell sets in phases 3–4, a short brace (breath held for a rep or two) is normal lifting technique. Only use it when lifts are symptom-free with the exhale strategy.</p>`},
+pf:{t:'Pelvic floor basics',s:'Strength and relaxation, daily',ic:'circle',html:`
+<p>The pelvic floor is a hammock of muscles from pubic bone to tailbone. It supports the bladder, bowel and uterus, and helps control leaks.</p>
+<h3>Daily routine (about 5 minutes)</h3>
+<ul><li><b>Long holds:</b> lift and hold up to 10 s, rest 5 s. Up to 10 reps.</li><li><b>Quick flicks:</b> 10 fast lifts, fully relaxing each time.</li><li>Three times a day early on. Then keep going three times a week for good.</li></ul>
+<h3>Relaxing matters too</h3>
+<p>A pelvic floor that is always clenched can cause pain and leaking too. Make sure each lift ends with a full let-go.</p>
+<h3>If it is hard to feel</h3>
+<p>Many women struggle to feel the muscles after birth. A pelvic health physio can check your technique, which makes a big difference.</p>`},
+dr:{t:'Tummy gap (diastasis)',s:'What doming means and what to do',ic:'gap',html:`
+<p>Almost everyone has some separation of the two halves of the "six-pack" muscle by late pregnancy. It often narrows a lot by itself in the first months.</p>
+<h3>Quick self-check</h3>
+<ul><li>Lie on your back, knees bent. Lift your head slightly.</li><li>Press your fingertips along the midline above and below the belly button.</li><li>Note the width (in fingers) and, more importantly, how <b>firm</b> it feels. Firm tension is a good sign even if a gap remains.</li></ul>
+<h3>Doming or coning</h3>
+<p>A ridge popping up along the midline during an exercise means the pressure is more than the wall can manage <i>right now</i>. Use the easier version of that exercise, or exhale earlier. It is a signal, not damage.</p>
+<h3>Crunches and sit-ups</h3>
+<p>They are not banned forever. Add them later once you control dead bugs and planks without doming.</p>`},
+red:{t:'Stop signs',s:'When to stop, adapt, or get checked',ic:'alert',html:`
+<p>Stop the session and adapt (go back a week, choose easier versions) if you notice:</p>
+<ul><li>Leaking urine, wind or stool.</li><li>Heaviness, dragging or a bulge in the vagina.</li><li>Pain in the pelvis, pubic bone, lower back or scar.</li><li>Doming of the tummy you cannot control.</li><li>Bleeding that gets heavier or turns bright red again.</li></ul>
+<p>If these happen repeatedly, see a pelvic health physio or your GP. These are common and treatable. They are not something you just have to live with.</p>
+<h3>Get medical help urgently for</h3>
+<ul><li>Heavy bleeding (soaking a pad in an hour).</li><li>Chest pain or sudden breathlessness.</li><li>A painful, swollen or hot calf.</li><li>Fever, or a red, hot or weeping wound.</li><li>Feeling faint or dizzy during exercise.</li></ul>`},
+days:{t:'Green, amber, red days',s:'Training around broken sleep',ic:'traffic',html:`
+<p>Sleep with a newborn is unpredictable. Instead of skipping, adjust the session to the day.</p>
+<h3>Green</h3><p>Slept reasonably, feel OK. Do the session as written.</p>
+<h3>Amber</h3><p>Rough night, sore, or low energy. Same exercises, <b>one set fewer</b> on each, and stop 1–2 reps earlier (RPE minus one). Short sessions still count.</p>
+<h3>Red</h3><p>Very little sleep, unwell, or symptoms from last session. Swap the gym for a <b>20-minute walk</b> plus breathing and pelvic floor work. That is a completed day.</p>`},
+feed:{t:'Feeding & training',s:'Breastfeeding, fuel and recovery',ic:'cup',html:`
+<p>If you are breastfeeding:</p>
+<ul><li>Feed or pump before the gym. It is more comfortable and you will train better.</li><li>Wear a supportive, high-impact sports bra.</li><li>Drink to thirst and have water with you. You need more fluid than usual.</li><li>Moderate exercise does not reduce milk supply in research so far.</li></ul>
+<h3>Eat enough</h3>
+<p>Recovery, sleep loss and feeding all cost energy. Aggressive dieting slows strength gains and can affect supply. Prioritise protein at each meal and regular snacks.</p>
+<h3>Joints</h3>
+<p>Hormonal changes after birth (and while feeding) can leave ligaments looser for a while. Keep movements controlled and avoid forcing end ranges in stretches.</p>`},
+vag:{t:'After a vaginal birth',s:'Pelvic floor first, and what tears change',ic:'circle',html:`
+<p>A vaginal birth stretches your pelvic floor a long way, and many women have a tear or stitches. Most women recover well with time and training, and so can you.</p>
+<h3>What the plan does for you</h3>
+<ul><li>Every session starts with a short pelvic floor block.</li><li>Kettlebell swings and pogo hops come with heaviness and leaking checks.</li><li>The move-on checks include pelvic floor targets before impact returns.</li></ul>
+<h3>Tears and stitches</h3>
+<ul><li>Stitches usually dissolve within a few weeks, but the area can stay tender for longer.</li><li>Pain at the tear during squats, lunges or carries means regress that exercise for now.</li><li>After a 3rd or 4th degree tear, see a pelvic health physio before following this plan.</li></ul>
+<h3>Watch for</h3>
+<ul><li>Heaviness, dragging or a bulge: possible signs of prolapse. Get checked, and avoid impact until then.</li><li>Leaking with coughing, lifting or jumping. Common and very treatable with a physio.</li></ul>`},
+cs:{t:'After a C-section',s:'What changes in the plan',ic:'scar',html:`
+<p>A caesarean is major abdominal surgery. The skin heals in weeks; deeper layers keep remodelling for months.</p>
+<h3>What the plan does for you</h3>
+<ul><li>Phase 1 lasts 5 weeks instead of 4, so the program is 17 weeks.</li><li>Planks are swapped for heel slides in phase 1 and done from the knees in phase 2.</li><li>Dead bugs stay at heel taps through phase 1.</li><li>A scar-care step joins the lower-body warm-up in phases 1–2, and tummy-loading exercises carry scar notes.</li></ul>
+<h3>Good to know</h3>
+<ul><li>Progress core exercises a little more slowly. Spend an extra week in phase 1 if anything pulls on the scar.</li><li>Once the scar is fully healed and you are cleared, gentle scar massage can help with tightness and numbness. A physio can show you how.</li><li>Numbness around the scar is common and often improves slowly.</li><li>Pain at the scar during an exercise means regress that exercise.</li></ul>
+<p>The pelvic floor still needs training after a C-section. Pregnancy loads it whether or not you deliver vaginally.</p>`},
+impact:{t:'Return-to-impact test',s:'Your gate to running and jumping',ic:'jump',html:`
+<p>Based on the UK return-to-running guideline for postnatal women (Goom, Donnelly & Brockwell, 2019), which suggests impact from about <b>12 weeks</b> after birth if you pass these checks <b>without leaking, heaviness or pain</b>.</p>
+<h3>Load and impact checks</h3>
+<ul><li>Walk 30 minutes</li><li>Single-leg balance 10 s, each side</li><li>Single-leg squat 10 reps, each side</li><li>Jog on the spot 1 minute</li><li>Forward bounds 10</li><li>Hop on the spot 10, each leg</li><li>Single-leg "running man" 10, each side</li></ul>
+<h3>Strength checks (reps each side)</h3>
+<ul><li>Single-leg calf raise 20</li><li>Single-leg bridge 20</li><li>Single-leg sit-to-stand 20</li><li>Side-lying leg lift 20</li></ul>
+<p>Pass everything: add pogo hops and swings, then walk–run intervals. Not yet: keep strengthening and retest in 2–3 weeks.</p>`},
+rpe:{t:'Effort scale (RPE)',s:'How hard should it feel?',ic:'gauge',html:`
+<p>RPE is effort out of 10. In lifting, it maps to how many more reps you could have done.</p>
+<ul><li><b>RPE 5–6</b>: 4+ reps left. Phase 1.</li><li><b>RPE 7</b>: 3 reps left. Phase 2.</li><li><b>RPE 8</b>: 2 reps left. Phases 3–4.</li><li><b>RPE 9–10</b>: 0–1 left. Not needed in this plan.</li></ul>
+<p>"3×10" means 3 sets of 10 reps. "/side" means each side. Rest 60–90 s between sets in phases 1–2 and 2 minutes on heavy barbell sets.</p>`},
+load:{t:'How to add weight',s:'Simple progression rules',ic:'up',html:`
+<p>Use <b>double progression</b>:</p>
+<ul><li>Pick a weight you can lift for every set at the target effort.</li><li>When you hit the top of the rep range on every set with good form and no symptoms, add weight next time.</li><li>Lower body: +2–5 kg. Upper body: +1–2.5 kg (or the next dumbbell).</li></ul>
+<p>Write down what you lift. Some weeks will go backwards because of sleep. That is normal; the trend over a month is what counts.</p>`}
+};
+
+/* =========================================================
+   STATE & STORAGE
+   ========================================================= */
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const DEF={birth:'2026-07-26',start:'2026-10-19',delivery:'unknown',asked:false,level:'unknown'};
+let SET=Object.assign({},DEF,store.get('pp.set',{}));
+let LOG=store.get('pp.log',{});
+let FEEL=store.get('pp.feel',{});
+let GATE=store.get('pp.gate',{});
+const S={guides:true,tab:'today',stack:[],libCat:'All',q:'',exTab:'how',phTab:'over'};
+const DAY=864e5;
+const pd=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const fmt=d=>d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+const todayD=()=>{const n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate())};
+const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const diff=(a,b)=>Math.round((b-a)/DAY);
+const addD=(d,n)=>new Date(d.getTime()+n*DAY);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pc=n=>`--pc:var(--p${n})`;
+
+/* ---------- birth-type tailoring ---------- */
+const isCS=()=>SET.delivery==='cs', isVag=()=>SET.delivery==='vag';
+const PLEN=()=>isCS()?[5,4,4,4]:[4,4,4,4];
+const TOTAL=()=>PLEN().reduce((a,b)=>a+b,0);
+const phStart=n=>1+PLEN().slice(0,n-1).reduce((a,b)=>a+b,0);
+const phWeeks=n=>Array.from({length:PLEN()[n-1]},(_,i)=>phStart(n)+i);
+const phaseOf=w=>{for(let n=4;n>=1;n--)if(w>=phStart(n))return PH[n-1];return PH[0]};
+const wInPh=w=>w-phStart(phaseOf(w).n);
+const wip=w=>Math.min(3,wInPh(w));
+const weekNote=w=>wInPh(w)>3?'Extra C-section week. Repeat week 4 and make sure the scar feels comfortable in every exercise.':phaseOf(w).weeks[wInPh(w)];
+const weekStart=w=>addD(pd(SET.start),(w-1)*7);
+const ppWeekAt=d=>Math.floor(diff(pd(SET.birth),d)/7);
+function curWeek(){const d=diff(pd(SET.start),todayD());if(d<0)return 0;return Math.min(TOTAL()+1,Math.floor(d/7)+1)}
+const key=(w,sid)=>`${w}-${sid}`;
+const rxOf=(rx,w)=>Array.isArray(rx)?rx[wip(w)]:rx;
+const BIRTH={cs:'C-section',vag:'Vaginal birth',unknown:'Not set'};
+
+const isPro=()=>SET.level==='returning';
+const RPE_PRO={1:'RPE 6–7',2:'RPE 7–8',3:'RPE 7–8',4:'RPE 8'};
+const rpeOf=p=>isPro()?RPE_PRO[p.n]:p.rpe;
+const PRO={
+ 1:{boxsquat:['goblet',null,'8–14 kg'],kbdl:[null,null,'12–20 kg'],dbrdl:[null,null,'8–12 kg each hand']},
+ 2:{goblet:['bsquat',['3×8','4×6','4×6','4×6'],'Start at 50–60% of your pre-pregnancy weights'],dbbench:['bbench',['3×8','4×6','4×6','4×6'],'50–60% of pre-pregnancy weights'],kbdl:['bdl',['3×6','3×6','4×5','4×5'],'50–60% of pre-pregnancy weights'],ssq:['rfess',null,null],stepup:['sldl',['3×8 /side','3×8 /side','3×10 /side','3×10 /side'],null]},
+ 3:{goblet:['bdl',['4×5','4×5','5×4','3×5'],'Build toward 70–80% of pre-pregnancy weights'],inclinepush:['pushup','1×8','Floor push-ups, only if no doming'],stepup:['sldl',null,'Heavier dumbbell']},
+ 4:{kbdl:['bdl',['4×5','5×4','5×3','3×5'],'Heaviest lift of the program'],inclinepush:['pushup','2×8','Floor push-ups']}
+};
+const bump=rx=>Array.isArray(rx)?rx.map(bump):String(rx).replace(/^2×/,'3×').replace(/^3×(\d+)( |$)/,(m,r,e)=>+r>=8?`4×${r}${e}`:m);
+function adaptItem(it,n,bn){
+  let id=it[0];let t=0;
+  if(isPro()){
+    const sw=PRO[n]&&PRO[n][id];
+    if(sw){if(sw[0])id=sw[0];it=[id,sw[1]||it[1],sw[2]||it[2]];t=1}
+    if(bn==='Main'&&!/^@/.test(id)){const nb=bump(it[1]);if(JSON.stringify(nb)!==JSON.stringify(it[1])){it=[id,nb,it[2]];t=1}}
+  }
+  if(isCS()){
+    if(id==='plank'&&n===1)return {id:'heelslide',rx:['2×8 /side','3×8 /side','3×10 /side','3×10 /side'],note:'Replaces the plank: a gentler core start after a C-section',t:1};
+    if(id==='plank'&&n===2)return {id,rx:it[1],note:'From the knees until phase 3',t:1};
+    if(id==='deadbug'&&n===1)return {id,rx:it[1],note:'Heel taps only for all of phase 1',t:1};
+  }
+  return {id,rx:it[1],note:it[2]||'',t};
+}
+function blocksFor(p,s){
+  return s.blocks.map(b=>{
+    const items=b.items.map(it=>adaptItem(it,p.n,b.n));
+    if(b.n==='Warm-up'){
+      if(isVag()&&!items.some(i=>i.id==='pflift'))items.unshift({id:'pflift',rx:p.n<=2?'10 quick flicks':'5 × 10 s holds',note:'Added: pelvic floor first after a vaginal birth',t:1});
+      if(isCS()&&p.n<=2&&s.id==='A')items.push({id:'@cs',rx:'2–3 min',note:'Scar mobility, once healed and cleared',t:1});
+    }
+    return {n:b.n,items};
+  });
+}
+const SCAR=['plank','sideplank','inclinepush','pallof','deadbug','hipthrust','kbswing','pullup','heelslide','bbench','dbbench'];
+function exNote(id){
+  if(isCS()&&SCAR.includes(id))return 'After a C-section: stop if you feel pulling, burning or pain at the scar, and switch to the easier version.';
+  if(isVag()&&['kbswing','pogo'].includes(id))return 'After a vaginal birth: stop if you feel heaviness, leaking, or pain at a tear or stitches. Go back to deadlifts or marching on the spot.';
+  if(isVag()&&id==='bike')return 'If the saddle presses on tender stitches or a tear, use a padded seat or switch to the cross-trainer.';
+  if(isVag()&&['pflift','breath'].includes(id))return 'A key exercise for you. Pelvic floor recovery matters most after a vaginal birth.';
+  return '';
+}
+function gateFor(p){
+  const g=[...p.gate];
+  if(p.n===1&&isCS())g.push('Scar comfortable in daily life, with no pulling during core work');
+  if(p.n===1&&isVag())g.push('Pelvic floor: 10 × 10 s holds and 10 quick flicks, done easily');
+  if(p.n===3&&isVag())g.push('No perineal or stitch pain during squats and lunges');
+  return g;
+}
+
+/* ---------- icons ---------- */
+const I={
+chev:'<svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>',
+back:'<svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>',
+gear:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
+check:'<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>',
+today:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+plan:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>',
+lib:'<svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg>',
+learn:'<svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/></svg>',
+play:'<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>',
+pause:'<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>'
+};
+const LIC={flag:'<path d="M4 21V4M4 4h12l-2 4 2 4H4"/>',wind:'<path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/>',circle:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',gap:'<path d="M8 4v16M16 4v16M10 12h4"/>',alert:'<path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17v.5"/>',traffic:'<rect x="8" y="2" width="8" height="20" rx="4"/><circle cx="12" cy="7" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="17" r="1.6"/>',cup:'<path d="M5 8h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5zM17 10h2a2 2 0 0 1 0 4h-2M9 2v3M13 2v3"/>',scar:'<path d="M4 14c4-3 12-3 16 0M7 12v4M10 11v4M14 11v4M17 12v4"/>',jump:'<path d="M12 3v10M8 9l4 4 4-4M5 21h14"/>',gauge:'<path d="M4 18a8 8 0 1 1 16 0"/><path d="M12 18l4-6"/>',up:'<path d="M12 20V5M6 11l6-6 6 6"/>',heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>'};
+const licon=(k,sz=18)=>`<svg viewBox="0 0 24 24" style="width:${sz}px;height:${sz}px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">${LIC[k]||''}</svg>`;
+const ico=k=>`<span class="ico">${licon(k)}</span>`;
+
+/* =========================================================
+   SHARED PIECES
+   ========================================================= */
+function hdr(title,canBack){
+  const left=canBack?`<button class="iconbtn" data-act="back" aria-label="Back">${I.back}</button><span class="crumb">${esc(title||'')}</span>`:`<span class="mark">Re<i>build</i></span>`;
+  const right=canBack?'':`<button class="iconbtn" style="margin-left:auto" data-nav="settings" aria-label="Settings">${I.gear}</button>`;
+  return `<header class="hdr" id="hdr">${left}${right}</header>`;
+}
+const thumb=id=>`<canvas class="thumb" data-thumb="${id}" width="124" height="88" aria-hidden="true"></canvas>`;
+const feelToday=()=>FEEL[iso(todayD())]||null;
+const sec=(title,body,aside='')=>`<section class="sec"><h2 class="sh">${title}${aside?`<span>${aside}</span>`:''}</h2>${body}</section>`;
+const tailoredTag='<span class="tt">Tailored</span>';
+function segTabs(name,cur,opts){return `<div class="seg" role="tablist">${opts.map(([k,l])=>`<button role="tab" data-${name}="${k}" aria-pressed="${cur===k}">${l}</button>`).join('')}</div>`}
+function sessRow(p,s,w){const L=LOG[key(w,s.id)];return `<button class="li tap" data-nav="session|${p.n}|${s.id}|${w}"><span class="status ${L?'done':''}">${L?I.check:''}</span><span class="grow"><span class="t">${s.name}</span><span class="s">${L?`Done ${fmt(pd(L.date))} · effort ${L.rpe}/10`:`Session ${s.id} · ${s.dur} min`}</span></span>${I.chev}</button>`}
+
+/* =========================================================
+   TODAY — status, check-in, today's session, this week
+   ========================================================= */
+function vToday(){
+  const pp=diff(pd(SET.birth),todayD()),ppw=Math.floor(pp/7),ppd=pp%7;
+  const cw=curWeek(),total=TOTAL(),w=Math.max(1,Math.min(total,cw)),ph=phaseOf(w);
+  const before=cw===0,after=cw>total;
+  const totalS=total*3;const doneS=Object.keys(LOG).filter(k=>+k.split('-')[0]<=total).length;const pct=Math.min(100,Math.round(doneS/totalS*100));
+  const next=ph.S.find(s=>!LOG[key(w,s.id)]);
+  const feel=feelToday();
+  const flags=Object.values(LOG).filter(v=>v.sym&&v.sym.length&&diff(pd(v.date),todayD())<=14);
+  const feelTxt={g:['good','Train as written.'],a:['warn','Same exercises, one set fewer each, and stop 1–2 reps earlier.'],r:['bad','Skip the gym. A 20-minute walk plus breathing and pelvic floor work counts as today\'s session.']};
+  const setup=SET.delivery==='unknown'&&!SET.asked?`<section class="card setup"><span class="lbl">Tailor the plan · 1 of 2</span><h3>How did you give birth?</h3><p class="muted">Your pace and core exercises adjust to this.</p>
+    <div class="two3"><button class="btn ghost" data-setdeliv="vag">Vaginal</button><button class="btn ghost" data-setdeliv="cs">C-section</button></div><button class="linkbtn" data-setdeliv="skip">Skip for now</button></section>`
+    :SET.level==='unknown'&&!SET.askedLevel?`<section class="card setup"><span class="lbl">Tailor the plan · 2 of 2</span><h3>Did you lift weights regularly before pregnancy?</h3><p class="muted">If yes, your plan uses heavier lifts and more sets. Core and impact work stay just as careful.</p>
+    <div class="two3"><button class="btn ghost" data-setlevel="returning">Yes, regularly</button><button class="btn ghost" data-setlevel="new">No, or rarely</button></div><button class="linkbtn" data-setlevel="skip">Skip for now</button></section>`:'';
+  return `${hdr()}
+  <div class="view">
+  <section class="card statuscard">
+    <div class="row" style="align-items:flex-end"><div class="grow"><span class="lbl">Postpartum</span><div class="big">${ppw}<small>weeks</small> ${ppd}<small>days</small></div></div></div>
+    <div class="rule"></div>
+    <div class="row"><div class="grow"><b>${before?`Starts ${fmt(pd(SET.start))}`:after?'Program complete':`Week ${w} of ${total}`}</b><span class="s"><span class="dot" style="background:var(--p${ph.n})"></span> Phase ${ph.n} · ${ph.name}</span></div><span class="pct">${pct}%</span></div>
+    <div class="bar"><i style="width:${Math.max(pct,2)}%"></i></div>
+    <span class="s">${doneS} of ${totalS} workouts done</span>
+  </section>
+  ${setup}
+  ${flags.length?`<button class="note bad tap" style="margin-top:12px" data-nav="article|red"><b>Symptoms logged recently.</b> Repeat this week with easier versions. Tap to read the stop signs.</button>`:''}
+  ${sec('How do you feel today?',`<div class="tl3">
+      <button data-feel="g" aria-pressed="${feel==='g'}" style="--c:var(--good)"><span class="dot" style="background:var(--good)"></span><b>Good</b></button>
+      <button data-feel="a" aria-pressed="${feel==='a'}" style="--c:var(--warn)"><span class="dot" style="background:var(--warn)"></span><b>Tired</b></button>
+      <button data-feel="r" aria-pressed="${feel==='r'}" style="--c:var(--bad)"><span class="dot" style="background:var(--bad)"></span><b>Rough</b></button>
+    </div>${feel?`<div class="note ${feelTxt[feel][0]}">${feelTxt[feel][1]}</div>`:''}`)}
+  ${sec(before?'First session':'Today\'s session',next?`<button class="next tap" style="${pc(ph.n)}" data-nav="session|${ph.n}|${next.id}|${w}">
+      <span class="lbl">Week ${w} · Session ${next.id}</span><h2>${next.name}</h2>
+      <span class="meta">${next.dur} min · ${blocksFor(ph,next).reduce((s,b)=>s+b.items.length,0)} exercises</span>
+      <span class="go">Start ${I.chev}</span></button>`:`<div class="note good"><b>Week ${w} is done.</b> Walk, rest, and come back next week.</div>`)}
+  ${sec('This week',`<div class="list">${ph.S.map(s=>sessRow(ph,s,w)).join('')}</div>`,`${ph.S.filter(s=>LOG[key(w,s.id)]).length} of ${ph.S.length} done`)}
+  ${SET.delivery!=='unknown'?`<button class="linkrow tap" style="margin-top:22px" data-nav="article|${isCS()?'cs':'vag'}">${ico(isCS()?'scar':'circle')}<span class="grow">Tailored for recovery after ${isCS()?'a C-section':'a vaginal birth'}<small>What changes in your plan${isPro()?' · returning-lifter loads on':''}</small></span>${I.chev}</button>`:''}
+  <p class="foot">General guidance, not medical advice. Check with a GP or pelvic health physio first.</p>
+  </div>`;
+}
+
+/* =========================================================
+   PROGRAM — phases → weeks
+   ========================================================= */
+function vPlan(){
+  const cw=curWeek(),curP=cw===0?1:phaseOf(Math.min(cw,TOTAL())).n;
+  const stepper=`<div class="stepper">${PH.map(p=>{const st=cw>TOTAL()||p.n<curP?'done':p.n===curP?'cur':'';return `<button class="st ${st}" style="${pc(p.n)}" data-nav="phase|${p.n}"><span class="c">${st==='done'?I.check:p.n}</span><span class="nm">${p.name}</span><span class="rg">W${phStart(p.n)}–${phStart(p.n)+PLEN()[p.n-1]-1}</span></button>`}).join('')}</div>`;
+  return `${hdr()}
+  <div class="view">
+  <section class="pagehead"><span class="lbl">${TOTAL()} weeks · from ${fmt(pd(SET.start))}</span><h1>Program</h1><p class="muted">Four phases, three sessions a week. Each phase ends with a short check before moving on.</p></section>
+  <div class="card" style="padding:18px 8px 14px">${stepper}</div>
+  ${PH.map(p=>{const ws=phWeeks(p.n);const open=p.n===curP;
+    return sec(`<span class="dot" style="background:var(--p${p.n});width:9px;height:9px"></span> Phase ${p.n} · ${p.name}`,
+    `<div class="list">
+      <button class="li tap" data-nav="phase|${p.n}"><span class="grow"><span class="t">${p.tag}</span><span class="s">${rpeOf(p)} · ${p.time} · ${fmt(weekStart(ws[0]))} – ${fmt(addD(weekStart(ws[ws.length-1]),6))}</span></span><span class="more">Details</span>${I.chev}</button>
+      ${open?ws.map(w=>{const done=p.S.filter(s=>LOG[key(w,s.id)]).length;return `<button class="li tap ${w===cw?'here':''}" style="${pc(p.n)}" data-nav="week|${w}"><span class="wn">W${w}</span><span class="grow"><span class="t">${weekNote(w)}</span><span class="s">${fmt(weekStart(w))}${w===cw?' · this week':''}</span></span><span class="pips">${p.S.map(s=>`<i class="pip ${LOG[key(w,s.id)]?'on':''}"></i>`).join('')}</span></button>`}).join(''):`<button class="li tap" data-nav="phase|${p.n}|weeks"><span class="grow"><span class="s">${ws.length} weeks · ${p.S.length} sessions a week</span></span>${I.chev}</button>`}
+    </div>`)}).join('')}
+  </div>`;
+}
+
+function vPhase(n,tab){
+  const p=PH[n-1];const ws=phWeeks(n);S.phTab=tab||S.phTab||'over';
+  return `${hdr('Phase '+n,true)}
+  <div class="view stack" style="${pc(n)}">
+  <section class="band"><span class="lbl">Phase ${n} of 4 · weeks ${ws[0]}–${ws[ws.length-1]}</span><h1>${p.name}</h1><p>${p.goal}</p></section>
+  ${segTabs('phtab',S.phTab,[['over','Overview'],['weeks','Weeks'],['gate','Move-on check']])}
+  <div id="phpanel">${phPanel(n)}</div>
+  </div>`;
+}
+function phPanel(n){
+  const p=PH[n-1];const ws=phWeeks(n);const t=S.phTab;
+  if(t==='weeks')return `<div class="list">${ws.map(w=>`<button class="li tap" data-nav="week|${w}"><span class="wn" style="color:var(--p${n})">W${w}</span><span class="grow"><span class="t">${weekNote(w)}</span><span class="s">${fmt(weekStart(w))} · postpartum week ${ppWeekAt(weekStart(w))}</span></span>${I.chev}</button>`).join('')}</div>`;
+  if(t==='gate'){const g=gateFor(p);const done=g.filter((_,i)=>GATE[`${n}-${i}`]).length;
+    return `<p class="muted" style="font-size:14px">Tick these before ${n<4?`starting phase ${n+1}`:'finishing'}. If something isn't there yet, repeat the last week or two.</p>
+    <div class="list">${g.map((x,i)=>`<label class="li chk"><input type="checkbox" data-gate="${n}-${i}" ${GATE[`${n}-${i}`]?'checked':''}><span class="grow">${x}</span></label>`).join('')}</div>
+    <div class="note ${done===g.length?'good':''}">${done===g.length?`<b>All ${g.length} ticked.</b> Ready for ${n<4?'phase '+(n+1):'whatever comes next'}.`:`${done} of ${g.length} ticked.`}</div>
+    ${n===3?`<button class="linkrow tap" data-nav="article|impact">${ico('jump')}<span class="grow">Return-to-impact test<small>11 checks, done in the last week</small></span>${I.chev}</button>`:''}`}
+  return `<div class="kv"><div><b>Effort</b><span>${rpeOf(p)}</span></div><div><b>Length</b><span>${p.time}</span></div><div><b>Frequency</b><span>${p.freq}</span></div><div><b>Dates</b><span>${fmt(weekStart(ws[0]))} – ${fmt(addD(weekStart(ws[ws.length-1]),6))}</span></div></div>
+  ${n===1&&isCS()?`<div class="note">${tailoredTag} Phase 1 lasts 5 weeks after a C-section, with a gentler core progression.</div>`:''}
+  <div class="sub"><h3>Focus</h3><ul class="clean">${p.focus.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+  <div class="sub"><h3>What's normal</h3><ul class="clean">${p.normal.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+  <div class="sub"><h3>Sessions each week</h3><div class="list">${p.S.map(s=>`<button class="li tap" data-nav="session|${n}|${s.id}|${ws[0]}"><span class="status" style="border-color:var(--p${n});color:var(--p${n});font-weight:650;font-size:12px">${s.id}</span><span class="grow"><span class="t">${s.name}</span><span class="s">${s.dur} min</span></span>${I.chev}</button>`).join('')}</div></div>`;
+}
+
+function vWeek(w){
+  const p=phaseOf(w);const ws=phWeeks(p.n);
+  return `${hdr('Week '+w,true)}
+  <div class="view stack" style="${pc(p.n)}">
+  <section class="band"><span class="lbl">Phase ${p.n} · ${p.name}</span><h1>Week ${w}</h1><p>${weekNote(w)}</p></section>
+  ${segTabs('wk',String(w),ws.map(x=>[String(x),'W'+x]))}
+  <div class="kv"><div><b>Dates</b><span>${fmt(weekStart(w))} – ${fmt(addD(weekStart(w),6))}</span></div><div><b>Postpartum</b><span>Week ${ppWeekAt(weekStart(w))}</span></div></div>
+  <div class="sub"><h3>Sessions</h3><div class="list">${p.S.map(s=>{const L=LOG[key(w,s.id)];const main=blocksFor(p,s).find(b=>b.n==='Main').items;
+    return `<button class="li tap" data-nav="session|${p.n}|${s.id}|${w}"><span class="status ${L?'done':''}">${L?I.check:''}</span><span class="grow"><span class="t">${s.name}</span><span class="s">${main.map(i=>`${EX[i.id].n} ${rxOf(i.rx,w)}`).join(' · ')}</span></span>${I.chev}</button>`}).join('')}</div></div>
+  </div>`;
+}
+
+/* =========================================================
+   SESSION
+   ========================================================= */
+function vSession(n,sid,w){
+  const p=PH[n-1];const s=p.S.find(x=>x.id===sid);w=+w;const L=LOG[key(w,sid)];const feel=feelToday();
+  const amb=feel==='a',red=feel==='r';
+  const adj=rx=>{if(!amb)return rx;const m=String(rx).match(/^(\d)×(.*)$/);return m&&+m[1]>1?`${+m[1]-1}×${m[2]}`:rx};
+  const blocks=blocksFor(p,s);
+  return `${hdr(`Week ${w} · Session ${sid}`,true)}
+  <div class="view stack" style="${pc(n)}">
+  <section class="band"><span class="lbl">Phase ${n} · ${p.name}</span><h1>${s.name}</h1>
+    <div class="facts"><span><b>${s.dur}</b> min</span><span><b>${blocks.reduce((a,b)=>a+b.items.length,0)}</b> exercises</span><span>${rpeOf(p)}</span></div></section>
+  ${segTabs('swk',String(w),phWeeks(n).map(x=>[String(x),'W'+x]))}
+  ${amb?`<div class="note warn"><b>Tired day:</b> main sets are already reduced by one. Stop 1–2 reps earlier.</div>`:''}
+  ${red?`<div class="note bad"><b>Rough day:</b> skip this. Do a 20-min walk, 360° breathing and pelvic floor lifts instead.</div>`:''}
+  ${blocks.map((b,bi)=>`<div class="sub"><h3 class="bh"><span class="bn">${bi+1}</span>${b.n}</h3><div class="list">${b.items.map((it,ix)=>{
+    if(it.id[0]==='@'){const k=it.id.slice(1);const a=LEARN[k];return `<button class="li tap" data-nav="article|${k}"><span class="thumb ico-t">${licon(a.ic,22)}</span><span class="grow"><span class="t">${k==='impact'?'Return-to-impact test':'Scar care'} ${it.t?tailoredTag:''}</span><span class="s">${esc(it.note)}</span></span><span class="rx">${rxOf(it.rx,w)}</span></button>`}
+    const e=EX[it.id];return `<button class="li tap" data-nav="ex|${it.id}|${n}|${sid}|${w}|${bi}|${ix}">${thumb(it.id)}<span class="grow"><span class="t">${e.n} ${it.t?tailoredTag:''}</span><span class="s">${it.note?esc(it.note):esc(e.eq)}</span></span><span class="rx">${b.n==='Main'?adj(rxOf(it.rx,w)):rxOf(it.rx,w)}</span></button>`}).join('')}</div></div>`).join('')}
+  <p class="muted" style="font-size:13px;padding:0 2px">Rest ${n<=2?'60–90 s':'90 s–2 min'} between sets · exhale on every effort · <button class="ul" data-nav="article|rpe">what "3×10" means</button></p>
+  <div id="logbox">${L?logged(L,w,sid):`<button class="btn" data-act="openlog">Log this session</button>`}</div>
+  </div>`;
+}
+function logged(L,w,sid){
+  const sym=L.sym||[];
+  return `<div class="card stack"><div class="row"><span class="status done">${I.check}</span><div class="grow"><b>Logged ${fmt(pd(L.date))}</b><br><span class="muted" style="font-size:13px">Effort ${L.rpe}/10 · ${sym.length?sym.join(', '):'no symptoms'}</span></div></div>
+  ${sym.length?`<div class="note bad"><b>Symptoms noted.</b> Next time, use the easier version of whatever caused it and repeat this week. If it keeps happening, see a pelvic health physio.</div>`:L.rpe>=9?`<div class="note warn">That felt very hard. Take a little weight off next time.</div>`:`<div class="note good">${L.rpe<=5?'Felt easy? Add a little weight next time.':'Nice work, right on target.'}</div>`}
+  <button class="btn ghost" data-act="unlog" data-k="${key(w,sid)}">Undo</button></div>`;
+}
+function logForm(){
+  return `<form class="card stack" id="logform"><h3>How did it go?</h3>
+  <div class="field"><label for="rpe">Overall effort: <span id="rpev">6</span>/10</label><input type="range" id="rpe" min="3" max="10" value="6"></div>
+  <div class="field"><label>Anything during or after?</label><div class="checks">${['Leaking','Heaviness','Pain','Doming'].concat(isCS()?['Scar pulling']:[]).map(x=>`<label><input type="checkbox" name="sym" value="${x}" id="sym-${x.replace(' ','')}">${x}</label>`).join('')}</div></div>
+  <button class="btn" type="submit">Save</button></form>`;
+}
+
+/* =========================================================
+   EXERCISE — demo, prescription, 4 tabs
+   ========================================================= */
+let EXCTX=null;
+function vEx(id,n,sid,w,bi,ix){
+  const e=EX[id];let it=null,p=null;
+  if(n&&sid){p=PH[n-1];const s=p.S.find(x=>x.id===sid);const b=blocksFor(p,s)[+bi];it=b&&b.items[+ix]}
+  EXCTX={id,n,w:+w};
+  const c=n||({'Breath & core':1,'Lower body':2,'Upper body':3,'Carries & cardio':4,'Mobility':1,'Impact':3}[e.cat]);
+  const ws=n?phWeeks(n):[];
+  return `${hdr(it?`Week ${w} · Session ${sid}`:e.cat,true)}
+  <div class="view stack" style="${pc(c)}">
+  <section class="pagehead"><span class="lbl">${e.cat} · ${esc(e.eq)}</span><h1>${e.n}</h1></section>
+  <div class="stage"><span class="stepdots" id="dots">${e.f.map(()=>'<i></i>').join('')}</span><canvas id="stage" width="640" height="440" aria-label="Animated demonstration of ${esc(e.n)}"></canvas>
+    ${GUIDE_OK(e)?`<div class="glegend" id="glegend" ${S.guides?'':'hidden'}>${guideLegend(e)}</div>`:''}<div class="stagebar"><div class="cue" id="cue">${e.f[0].lab}<small>${e.br}</small></div>${GUIDE_OK(e)?`<button class="ctl" data-act="guides" aria-pressed="${S.guides}" id="gbtn">Guides</button>`:''}<button class="ctl" data-act="speed" id="spd" aria-label="Speed">1×</button><button class="ctl" data-act="pp" id="ppb" aria-label="Pause">${I.pause}</button></div></div>
+  ${it?`<div class="rx-box"><div class="row"><div class="grow"><span class="lbl">This week</span><div class="rx-big">${rxOf(it.rx,w)}</div></div>${it.t?tailoredTag:''}</div>${it.note?`<span class="muted" style="font-size:14px">${esc(it.note)}</span>`:''}
+    ${Array.isArray(it.rx)?`<div class="prog">${it.rx.map((r,i)=>{const lab=i===3&&ws.length===5?`W${ws[3]}–${ws[4]}`:`W${ws[i]}`;return `<div class="${wip(+w)===i?'on':''}"><b>${lab}</b>${r}</div>`}).join('')}</div>`:''}</div>`:''}
+  ${exNote(id)?`<div class="note">${tailoredTag} ${exNote(id)}</div>`:''}
+  ${segTabs('extab',S.exTab,[['how','How to'],['watch','Watch out'],['adjust','Adjust'],['about','About']])}
+  <div id="expanel" class="card">${exPanel(id)}</div>
+  </div>`;
+}
+function exPanel(id){
+  const e=EX[id];const t=S.exTab;
+  if(t==='watch')return `<h3>Common mistakes</h3><ul class="clean" style="--pc:var(--bad)">${e.mist.map(x=>`<li>${x}</li>`).join('')}</ul>
+    <h3>Stop and adapt if you notice</h3><p class="muted">Leaking, heaviness, pain${isCS()?' or scar pulling':''}, or a ridge along the tummy you can't control.</p>
+    <button class="linkrow tap" data-nav="article|red">${ico('alert')}<span class="grow">Stop signs<small>When to adapt or get checked</small></span>${I.chev}</button>`;
+  if(t==='adjust')return `<div class="adj"><span class="lbl">Easier</span><p>${e.reg}</p></div><div class="adj"><span class="lbl">Harder</span><p>${e.prog}</p></div>
+    <button class="linkrow tap" data-nav="article|load">${ico('up')}<span class="grow">When to add weight<small>Simple progression rules</small></span>${I.chev}</button>`;
+  if(t==='about'){
+    const used=[];PH.forEach(ph=>ph.S.forEach(s=>blocksFor(ph,s).forEach(b=>b.items.forEach(x=>{if(x.id===id)used.push({ph,s})}))));
+    return `<h3>Why it helps after birth</h3><p>${e.why}</p>
+    <h3>Muscles</h3><div class="chips">${e.mus.map(m=>`<span class="chip">${m}</span>`).join('')}</div>
+    ${used.length?`<h3>In the program</h3><div class="list flat">${used.map(u=>`<button class="li tap" data-nav="session|${u.ph.n}|${u.s.id}|${phStart(u.ph.n)}"><span class="dot" style="background:var(--p${u.ph.n})"></span><span class="grow"><span class="t">Phase ${u.ph.n} · ${u.s.name}</span></span>${I.chev}</button>`).join('')}</div>`:''}
+    ${(e.learn||[]).length?`<h3>Read more</h3>${e.learn.map(k=>`<button class="linkrow tap" data-nav="article|${k}">${ico(LEARN[k].ic)}<span class="grow">${LEARN[k].t}<small>${LEARN[k].s}</small></span>${I.chev}</button>`).join('')}`:''}`;
+  }
+  return `<ol class="steps">${e.cues.map(x=>`<li>${x}</li>`).join('')}</ol><div class="adj"><span class="lbl">Breathing</span><p>${e.br}</p></div>`;
+}
+
+/* =========================================================
+   LIBRARY / LEARN / SETTINGS
+   ========================================================= */
+function vLib(){
+  const q=S.q.toLowerCase();
+  const list=Object.entries(EX).filter(([k,e])=>(S.libCat==='All'||e.cat===S.libCat)&&(!q||(e.n+' '+e.mus.join(' ')+' '+e.eq).toLowerCase().includes(q)));
+  const groups=CATS.map(c=>[c,list.filter(([,e])=>e.cat===c)]).filter(g=>g[1].length);
+  return `${hdr()}
+  <div class="view">
+  <section class="pagehead"><span class="lbl">${Object.keys(EX).length} exercises with demos</span><h1>Exercises</h1></section>
+  <div class="stack" style="margin-top:16px"><input type="search" id="q" class="search" placeholder="Search name, muscle or equipment" value="${esc(S.q)}" aria-label="Search exercises">
+  <div class="filters" role="group" aria-label="Category">${['All',...CATS].map(c=>`<button data-cat="${c}" aria-pressed="${S.libCat===c}">${c}</button>`).join('')}</div></div>
+  ${groups.map(([c,items])=>sec(c,`<div class="list">${items.map(([k,e])=>`<button class="li tap" data-nav="ex|${k}">${thumb(k)}<span class="grow"><span class="t">${e.n}</span><span class="s">${esc(e.eq)}</span></span>${I.chev}</button>`).join('')}</div>`,String(items.length))).join('')||'<p class="muted" style="margin-top:20px">No matches. Try a muscle like "glutes".</p>'}
+  </div>`;
+}
+function vLearn(){
+  const groups=[['Start here',['start','red','days']],['Your birth',isCS()?['cs','vag']:['vag','cs']],['Core & pelvic floor',['breath','pf','dr']],['Training',['rpe','load','impact']],['Everyday life',['feed']]];
+  return `${hdr()}
+  <div class="view">
+  <section class="pagehead"><span class="lbl">Short reads · 2–3 min</span><h1>Learn</h1></section>
+  ${groups.map(([g,ks])=>sec(g,`<div class="list">${ks.map(k=>`<button class="li tap" data-nav="article|${k}">${ico(LEARN[k].ic)}<span class="grow"><span class="t">${LEARN[k].t}${(k==='cs'&&isCS())||(k==='vag'&&isVag())?' '+tailoredTag:''}</span><span class="s">${LEARN[k].s}</span></span>${I.chev}</button>`).join('')}</div>`)).join('')}
+  <p class="foot">General guidance, not medical advice.</p></div>`;
+}
+function vArticle(k){
+  const a=LEARN[k];
+  const rel={breath:['breath','pflift','deadbug'],pf:['pflift','breath'],dr:['deadbug','heelslide','plank','pallof'],impact:['pogo','kbswing','walk'],days:['walk','breath'],start:['breath','pflift'],cs:['heelslide','breath','deadbug'],vag:['pflift','breath','bridge'],load:['goblet','bsquat'],rpe:['goblet'],red:[],feed:['walk']}[k]||[];
+  return `${hdr('Learn',true)}
+  <div class="view article"><section class="pagehead"><span class="lbl">${a.s}</span><h1>${a.t}</h1></section>${a.html}
+  ${rel.length?sec('Try it',`<div class="list">${rel.map(x=>`<button class="li tap" data-nav="ex|${x}">${thumb(x)}<span class="grow"><span class="t">${EX[x].n}</span><span class="s">${EX[x].cat}</span></span>${I.chev}</button>`).join('')}</div>`):''}
+  <p class="disclaimer">General information for a healthy postnatal recovery. It does not replace advice from a GP, midwife or pelvic health physiotherapist.</p></div>`;
+}
+function vSettings(){
+  const ch={cs:'Phase 1 becomes 5 weeks (17 in total). Planks are swapped for gentler core work early on, scar-care steps are added, and tummy-loading exercises carry scar notes.',vag:'An extra pelvic floor block opens every session, impact exercises carry tear and heaviness notes, and the move-on checks include pelvic floor targets.',unknown:'The standard 16-week plan, without birth-specific changes.'};
+  return `${hdr('Settings',true)}
+  <div class="view stack"><section class="pagehead"><h1>Settings</h1></section>
+  <div class="sub"><h3>Type of birth</h3>
+    <div class="seg" role="group">${[['vag','Vaginal'],['cs','C-section'],['unknown','Not set']].map(([v,l])=>`<button type="button" data-deliv="${v}" aria-pressed="${SET.delivery===v}">${l}</button>`).join('')}</div>
+    <div class="note" id="delivnote">${ch[SET.delivery]}</div></div>
+  <div class="sub"><h3>Training background</h3>
+    <div class="seg" role="group">${[['returning','Lifted before'],['new','New or occasional']].map(([v,l])=>`<button type="button" data-level="${v}" aria-pressed="${SET.level===v||(v==='new'&&SET.level==='unknown')}">${l}</button>`).join('')}</div>
+    <div class="note">${isPro()?'Heavier versions: barbell squat, bench and deadlift from phase 2, single-leg RDLs, floor push-ups in phases 3–4, an extra set on main lifts and one point higher effort. Core and impact progressions are unchanged.':'Standard loads: dumbbells and kettlebells first, barbells from phase 3.'}</div></div>
+  <form class="sub" id="setform"><h3>Dates</h3><div class="card stack">
+    <div class="field"><label for="s-birth">Your baby's birthday</label><input type="date" id="s-birth" value="${SET.birth}"></div>
+    <div class="field"><label for="s-start">Program start (a Monday works best)</label><input type="date" id="s-start" value="${SET.start}"></div>
+    <button class="btn" type="submit">Save dates</button></div></form>
+  <div class="sub"><h3>Install on your phone</h3><div class="card stack" style="font-size:14px">
+    <p><b>iPhone:</b> open the app link in Safari, tap Share, then <b>Add to Home Screen</b>.</p>
+    <p><b>Android:</b> open it in Chrome, tap the ⋮ menu, then <b>Install app</b>.</p>
+    <p class="muted">It then opens full screen like a normal app and works offline at the gym.</p></div></div>
+  <div class="sub"><h3>Your data</h3><div class="card stack"><p class="muted" style="font-size:14px">Logs stay in this browser on this device. ${Object.keys(LOG).length} session${Object.keys(LOG).length===1?'':'s'} logged.</p><button class="btn ghost" data-act="reset">Clear all logs</button></div></div>
+  </div>`;
+}
+
+/* =========================================================
+   RENDER / NAV
+   ========================================================= */
+const app=document.getElementById('app');
+const cur=()=>S.stack.length?S.stack[S.stack.length-1]:[S.tab];
+function render(scrollTop){
+  stopAnim();
+  const v=cur();const t=v[0];let h='';
+  if(t==='today')h=vToday();else if(t==='plan')h=vPlan();else if(t==='lib')h=vLib();else if(t==='learn')h=vLearn();
+  else if(t==='phase')h=vPhase(+v[1],v[2]);else if(t==='week')h=vWeek(+v[1]);else if(t==='session')h=vSession(+v[1],v[2],v[3]);
+  else if(t==='ex')h=vEx(v[1],v[2]?+v[2]:0,v[3],v[4],v[5],v[6]);else if(t==='article')h=vArticle(v[1]);else if(t==='settings')h=vSettings();
+  app.innerHTML=h;renderTabs();drawThumbs();
+  if(t==='ex')startAnim(v[1]);
+  if(scrollTop)window.scrollTo(0,0);
+  onScroll();
+}
+function renderTabs(){
+  const tabs=[['today','Today',I.today],['plan','Program',I.plan],['lib','Exercises',I.lib],['learn','Learn',I.learn]];
+  document.getElementById('tabs').innerHTML=tabs.map(([k,l,ic])=>`<button data-tab="${k}" aria-current="${S.tab===k}">${ic}<span>${l}</span></button>`).join('');
+}
+function drawThumbs(){document.querySelectorAll('canvas[data-thumb]').forEach(cv=>{const e=EX[cv.dataset.thumb];if(!e)return;try{drawScene(cv,e,e.f[0].d*0.85)}catch(err){}})}
+let raf=0,paused=false,speed=1,acc=0,last=0;
+function stopAnim(){cancelAnimationFrame(raf);raf=0}
+function startAnim(id){
+  const e=EX[id];const cv=document.getElementById('stage');if(!cv)return;
+  paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches;acc=0;last=performance.now();
+  const ppb=document.getElementById('ppb');if(ppb)ppb.innerHTML=paused?I.play:I.pause;
+  const cue=document.getElementById('cue');const dots=[...document.querySelectorAll('#dots i')];let lastSeg=-1;
+  const tick=now=>{if(!paused)acc+=(now-last)*speed;last=now;const r=drawScene(cv,e,acc,{guides:S.guides});
+    if(r.seg!==lastSeg){lastSeg=r.seg;cue.innerHTML=`${e.f[r.seg].lab}<small>${e.br}</small>`;dots.forEach((d,i)=>d.classList.toggle('on',i===r.seg))}
+    raf=requestAnimationFrame(tick)};
+  raf=requestAnimationFrame(tick);
+}
+function nav(str){
+  const a=str.split('|');
+  if(a[0]==='replace'){S.stack.pop();S.stack.push(a.slice(1));render(false);return}
+  if(a[0]==='ex')S.exTab='how';
+  if(a[0]==='phase')S.phTab=a[2]||'over';
+  S.stack.push(a);render(true);
+}
+function pressSeg(attr,val){document.querySelectorAll(`[data-${attr}]`).forEach(b=>b.setAttribute('aria-pressed',b.dataset[attr]===val))}
+document.addEventListener('click',ev=>{
+  const el=ev.target.closest('[data-nav],[data-tab],[data-act],[data-feel],[data-cat],[data-deliv],[data-setdeliv],[data-setlevel],[data-level],[data-extab],[data-phtab],[data-wk],[data-swk]');if(!el)return;
+  const d=el.dataset;
+  if(d.nav){ev.preventDefault();nav(d.nav);return}
+  if(d.tab){S.tab=d.tab;S.stack=[];render(true);return}
+  if(d.feel){const k=iso(todayD());FEEL[k]=FEEL[k]===d.feel?null:d.feel;store.set('pp.feel',FEEL);render(false);return}
+  if(d.cat){S.libCat=d.cat;render(false);return}
+  if(d.setdeliv){if(d.setdeliv!=='skip')SET.delivery=d.setdeliv;SET.asked=true;store.set('pp.set',SET);render(false);return}
+  if(d.setlevel){if(d.setlevel!=='skip')SET.level=d.setlevel;SET.askedLevel=true;store.set('pp.set',SET);render(false);return}
+  if(d.level){SET.level=d.level;SET.askedLevel=true;store.set('pp.set',SET);render(false);return}
+  if(d.deliv){SET.delivery=d.deliv;SET.asked=true;store.set('pp.set',SET);render(false);return}
+  if(d.extab){S.exTab=d.extab;pressSeg('extab',d.extab);document.getElementById('expanel').innerHTML=exPanel(EXCTX.id);return}
+  if(d.phtab){S.phTab=d.phtab;pressSeg('phtab',d.phtab);document.getElementById('phpanel').innerHTML=phPanel(+cur()[1]);return}
+  if(d.wk){nav('replace|week|'+d.wk);return}
+  if(d.swk){const v=cur();nav(`replace|session|${v[1]}|${v[2]}|${d.swk}`);return}
+  const act=d.act;
+  if(act==='back'){S.stack.pop();render(true)}
+  else if(act==='pp'){paused=!paused;el.innerHTML=paused?I.play:I.pause;el.setAttribute('aria-label',paused?'Play':'Pause')}
+  else if(act==='guides'){S.guides=!S.guides;el.setAttribute('aria-pressed',S.guides);const lg=document.getElementById('glegend');if(lg)lg.hidden=!S.guides}
+  else if(act==='speed'){speed=speed===1?0.5:1;el.textContent=speed===1?'1×':'½×'}
+  else if(act==='openlog'){document.getElementById('logbox').innerHTML=logForm();const r=document.getElementById('rpe');r.addEventListener('input',()=>document.getElementById('rpev').textContent=r.value)}
+  else if(act==='unlog'){delete LOG[d.k];store.set('pp.log',LOG);render(false)}
+  else if(act==='reset'){if(d.armed){LOG={};store.set('pp.log',LOG);render(false)}else{d.armed='1';el.textContent='Tap again to clear everything'}}
+});
+document.addEventListener('change',ev=>{const g=ev.target.dataset&&ev.target.dataset.gate;if(g){GATE[g]=ev.target.checked;store.set('pp.gate',GATE);document.getElementById('phpanel').innerHTML=phPanel(+cur()[1])}});
+document.addEventListener('submit',ev=>{
+  ev.preventDefault();
+  if(ev.target.id==='logform'){const v=cur();const sym=[...document.querySelectorAll('input[name=sym]:checked')].map(x=>x.value);
+    LOG[key(v[3],v[2])]={date:iso(todayD()),rpe:+document.getElementById('rpe').value,sym};store.set('pp.log',LOG);render(false)}
+  if(ev.target.id==='setform'){const b=document.getElementById('s-birth').value,s=document.getElementById('s-start').value;if(b)SET.birth=b;if(s)SET.start=s;store.set('pp.set',SET);S.stack.pop();render(true)}
+});
+document.addEventListener('input',ev=>{if(ev.target.id==='q'){S.q=ev.target.value;const pos=ev.target.selectionStart;render(false);const q=document.getElementById('q');q.focus();try{q.setSelectionRange(pos,pos)}catch(e){}}});
+function onScroll(){const h=document.getElementById('hdr');if(h)h.classList.toggle('scrolled',window.scrollY>4)}
+window.addEventListener('scroll',onScroll,{passive:true});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',()=>drawThumbs());
+new MutationObserver(()=>drawThumbs()).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+render(false);
+</script>
+<script>if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
+</body>
+</html>
