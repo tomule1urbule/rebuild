@@ -504,14 +504,26 @@ function drawScene(cv,ex,t,opt={}){
     };
     const armDraw=(A,far,dbKey)=>{
       const sk=F(far?C['skin-far']:C.skin);const tc=F(far?C['top-far']:C.top);
-      const sh=add(add(A.r,u,-3),nf,-1);
-      let r=limbPath(ctx,sh,A.m,LIMB.ua);shade(sh,A.m,r.n,5,sk,flat);
-      if(!flat&&((!far&&hi.has('a'))||(far&&hi.has('b'))))tint(()=>limbPath(ctx,sh,A.m,LIMB.ua,.9));
-      limbPath(ctx,add(sh,dir(A.a[0]),-2),mix(sh,A.m,.4),LIMB.ua,1.22);shade(sh,A.m,r.n,6,tc,flat);
-      r=limbPath(ctx,A.m,A.e,LIMB.fa);shade(A.m,A.e,r.n,4,sk,flat);
-      ctx.fillStyle=sk;ctx.beginPath();ctx.arc(A.m[0],A.m[1],3.5,0,7);ctx.fill();
-      if(!flat&&pr.db&&pr.db.includes(dbKey)){const p=A.e;ctx.fillStyle=far?C.prop:C['prop-d'];rr(p[0]-8.5,p[1]-6.5,5,13,2);ctx.fill();rr(p[0]+3.5,p[1]-6.5,5,13,2);ctx.fill();ctx.fillRect(p[0]-4,p[1]-1.3,8,2.6)}
-      const hd=add(A.e,dir(A.a[1]),2.4);ctx.fillStyle=sk;ctx.beginPath();ctx.ellipse(hd[0],hd[1],3.9,3.2,rad(90-A.a[1]),0,7);ctx.fill();
+      const sh=add(A.r,u,-2.5);
+      const fdir=dir(A.a[1]);const fang=Math.atan2(fdir[1],fdir[0]);
+      // forearm first, so the upper arm overlaps it at the elbow like a real arm
+      let r=limbPath(ctx,A.m,A.e,LIMB.fa);shade(A.m,A.e,r.n,4,sk,flat);
+      ctx.fillStyle=sk;ctx.beginPath();ctx.arc(A.m[0],A.m[1],3.6,0,7);ctx.fill();
+      r=limbPath(ctx,sh,A.m,LIMB.ua);shade(sh,A.m,r.n,5,sk,flat);
+      limbPath(ctx,add(sh,dir(A.a[0]),-2.5),mix(sh,A.m,.38),LIMB.ua,1.2);shade(sh,A.m,r.n,6,tc,flat);
+      const holdsDb=pr.db&&pr.db.includes(dbKey);
+      const holds=holdsDb||pr.kb||pr.bar||pr.handle||pr.pbar||(!far&&(pr.cable||pr.band));
+      if(!flat&&holdsDb){const p=A.e;ctx.fillStyle=far?C.prop:C['prop-d'];rr(p[0]-9,p[1]-7,5.5,14,2);ctx.fill();rr(p[0]+3.5,p[1]-7,5.5,14,2);ctx.fill();ctx.fillRect(p[0]-4,p[1]-1.4,8,2.8)}
+      ctx.fillStyle=sk;
+      if(holds){
+        // closed fist wrapped around the handle
+        const c=add(A.e,fdir,1.2);ctx.beginPath();ctx.ellipse(c[0],c[1],4.4,3.7,fang,0,7);ctx.fill();
+        if(!flat){ctx.strokeStyle='rgba(0,0,0,.18)';ctx.lineWidth=.8;ctx.beginPath();ctx.ellipse(c[0],c[1],2.6,3.1,fang,-.6,.6);ctx.stroke()}
+      }else{
+        // open hand: palm + fingers continuing the forearm line
+        const c=add(A.e,fdir,4.2);ctx.beginPath();ctx.ellipse(c[0],c[1],5.4,2.9,fang,0,7);ctx.fill();
+        const th=add(add(A.e,fdir,2.2),[-fdir[1],fdir[0]],2.4);ctx.beginPath();ctx.ellipse(th[0],th[1],2.4,1.4,fang+.6,0,7);ctx.fill();
+      }
     };
     legDraw(S.r,true);armDraw(S.b,true,'b');
     const PRF=ex.view==='front'?TORSO_F:TORSO;
@@ -738,7 +750,7 @@ sarow:{n:'Single-arm dumbbell row',cat:'Upper body',eq:'Bench · dumbbell',mus:[
  mist:['Rotating the torso to lift.','Pulling toward the armpit with a shrug.','Rounding the back.'],
  reg:'Lighter, or chest-supported on an incline bench.',prog:'Heavier, 2 s pause at the top.',br:'Exhale as you pull.',learn:['load']},
 pullup:{n:'Assisted pull-up',cat:'Upper body',eq:'Pull-up bar · band or machine',mus:['Lats','Upper back','Biceps','Core'],
- f:[{p:{x:150,y:142,T:180,a:{t:[156,36],s:1},b:{t:[152,36],s:1},l:[-20,-80],r:[-14,-74]},d:1400,lab:'Exhale · pull chest to the bar'},{p:{x:150,y:108,T:180,a:{t:[156,36],s:1},b:{t:[152,36],s:1},l:[-20,-80],r:[-14,-74]},d:500,lab:'Chin over'},{p:{x:150,y:108,T:180,a:{t:[156,36],s:1},b:{t:[152,36],s:1},l:[-20,-80],r:[-14,-74]},d:1900,lab:'Inhale · lower all the way'}],props:{pbar:[100,210,34]},hi:['a'],
+ f:[{p:{x:150,y:142,T:180,a:{t:[160,36],s:-1},b:{t:[156,36],s:-1},l:[-20,-80],r:[-14,-74]},d:1400,lab:'Exhale · pull chest to the bar'},{p:{x:150,y:114,T:180,a:{t:[160,36],s:-1},b:{t:[156,36],s:-1},l:[-20,-80],r:[-14,-74]},d:500,lab:'Chin over'},{p:{x:150,y:114,T:180,a:{t:[160,36],s:-1},b:{t:[156,36],s:-1},l:[-20,-80],r:[-14,-74]},d:1900,lab:'Inhale · lower all the way'}],props:{pbar:[100,210,34]},hi:['a'],
  why:'A goal many women like to work toward. The band or machine lets you train the full pattern now.',
  cues:['Hands just wider than shoulders, palms away. Use a band under the knees or an assisted machine.','Start from a dead hang with shoulders gently engaged.','Exhale, drive the elbows down, pull until the chin clears the bar.','Inhale and lower slowly to straight arms.'],
  mist:['Kipping or swinging.','Half reps.','Ribs flaring and back arching. Keep a slight hollow.'],
