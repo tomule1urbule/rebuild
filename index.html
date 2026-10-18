@@ -433,6 +433,25 @@ function guideLegend(ex){
   if(gd.kind)k.push(`<span class="gk"><i class="sw-line"></i>${GLABEL[gd.kind]}</span>`);
   return k.join('');
 }
+function frameOf(ex){
+  if(ex._fr)return ex._fr;
+  let x0=1e9,y0=1e9,x1=-1e9;const T=cyc(ex);
+  const P=(x,y)=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y)};
+  for(let i=0;i<=32;i++){const S2=solve(frameAt(ex,T*i/32).pose);[S2.pel,S2.sh,S2.l.m,S2.l.e,S2.r.m,S2.r.e,S2.a.m,S2.a.e,S2.b.m,S2.b.e].forEach(q=>P(q[0],q[1]));
+    P(S2.hd[0]-15,S2.hd[1]-13);P(S2.hd[0]+13,S2.hd[1]-13);P(S2.l.e[0]+14,G);P(S2.r.e[0]-6,G)}
+  const pr=ex.props||{};
+  const R=b=>{P(b[0],b[1]);P(b[0]+b[2],b[1])};
+  if(pr.box)R(pr.box);if(pr.bench)R(pr.bench);if(pr.seat)R(pr.seat);
+  if(pr.pbar){P(pr.pbar[0]-8,pr.pbar[2]-4);P(pr.pbar[1]+8,pr.pbar[2]-4)}
+  if(pr.cable)P(pr.cable[0]+6,pr.cable[1]-6);if(pr.post)P(pr.post[0]+6,Math.min(pr.post[1]-14,G-120));
+  if(pr.bike){P(100,84);P(240,G)}
+  if(pr.kb||pr.bar){y0-=18}
+  if(ex.fx==='walk'){x0-=20;x1+=20}
+  const top=16,side=14;
+  const k=Math.max(1,Math.min(1.75,(G-top)/(G-y0),(320-2*side)/(x1-x0)));
+  const cx=(x0+x1)/2;
+  return ex._fr={k,tx:160-cx*k,ty:G-G*k};
+}
 let GHOSTC=null;
 function drawScene(cv,ex,t,opt={}){
   let ctx=cv.getContext('2d');const dpr=Math.max(2,window.devicePixelRatio||1);
@@ -447,10 +466,11 @@ function drawScene(cv,ex,t,opt={}){
   ctx.fillStyle=C.floor;ctx.fillRect(0,G,320,30);
   if(ex.fx==='walk'){ctx.fillStyle=C['stage-2'];const off=(t*0.06)%40;for(let x=-40;x<340;x+=40){ctx.fillRect(x-off,G+9,16,2)}}
   const rr=(x,y,w,h,r)=>{ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,r);else ctx.rect(x,y,w,h)};
+  const FR=frameOf(ex);const world=()=>ctx.setTransform(sc*FR.k,0,0,sc*FR.k,sc*FR.tx,sc*FR.ty);world();
   // contact shadow
   const xs=[S.pel[0],S.sh[0],S.hd[0],S.l.e[0],S.r.e[0],S.a.e[0],S.l.m[0]];const mn=Math.min(...xs),mx=Math.max(...xs);
   const lowY=Math.max(S.l.e[1],S.r.e[1],S.pel[1]);const sa=Math.max(0,1-(G-lowY)/40);
-  ctx.save();ctx.globalAlpha=.55+.45*sa;ctx.fillStyle=C.shadow;ctx.beginPath();ctx.ellipse((mn+mx)/2,G+2,(mx-mn)/2+10,3.6,0,0,7);ctx.fill();ctx.restore();
+  {const cx=(mn+mx)/2,rx=(mx-mn)/2+14;ctx.save();ctx.globalAlpha=.6+.4*sa;ctx.translate(cx,G+1.5);ctx.scale(1,4.5/rx);const rg=ctx.createRadialGradient(0,0,0,0,0,rx);rg.addColorStop(0,C.shadow);rg.addColorStop(.6,C.shadow);rg.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=rg;ctx.beginPath();ctx.arc(0,0,rx,0,7);ctx.fill();ctx.restore()}
   if(pr.mat){ctx.fillStyle=C.accent;ctx.globalAlpha=.16;rr(26,G-3,268,4,2);ctx.fill();ctx.globalAlpha=1}
   // static equipment
   if(pr.box){const b=pr.box;ctx.fillStyle=C.box;rr(b[0],b[1],b[2],b[3],4);ctx.fill();ctx.fillStyle=C.shadow;ctx.fillRect(b[0]+4,b[1]+4,b[2]-8,2)}
@@ -478,6 +498,7 @@ function drawScene(cv,ex,t,opt={}){
     const g=ctx.createLinearGradient(m[0]+nn[0]*w,m[1]+nn[1]*w,m[0]-nn[0]*w,m[1]-nn[1]*w);
     g.addColorStop(0,'rgba(255,255,255,.20)');g.addColorStop(.42,'rgba(255,255,255,0)');g.addColorStop(.62,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.24)');
     ctx.fillStyle=g;ctx.fill();ctx.restore();
+    ctx.strokeStyle='rgba(25,15,35,.22)';ctx.lineWidth=.5;ctx.stroke();
   };
   const tint=(fn)=>{ctx.save();ctx.globalAlpha=.34;ctx.fillStyle=C.accent;fn();ctx.fill();ctx.restore()};
   function drawBody(S,flat){
@@ -554,9 +575,10 @@ function drawScene(cv,ex,t,opt={}){
       ctx.fillStyle=skin;ctx.beginPath();const ns=add(add(hc,nf,10.4),u,-.6);ctx.arc(ns[0],ns[1],1.8,0,7);ctx.fill();
       E(add(add(hc,nf,.2),u,5.2),9,4.2,hair);
       if(!flat){
-        E(add(add(hc,nf,-.4),u,-.6),2,2.8,C['skin-far']);           // ear
-        E(add(add(hc,nf,6.2),u,1.2),1.1,1.3,C.hair);                // eye
-        ctx.strokeStyle=C.hair;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(...add(add(hc,nf,4.6),u,3.6));ctx.lineTo(...add(add(hc,nf,8),u,3.4));ctx.stroke();
+        E(add(add(hc,nf,-.2),u,-.8),1.9,2.7,C.skin);ctx.strokeStyle='rgba(60,30,20,.28)';ctx.lineWidth=.7;ctx.stroke();   // ear
+        E(add(add(hc,nf,6.4),u,1.1),.9,1.1,C.hair);                 // eye
+        ctx.strokeStyle='rgba(60,30,20,.5)';ctx.lineWidth=.8;ctx.beginPath();ctx.moveTo(...add(add(hc,nf,5.2),u,3.3));ctx.quadraticCurveTo(...add(add(hc,nf,6.6),u,3.9),...add(add(hc,nf,8),u,3.3));ctx.stroke();
+        ctx.fillStyle='rgba(200,90,90,.22)';const ck=add(add(hc,nf,5.6),u,-2.6);ctx.beginPath();ctx.arc(ck[0],ck[1],2,0,7);ctx.fill();
       }
     }
     legDraw(S.l,false);
@@ -572,7 +594,7 @@ function drawScene(cv,ex,t,opt={}){
   if(gd&&gd.ghost){
     if(!GHOSTC)GHOSTC=document.createElement('canvas');
     if(GHOSTC.width!==cv.width||GHOSTC.height!==cv.height){GHOSTC.width=cv.width;GHOSTC.height=cv.height}
-    const main=ctx;ctx=GHOSTC.getContext('2d');ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,GHOSTC.width,GHOSTC.height);ctx.setTransform(sc,0,0,sc,0,0);
+    const main=ctx;ctx=GHOSTC.getContext('2d');ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,GHOSTC.width,GHOSTC.height);world();
     drawBody(gd.ghost,C.accent);ctx=main;
     ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=.2;ctx.drawImage(GHOSTC,0,0);ctx.restore();
   }
@@ -586,7 +608,7 @@ function drawScene(cv,ex,t,opt={}){
     else if(gl==='vert'){const x=S.sh[0];ctx.moveTo(x,S.sh[1]+(ex.id==='latpd'||ex.id==='pullup'?20:-4));ctx.lineTo(x,Math.max(8,S.sh[1]-74))}
     ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;
   }
-  if(ex.fx==='pallof'){const pp=Math.max(0,Math.min(1,(S.a.e[0]-172)/32));const X=214,Y=12,W=96,H=78;
+  if(ex.fx==='pallof'){ctx.setTransform(sc,0,0,sc,0,0);const pp=Math.max(0,Math.min(1,(S.a.e[0]-172)/32));const X=214,Y=12,W=96,H=90;
     ctx.fillStyle=C.stage;ctx.strokeStyle=C.floor;ctx.lineWidth=1.5;rr(X,Y,W,H,10);ctx.fill();ctx.stroke();
     ctx.fillStyle=C['prop-d'];ctx.font='600 8px system-ui,sans-serif';ctx.fillText('TOP VIEW',X+8,Y+13);
     ctx.fillStyle=C.prop;rr(X+8,Y+40,10,14,2);ctx.fill();ctx.fillText('cable',X+5,Y+34);
@@ -594,8 +616,8 @@ function drawScene(cv,ex,t,opt={}){
     ctx.strokeStyle=C['prop-d'];ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(X+18,Y+47);ctx.lineTo(cx,hy);ctx.stroke();
     ctx.strokeStyle=C.skin;ctx.lineWidth=3.2;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(cx-9,cy);ctx.lineTo(cx-1.5,hy);ctx.moveTo(cx+9,cy);ctx.lineTo(cx+1.5,hy);ctx.stroke();
     ctx.fillStyle=C.top;ctx.beginPath();ctx.ellipse(cx,cy,14,6,0,0,7);ctx.fill();ctx.fillStyle=C.hair;ctx.beginPath();ctx.arc(cx,cy,5,0,7);ctx.fill();
-    const ax=X+36,ay=Y+66;ctx.strokeStyle=C.accent;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ax-12,ay);ctx.moveTo(ax-8,ay-3);ctx.lineTo(ax-12,ay);ctx.lineTo(ax-8,ay+3);ctx.stroke();ctx.fillStyle=C.accent;ctx.fillText('pull',ax-26,ay+3);
-    ctx.fillStyle=C.accent;ctx.fillText('resist · stay square',X+8,Y+75)}
+    const ax=X+36,ay=Y+66;ctx.strokeStyle=C.accent;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ax-12,ay);ctx.moveTo(ax-8,ay-3);ctx.lineTo(ax-12,ay);ctx.lineTo(ax-8,ay+3);ctx.stroke();ctx.fillStyle=C.accent;ctx.fillText('pull',ax-31,ay+3);
+    ctx.fillStyle=C.accent;ctx.fillText('resist · stay square',X+8,Y+84)}
   if(ex.fx==='pf'){const ph=seg%2===0?k:1-k;ctx.strokeStyle=C.accent;ctx.lineWidth=2;ctx.globalAlpha=.3+ph*.6;ctx.beginPath();ctx.arc(S.pel[0],S.pel[1]-2,7+ph*9,0,7);ctx.stroke();ctx.globalAlpha=1}
   return {seg};
 }
@@ -872,7 +894,7 @@ const PH=[
  {id:'C',name:'Full body',dur:40,blocks:[
   {n:'Warm-up',items:[['pflift','10 × 5 s holds'],['bridge','2×10']]},
   {n:'Main',items:[['kbdl',['2×8','3×8','3×10','3×10'],'8–12 kg'],['stepup',['2×6 /side','2×8 /side','3×8 /side','3×8 /side'],'Low box, 20–30 cm'],['sarow',['2×10 /side','3×10 /side','3×10 /side','3×12 /side']]]},
-  {n:'Core',items:[['birddog','3×6 /side'],['plank',['2×15 s','3×15 s','3×20 s','3×20 s'],'From the knees']]},
+  {n:'Core',items:[['birddog','3×6 /side'],['plank',['2×15 s','3×15 s','3×20 s','3×20 s'],'Weeks 1–2: forearms on a bench, knees down. Then on the floor from the knees. Only if no doming']]},
   {n:'Finish',items:[['walk','20 min incline']]}]}
  ]},
 {n:2,name:'Rebuild',tag:'Moderate loads, single-leg work',rpe:'RPE 6–7',freq:'3 gym sessions + walks',time:'40–45 min',
