@@ -450,7 +450,56 @@ function frameOf(ex){
   const top=16,side=14;
   const k=Math.max(1,Math.min(1.75,(G-top)/(G-y0),(320-2*side)/(x1-x0)));
   const cx=(x0+x1)/2;
+  if(ex.fx==='breath'||ex.fx==='pf'){const k2=Math.min(k,1.05)*.78;return ex._fr={k:k2,tx:86-cx*k2,ty:G-G*k2,inset:1}}
   return ex._fr={k,tx:160-cx*k,ty:G-G*k};
+}
+
+function canState(ex,seg,k){
+  if(ex.fx==='breath')return seg===0?{e:k,lift:0,dir:1,word:'Breathe in · let go'}:{e:1-k,lift:.55*k,dir:-1,word:'Breathe out · gentle lift'};
+  return [{e:0,lift:k,dir:-1,word:'Squeeze & lift'},{e:0,lift:1,dir:0,word:'Hold · keep breathing'},{e:0,lift:1-k,dir:1,word:'Let go completely'},{e:0,lift:0,dir:0,word:'Rest'}][seg]||{e:0,lift:0,dir:0,word:''};
+}
+function drawCanister(ctx,C,ex,seg,k){
+  const st=canState(ex,seg,k),e=st.e,lift=st.lift;
+  const X0=172,X1=312,Y0=10,Y1=190,cx=242;
+  ctx.fillStyle=C.stage;ctx.strokeStyle=C.floor;ctx.lineWidth=1.5;ctx.beginPath();ctx.roundRect?ctx.roundRect(X0,Y0,X1-X0,Y1-Y0,12):ctx.rect(X0,Y0,X1-X0,Y1-Y0);ctx.fill();ctx.stroke();
+  ctx.font='700 8px system-ui,sans-serif';ctx.fillStyle=C['prop-d'];ctx.textAlign='left';ctx.fillText('INSIDE VIEW',X0+10,Y0+15);
+  const w=34+e*8,L=cx-w,R=cx+w;
+  const dY=50+e*16-(ex.fx==='breath'&&seg===1?k*2:0);   // diaphragm apex: drops on the in-breath
+  const pfY=157+e*7-lift*17;                               // pelvic floor centre: drops on in-breath, rises on lift
+  const top=66,bot=146;
+  // cavity
+  ctx.beginPath();ctx.moveTo(L,top);ctx.quadraticCurveTo(cx,2*dY-top,R,top);
+  ctx.quadraticCurveTo(R+6+e*8,104,R-8,bot);ctx.quadraticCurveTo(cx,2*pfY-bot,L+8,bot);
+  ctx.quadraticCurveTo(L-6-e*8,104,L,top);ctx.closePath();
+  ctx.fillStyle=C.accent;ctx.globalAlpha=.07+.12*e+.05*lift;ctx.fill();ctx.globalAlpha=1;
+  // ribs
+  ctx.strokeStyle=C.floor;ctx.lineWidth=2.2;ctx.lineCap='round';
+  for(let i=0;i<3;i++){const y=top-6+i*11;ctx.beginPath();ctx.moveTo(L-4-e*4,y);ctx.quadraticCurveTo(cx,y-10,R+4+e*4,y);ctx.stroke()}
+  // walls
+  ctx.strokeStyle=C['prop-d'];ctx.lineWidth=2.2;
+  ctx.beginPath();ctx.moveTo(L,top);ctx.quadraticCurveTo(L-6-e*8,104,L+8,bot);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(R,top);ctx.quadraticCurveTo(R+6+e*8,104,R-8,bot);ctx.stroke();
+  // pelvis bones
+  ctx.fillStyle=C['prop'];[[L+8,bot],[R-8,bot]].forEach(p=>{ctx.beginPath();ctx.arc(p[0],p[1],4,0,7);ctx.fill()});
+  // diaphragm
+  ctx.strokeStyle=C['prop-d'];ctx.lineWidth=3.2;ctx.beginPath();ctx.moveTo(L,top);ctx.quadraticCurveTo(cx,2*dY-top,R,top);ctx.stroke();
+  // pelvic floor (hero)
+  ctx.strokeStyle=C.accent;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(L+8,bot);ctx.quadraticCurveTo(cx,2*pfY-bot,R-8,bot);ctx.stroke();
+  // labels
+  ctx.textAlign='center';ctx.font='600 8px system-ui,sans-serif';ctx.fillStyle=C['prop-d'];
+  ctx.fillText('Diaphragm',cx,(dY+top)/2+13);
+  ctx.fillStyle=C.accent;ctx.fillText('Pelvic floor',cx,Math.max(pfY,bot)+13);
+  // arrows
+  const arrow=(x,y,dx,dy,col,len=11)=>{const x2=x+dx*len,y2=y+dy*len;ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x2,y2);
+    const a=Math.atan2(dy,dx);ctx.moveTo(x2,y2);ctx.lineTo(x2-4*Math.cos(a-.6),y2-4*Math.sin(a-.6));ctx.moveTo(x2,y2);ctx.lineTo(x2-4*Math.cos(a+.6),y2-4*Math.sin(a+.6));ctx.stroke()};
+  const pulse=.55+.45*Math.sin(k*Math.PI);
+  if(st.dir){ctx.globalAlpha=pulse;
+    const pfTop=Math.min(pfY,bot);arrow(cx,st.dir>0?pfTop-17:pfTop-5,0,st.dir,C.accent);
+    if(ex.fx==='breath'){arrow(cx+30,(dY+top)/2+(st.dir>0?2:12),0,st.dir,C['prop-d'],9);arrow(L-8-e*6,104,-st.dir,0,C['prop-d'],8);arrow(R+8+e*6,104,st.dir,0,C['prop-d'],8)}
+    ctx.globalAlpha=1}
+  if(st.dir===0&&lift>.9){ctx.strokeStyle=C.accent;ctx.globalAlpha=.35+.3*Math.sin(k*Math.PI*4);ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(cx,pfY-2,24,6,0,0,7);ctx.stroke();ctx.globalAlpha=1}
+  ctx.font='700 9.5px system-ui,sans-serif';ctx.fillStyle=C.accent;ctx.fillText(st.word,cx,Y0+31);
+  ctx.textAlign='left';
 }
 let GHOSTC=null;
 function drawScene(cv,ex,t,opt={}){
@@ -484,7 +533,6 @@ function drawScene(cv,ex,t,opt={}){
     ctx.fillStyle=C.pad;rr(124,112,30,6,3);ctx.fill();ctx.fillStyle=C['prop-d'];ctx.beginPath();ctx.arc(152,160,7,0,7);ctx.fill()}
   if(pr.post){ctx.fillStyle=C.prop;rr(pr.post[0]-4,Math.min(pr.post[1]-14,G-120),8,G-Math.min(pr.post[1]-14,G-120),3);ctx.fill()}
   // breath / pelvic floor cues
-  if(ex.fx==='breath'){const ph=seg%2===0?k:1-k;const c=add(S.pel,u,LT*.48);ctx.fillStyle=C.accent;ctx.globalAlpha=.08+ph*.14;ctx.beginPath();ctx.ellipse(c[0],c[1],24+ph*12,16+ph*10,Math.atan2(u[1],u[0]),0,7);ctx.fill();ctx.globalAlpha=1}
   // cable / band
   const line=(a,b,dash)=>{ctx.strokeStyle=C['prop-d'];ctx.lineWidth=1.6;ctx.setLineDash(dash?[4,4]:[]);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();ctx.setLineDash([])};
   if(pr.cable){line(S.a.e,pr.cable);ctx.fillStyle=C['prop-d'];ctx.beginPath();ctx.arc(pr.cable[0],pr.cable[1],4.5,0,7);ctx.fill()}
@@ -618,7 +666,10 @@ function drawScene(cv,ex,t,opt={}){
     ctx.fillStyle=C.top;ctx.beginPath();ctx.ellipse(cx,cy,14,6,0,0,7);ctx.fill();ctx.fillStyle=C.hair;ctx.beginPath();ctx.arc(cx,cy,5,0,7);ctx.fill();
     const ax=X+36,ay=Y+66;ctx.strokeStyle=C.accent;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ax-12,ay);ctx.moveTo(ax-8,ay-3);ctx.lineTo(ax-12,ay);ctx.lineTo(ax-8,ay+3);ctx.stroke();ctx.fillStyle=C.accent;ctx.fillText('pull',ax-31,ay+3);
     ctx.fillStyle=C.accent;ctx.fillText('resist · stay square',X+8,Y+84)}
-  if(ex.fx==='pf'){const ph=seg%2===0?k:1-k;ctx.strokeStyle=C.accent;ctx.lineWidth=2;ctx.globalAlpha=.3+ph*.6;ctx.beginPath();ctx.arc(S.pel[0],S.pel[1]-2,7+ph*9,0,7);ctx.stroke();ctx.globalAlpha=1}
+  if(FR.inset){ctx.setTransform(sc,0,0,sc,0,0);drawCanister(ctx,C,ex,seg,k);world();
+    // marker on the figure: where the pelvic floor is
+    const st=canState(ex,seg,k);ctx.strokeStyle=C.accent;ctx.lineWidth=2.4;ctx.lineCap='round';ctx.globalAlpha=.85;
+    const pc0=add(S.pel,dir(S.T),-2);ctx.beginPath();ctx.arc(pc0[0],pc0[1]+2-st.lift*3,8,Math.PI*.15,Math.PI*.85);ctx.stroke();ctx.globalAlpha=1}
   return {seg};
 }
 
@@ -652,7 +703,7 @@ breath:{n:'360° breathing',cat:'Breath & core',eq:'Mat',mus:['Diaphragm','Pelvi
  mist:['Breathing only into the chest and shoulders.','Squeezing at 100%. Aim for about 30–40% effort.','Skipping the full relax on the inhale. Letting go matters as much as lifting.'],
  reg:'Lie on your side, or recline on pillows if lying flat is uncomfortable.',prog:'Repeat sitting, then standing, then use the same exhale during every lift.',br:'Inhale 3–4 s, exhale 4–6 s.',learn:['breath','pf']},
 pflift:{n:'Pelvic floor lifts',cat:'Breath & core',eq:'Mat',mus:['Pelvic floor'],
- f:[{p:SUP,d:1800,lab:'Exhale · lift and hold'},{p:SUP,d:2200,lab:'Inhale · let go completely'}],fx:'pf',props:{mat:1},
+ f:[{p:SUP,d:1000,lab:'Exhale · squeeze and lift'},{p:SUP,d:2400,lab:'Hold · keep breathing normally'},{p:SUP,d:1500,lab:'Let go completely'},{p:SUP,d:900,lab:'Rest'}],fx:'pf',props:{mat:1},
  why:'The pelvic floor carries the load of pregnancy and birth. Regaining both strength and the ability to relax it is the base for lifting, jumping and running without leaking or heaviness.',
  cues:['Same set-up as 360° breathing.','Long holds: lift and squeeze the back passage, vagina and front passage together. Hold up to 10 s while breathing normally.','Quick flicks: lift fast, let go fully. Repeat 10 times.','Rest 5 s between long holds.'],
  mist:['Squeezing the buttocks or inner thighs instead.','Holding the breath.','Never fully relaxing between reps.'],
